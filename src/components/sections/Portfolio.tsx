@@ -150,7 +150,11 @@ export function Portfolio() {
               key={filter.key}
               variant={activeFilter === filter.key ? "default" : "outline"}
               onClick={() => setActiveFilter(filter.key)}
-              className={activeFilter === filter.key ? "bg-gradient-flow text-white" : ""}
+              className={
+                activeFilter === filter.key
+                  ? "bg-gradient-flow text-white"
+                  : "hover:bg-transparent hover:text-primary hover:border-primary"
+              }
             >
               {filter.label}
             </Button>

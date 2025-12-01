@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   ExternalLink,
-  Github,
   Heart,
   ShoppingBag,
   Video,
@@ -201,16 +200,15 @@ export function Portfolio() {
                   ))}
                 </div>
 
-                {/* Hover Actions */}
-                <div className="flex gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Button size="sm" variant="outline" className="flex-1">
-                    <ExternalLink className="w-4 h-4 mr-1" />
-                    보기
-                  </Button>
-                  <Button size="sm" variant="outline">
-                    <Github className="w-4 h-4" />
-                  </Button>
-                </div>
+                {/* View Button */}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full mt-4 bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  보기
+                </Button>
               </CardContent>
             </Card>
           ))}

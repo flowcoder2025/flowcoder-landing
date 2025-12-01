@@ -54,7 +54,8 @@ export function Hero() {
         <div className="flex items-center justify-center mb-16">
           <Button
             size="xl"
-            className="bg-[#35C3A7] text-white font-bold border-0 hover:bg-[#2AA58D] transition-colors"
+            variant="outline"
+            className="bg-transparent border-2 border-white/50 text-white font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
           >
             문의하기
           </Button>

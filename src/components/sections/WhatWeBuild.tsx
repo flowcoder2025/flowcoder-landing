@@ -2,27 +2,29 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Palette, Rocket, Cog, ArrowRight } from "lucide-react";
+import { Palette, Rocket, Settings, ArrowRight, LucideIcon } from "lucide-react";
 
-const categories = [
+const categories: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  features: string[];
+}[] = [
   {
     icon: Palette,
     title: "크리에이티브",
-    emoji: "🎨",
     description: "이미지, 영상, 문서 — AI가 자동으로 생성합니다.",
     features: ["웨딩 사진 AI 보정", "이커머스 상품 이미지", "AI 아바타 영상", "PPT 자동 생성"],
   },
   {
     icon: Rocket,
     title: "플랫폼",
-    emoji: "🚀",
     description: "지원사업, 여행, 비즈니스 운영 — AI가 최적화합니다.",
     features: ["정부 지원사업 추천", "AI 여행 일정", "프리랜서 운영 자동화", "커뮤니티 플랫폼"],
   },
   {
-    icon: Cog,
+    icon: Settings,
     title: "자동화",
-    emoji: "🔧",
     description: "챗봇, RAG, 마케팅 — 반복에서 해방됩니다.",
     features: ["n8n 기반 챗봇", "RAG 시스템 구축", "마케팅 자동화", "원소스멀티유즈"],
   },
@@ -55,7 +57,7 @@ export function WhatWeBuild() {
 
               <CardHeader className="relative z-10">
                 <div className="w-16 h-16 rounded-2xl bg-primary-gradient flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-3xl">{category.emoji}</span>
+                  <category.icon className="w-8 h-8 text-white" strokeWidth={1.5} />
                 </div>
                 <CardTitle className="text-2xl flex items-center gap-2">
                   {category.title}

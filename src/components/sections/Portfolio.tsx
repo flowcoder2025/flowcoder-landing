@@ -4,7 +4,20 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  Heart,
+  ShoppingBag,
+  Video,
+  BarChart3,
+  Landmark,
+  Plane,
+  Briefcase,
+  Waves,
+  Zap,
+  LucideIcon
+} from "lucide-react";
 
 type Category = "all" | "creative" | "platform" | "automation" | "devtools";
 
@@ -15,7 +28,7 @@ interface Project {
   category: Category[];
   tags: string[];
   highlight: string;
-  emoji: string;
+  icon: LucideIcon;
 }
 
 const projects: Project[] = [
@@ -26,7 +39,7 @@ const projects: Project[] = [
     category: ["creative"],
     tags: ["Gemini", "Next.js", "Image AI"],
     highlight: "스튜디오 품질 즉시 완성",
-    emoji: "💒",
+    icon: Heart,
   },
   {
     name: "FlowStudio",
@@ -35,7 +48,7 @@ const projects: Project[] = [
     category: ["creative"],
     tags: ["Gemini", "Supabase", "E-commerce"],
     highlight: "$0.04/이미지",
-    emoji: "🛍️",
+    icon: ShoppingBag,
   },
   {
     name: "Gini AI",
@@ -44,7 +57,7 @@ const projects: Project[] = [
     category: ["creative"],
     tags: ["ElevenLabs", "D-ID", "Video AI"],
     highlight: "15분 내 3분 영상 제작",
-    emoji: "🎬",
+    icon: Video,
   },
   {
     name: "PPTMaker",
@@ -53,7 +66,7 @@ const projects: Project[] = [
     category: ["creative"],
     tags: ["Gemini", "PptxGenJS", "SaaS"],
     highlight: "98% 비용 절감",
-    emoji: "📊",
+    icon: BarChart3,
   },
   {
     name: "코나래",
@@ -62,7 +75,7 @@ const projects: Project[] = [
     category: ["platform"],
     tags: ["Next.js", "Supabase", "Microservices"],
     highlight: "10K+ 동시 사용자",
-    emoji: "🏛️",
+    icon: Landmark,
   },
   {
     name: "OneTrip",
@@ -71,7 +84,7 @@ const projects: Project[] = [
     category: ["platform"],
     tags: ["LangGraph", "OpenAI", "Travel"],
     highlight: "문서→여행 계획 자동화",
-    emoji: "✈️",
+    icon: Plane,
   },
   {
     name: "Weave",
@@ -80,7 +93,7 @@ const projects: Project[] = [
     category: ["platform"],
     tags: ["Next.js", "Supabase", "Automation"],
     highlight: "주 10시간+ 절약",
-    emoji: "💼",
+    icon: Briefcase,
   },
   {
     name: "Flow_Coder",
@@ -89,7 +102,7 @@ const projects: Project[] = [
     category: ["platform", "devtools"],
     tags: ["Next.js", "Prisma", "Community"],
     highlight: "바이브코딩 허브",
-    emoji: "🌊",
+    icon: Waves,
   },
   {
     name: "FlowCoder Skills",
@@ -98,7 +111,7 @@ const projects: Project[] = [
     category: ["devtools", "automation"],
     tags: ["Claude", "Skills", "Framework"],
     highlight: "95% 개발시간 단축",
-    emoji: "⚡",
+    icon: Zap,
   },
 ];
 
@@ -158,7 +171,9 @@ export function Portfolio() {
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl">{project.emoji}</span>
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <project.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                    </div>
                     <div>
                       <CardTitle className="text-lg">{project.name}</CardTitle>
                       <p className="text-xs text-muted-foreground">{project.koreanName}</p>

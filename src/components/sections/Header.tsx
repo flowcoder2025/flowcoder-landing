@@ -54,7 +54,7 @@ export function Header() {
               alt="FlowCoder Logo"
               className="w-8 h-8"
             />
-            <span className="text-xl font-bold text-muted-foreground">FlowCoder</span>
+            <span className={`text-xl font-bold transition-colors ${isScrolled ? 'text-muted-foreground' : 'text-white'}`}>FlowCoder</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -64,7 +64,7 @@ export function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                className={`text-sm font-bold hover:text-primary transition-colors cursor-pointer ${isScrolled ? 'text-muted-foreground' : 'text-white'}`}
               >
                 {link.name}
               </a>
@@ -76,7 +76,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className={`md:hidden p-2 transition-colors ${isScrolled ? 'text-foreground' : 'text-white'}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >

@@ -64,7 +64,7 @@ export function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors cursor-pointer"
               >
                 {link.name}
               </a>
@@ -96,7 +96,7 @@ export function Header() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.name}

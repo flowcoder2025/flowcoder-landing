@@ -204,7 +204,7 @@ export function Portfolio() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="w-full mt-4 bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+                  className="w-full mt-4 btn-outline-diagonal-light"
                 >
                   <ExternalLink className="w-4 h-4 mr-2" />
                   보기

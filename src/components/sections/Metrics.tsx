@@ -1,36 +1,47 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface MetricProps {
   value: string;
   suffix?: string;
   label: string;
   sublabel: string;
+  isVisible: boolean;
+  delay?: number;
 }
 
-function MetricCard({ value, suffix = "", label, sublabel }: MetricProps) {
+function MetricCard({ value, suffix = "", label, sublabel, isVisible, delay = 0 }: MetricProps) {
   const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const numericValue = parseInt(value.replace(/[^0-9]/g, ""));
 
   useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const increment = numericValue / steps;
-    let current = 0;
+    if (!isVisible || hasAnimated) return;
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= numericValue) {
-        setCount(numericValue);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
+    // Add delay for sequential animation effect
+    const delayTimer = setTimeout(() => {
+      setHasAnimated(true);
+      const duration = 2000;
+      const steps = 60;
+      const increment = numericValue / steps;
+      let current = 0;
 
-    return () => clearInterval(timer);
-  }, [numericValue]);
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= numericValue) {
+          setCount(numericValue);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(current));
+        }
+      }, duration / steps);
+
+      return () => clearInterval(timer);
+    }, delay);
+
+    return () => clearTimeout(delayTimer);
+  }, [isVisible, hasAnimated, numericValue, delay]);
 
   return (
     <div className="text-center p-6 md:p-8">
@@ -47,39 +58,68 @@ function MetricCard({ value, suffix = "", label, sublabel }: MetricProps) {
 }
 
 export function Metrics() {
-  const metrics: MetricProps[] = [
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          // Once visible, no need to observe anymore
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of section is visible
+        rootMargin: "0px 0px -50px 0px", // Slightly before fully in view
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const metrics: Omit<MetricProps, "isVisible">[] = [
     {
       value: "9",
       suffix: "+",
       label: "AI 솔루션",
       sublabel: "구축 완료",
+      delay: 0,
     },
     {
       value: "98",
       suffix: "%",
       label: "비용 절감",
       sublabel: "실측 달성",
+      delay: 150,
     },
     {
       value: "10",
       suffix: "K+",
       label: "스케일 검증",
       sublabel: "아키텍처",
+      delay: 300,
     },
     {
       value: "95",
       suffix: "%",
       label: "개발시간 단축",
       sublabel: "프레임워크",
+      delay: 450,
     },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-muted/30">
+    <section ref={sectionRef} className="py-16 md:py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {metrics.map((metric, index) => (
-            <MetricCard key={index} {...metric} />
+            <MetricCard key={index} {...metric} isVisible={isVisible} />
           ))}
         </div>
       </div>

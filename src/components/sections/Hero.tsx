@@ -55,7 +55,7 @@ export function Hero() {
           <Button
             size="xl"
             variant="outline"
-            className="btn-outline-diagonal-dark"
+            className="bg-transparent border-2 border-white/50 text-white font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
           >
             문의하기
           </Button>

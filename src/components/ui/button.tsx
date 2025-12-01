@@ -17,7 +17,7 @@ const buttonVariants = cva(
           "bg-destructive text-white hover:bg-destructive/90 hover:shadow-lg hover:shadow-destructive/25 hover:-translate-y-0.5 active:translate-y-0",
         // Outline: 테두리만 있는 버튼 (weave-flow의 "자세히 알아보기" 스타일)
         outline:
-          "border-2 border-border bg-background text-foreground hover:bg-muted hover:border-primary/50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0",
+          "border-2 border-border bg-background text-foreground hover:bg-muted hover:border-primary/50",
         // Secondary: 회색 배경
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0",

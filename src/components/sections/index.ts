@@ -1,3 +1,4 @@
+export { Header } from "./Header";
 export { Hero } from "./Hero";
 export { Metrics } from "./Metrics";
 export { WhatWeBuild } from "./WhatWeBuild";

@@ -58,7 +58,12 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-flex items-center gap-3 mb-4">
+              <img
+                src="/favicon.ico"
+                alt="FlowCoder Logo"
+                className="w-10 h-10 rounded-lg"
+              />
               <span className="text-2xl font-bold text-gradient">FlowCoder</span>
             </Link>
             <p className="text-sm text-muted-foreground mb-4">

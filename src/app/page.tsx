@@ -1,4 +1,5 @@
 import {
+  Header,
   Hero,
   Metrics,
   WhatWeBuild,
@@ -12,6 +13,9 @@ import {
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* [0] HEADER — Navigation */}
+      <Header />
+
       {/* [1] HERO — WHY */}
       <Hero />
 

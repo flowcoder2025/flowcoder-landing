@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://flowcoder.io"),
   title: "FlowCoder | AI로 흐르는 비즈니스 혁신",
   description:
     "AX(AI Transformation) 전문 팀 FlowCoder. AI 솔루션 개발, 자동화 컨설팅, 바이브코딩 교육까지. Build. Automate. Grow.",
@@ -28,6 +29,11 @@ export const metadata: Metadata = {
     "React",
   ],
   authors: [{ name: "FlowCoder Team" }],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     title: "FlowCoder | AI로 흐르는 비즈니스 혁신",
     description:
@@ -36,11 +42,13 @@ export const metadata: Metadata = {
     siteName: "FlowCoder",
     locale: "ko_KR",
     type: "website",
+    images: ["/favicon.ico"],
   },
   twitter: {
     card: "summary_large_image",
     title: "FlowCoder | AI로 흐르는 비즈니스 혁신",
     description: "AX(AI Transformation) 전문 팀. Build. Automate. Grow.",
+    images: ["/favicon.ico"],
   },
 };
 

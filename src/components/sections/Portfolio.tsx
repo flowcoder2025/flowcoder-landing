@@ -15,7 +15,6 @@ interface Project {
   category: Category[];
   tags: string[];
   highlight: string;
-  color: string;
   emoji: string;
 }
 
@@ -27,7 +26,6 @@ const projects: Project[] = [
     category: ["creative"],
     tags: ["Gemini", "Next.js", "Image AI"],
     highlight: "스튜디오 품질 즉시 완성",
-    color: "from-pink-500 to-rose-500",
     emoji: "💒",
   },
   {
@@ -37,7 +35,6 @@ const projects: Project[] = [
     category: ["creative"],
     tags: ["Gemini", "Supabase", "E-commerce"],
     highlight: "$0.04/이미지",
-    color: "from-violet-500 to-purple-500",
     emoji: "🛍️",
   },
   {
@@ -47,7 +44,6 @@ const projects: Project[] = [
     category: ["creative"],
     tags: ["ElevenLabs", "D-ID", "Video AI"],
     highlight: "15분 내 3분 영상 제작",
-    color: "from-cyan-500 to-blue-500",
     emoji: "🎬",
   },
   {
@@ -57,7 +53,6 @@ const projects: Project[] = [
     category: ["creative"],
     tags: ["Gemini", "PptxGenJS", "SaaS"],
     highlight: "98% 비용 절감",
-    color: "from-orange-500 to-amber-500",
     emoji: "📊",
   },
   {
@@ -67,7 +62,6 @@ const projects: Project[] = [
     category: ["platform"],
     tags: ["Next.js", "Supabase", "Microservices"],
     highlight: "10K+ 동시 사용자",
-    color: "from-emerald-500 to-green-500",
     emoji: "🏛️",
   },
   {
@@ -77,7 +71,6 @@ const projects: Project[] = [
     category: ["platform"],
     tags: ["LangGraph", "OpenAI", "Travel"],
     highlight: "문서→여행 계획 자동화",
-    color: "from-sky-500 to-indigo-500",
     emoji: "✈️",
   },
   {
@@ -87,7 +80,6 @@ const projects: Project[] = [
     category: ["platform"],
     tags: ["Next.js", "Supabase", "Automation"],
     highlight: "주 10시간+ 절약",
-    color: "from-teal-500 to-cyan-500",
     emoji: "💼",
   },
   {
@@ -97,7 +89,6 @@ const projects: Project[] = [
     category: ["platform", "devtools"],
     tags: ["Next.js", "Prisma", "Community"],
     highlight: "바이브코딩 허브",
-    color: "from-blue-500 to-cyan-500",
     emoji: "🌊",
   },
   {
@@ -107,7 +98,6 @@ const projects: Project[] = [
     category: ["devtools", "automation"],
     tags: ["Claude", "Skills", "Framework"],
     highlight: "95% 개발시간 단축",
-    color: "from-slate-500 to-gray-600",
     emoji: "⚡",
   },
 ];
@@ -129,7 +119,7 @@ export function Portfolio() {
       : projects.filter((p) => p.category.includes(activeFilter));
 
   return (
-    <section className="py-20 md:py-32 bg-muted/30">
+    <section id="portfolio" className="py-20 md:py-32 bg-muted/30 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -163,7 +153,7 @@ export function Portfolio() {
               className="group relative overflow-hidden border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               {/* Gradient Top Bar */}
-              <div className={`h-1 bg-gradient-to-r ${project.color}`} />
+              <div className="h-1 bg-gradient-flow" />
 
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between">
@@ -183,7 +173,7 @@ export function Portfolio() {
                 </CardDescription>
 
                 {/* Highlight Badge */}
-                <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${project.color} mb-4`}>
+                <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-primary-gradient mb-4">
                   {project.highlight}
                 </div>
 

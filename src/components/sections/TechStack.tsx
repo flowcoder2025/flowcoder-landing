@@ -5,34 +5,28 @@ import { Badge } from "@/components/ui/badge";
 interface TechCategory {
   name: string;
   technologies: string[];
-  color: string;
 }
 
 const techCategories: TechCategory[] = [
   {
     name: "Frontend",
     technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
-    color: "from-[#3182F6] to-[#5BA0FF]",
   },
   {
     name: "Backend",
     technologies: ["Supabase", "Prisma", "PostgreSQL", "FastAPI"],
-    color: "from-[#00C471] to-[#00E088]",
   },
   {
     name: "AI/ML",
     technologies: ["Google Gemini", "OpenAI", "Claude", "LangGraph"],
-    color: "from-[#FF6B35] to-[#FF8F6B]",
   },
   {
     name: "Multimodal",
     technologies: ["ElevenLabs", "D-ID", "Veo", "Perplexity"],
-    color: "from-violet-500 to-purple-500",
   },
   {
     name: "Automation",
     technologies: ["n8n", "RAG", "Vector DB", "Workflow Engine"],
-    color: "from-cyan-500 to-teal-500",
   },
 ];
 
@@ -62,7 +56,7 @@ export function TechStack() {
               >
                 {/* Category Name */}
                 <div className="w-full sm:w-40 shrink-0">
-                  <div className={`inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r ${category.color} text-white font-semibold text-sm`}>
+                  <div className="inline-flex items-center px-4 py-2 rounded-lg bg-primary-gradient text-white font-semibold text-sm">
                     {category.name}
                   </div>
                 </div>

@@ -1,19 +1,30 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap, Users, GraduationCap } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { BUTTON_TEXT } from "@/lib/text-config";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-hero" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Video Overlay - for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/35 to-background/70" />
 
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#3182F6]/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#00C471]/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/15 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
@@ -39,35 +50,17 @@ export function Hero() {
           AI로 흐르는 비즈니스 혁신
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
-          <Button size="lg" className="btn-gradient-blue px-8 py-6 text-lg">
-            <Zap className="w-5 h-5 mr-2" />
-            솔루션 보기
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-          <Button size="lg" variant="outline" className="px-8 py-6 text-lg">
-            자동화 문의
-          </Button>
-          <Button size="lg" variant="outline" className="px-8 py-6 text-lg">
-            <GraduationCap className="w-5 h-5 mr-2" />
-            강의 신청
-          </Button>
-          <Button size="lg" variant="ghost" className="px-8 py-6 text-lg">
-            <Users className="w-5 h-5 mr-2" />
-            커뮤니티
+        {/* CTA Button */}
+        <div className="flex items-center justify-center mb-16">
+          <Button
+            size="xl"
+            variant="outline"
+            className="bg-transparent border-2 border-foreground/50 text-foreground font-bold hover:border-primary hover:text-primary hover:bg-transparent transition-colors"
+          >
+            문의하기
           </Button>
         </div>
 
-        {/* Brand Logo Text */}
-        <div className="text-center">
-          <p className="text-5xl md:text-6xl font-bold text-gradient mb-2">
-            FlowCoder
-          </p>
-          <p className="text-lg text-muted-foreground tracking-widest">
-            Build. Automate. Grow.
-          </p>
-        </div>
       </div>
 
       {/* Scroll indicator */}

@@ -85,10 +85,10 @@ export function ScrollReveal({
   variants = fadeInUp,
   className = "",
   delay = 0,
-  once = true
+  once = false
 }: ScrollRevealProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: "-50px" });
+  const isInView = useInView(ref, { once, margin: "-100px" });
 
   return (
     <motion.div
@@ -118,7 +118,7 @@ export function StaggerContainer({
   delay = 0
 }: StaggerContainerProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: false, margin: "-100px" });
 
   return (
     <motion.div

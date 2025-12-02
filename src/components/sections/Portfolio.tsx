@@ -17,6 +17,8 @@ import {
   Zap,
   LucideIcon
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ScrollReveal } from "@/components/ui/motion";
 
 type Category = "all" | "creative" | "platform" | "automation" | "devtools";
 
@@ -134,17 +136,23 @@ export function Portfolio() {
     <section id="portfolio" className="py-20 md:py-32 bg-muted/30 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <ScrollReveal className="text-center mb-12">
           <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-4">
             PORTFOLIO
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
             프로젝트 <span className="text-gradient">쇼케이스</span>
           </h2>
-        </div>
+        </ScrollReveal>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <motion.div
+          className="flex flex-wrap justify-center gap-2 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           {filters.map((filter) => (
             <Button
               key={filter.key}
@@ -159,64 +167,89 @@ export function Portfolio() {
               {filter.label}
             </Button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Project Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {filteredProjects.map((project, index) => (
-            <Card
-              key={index}
-              className="group relative overflow-hidden border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-            >
-              {/* Gradient Top Bar */}
-              <div className="h-1 bg-gradient-flow" />
+        <motion.div
+          layout
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.name}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+              >
+                <Card className="group relative overflow-hidden border hover:border-primary/50 transition-colors duration-300 hover:shadow-xl h-full">
+                  {/* Gradient Top Bar */}
+                  <div className="h-1 bg-gradient-flow" />
 
-              <CardHeader className="pb-2">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <project.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-3">
+                        <motion.div
+                          className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"
+                          whileHover={{
+                            scale: 1.1,
+                            backgroundColor: "rgba(45, 212, 191, 0.2)",
+                            transition: { duration: 0.2 }
+                          }}
+                        >
+                          <project.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                        </motion.div>
+                        <div>
+                          <CardTitle className="text-lg">{project.name}</CardTitle>
+                          <p className="text-xs text-muted-foreground">{project.koreanName}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <CardTitle className="text-lg">{project.name}</CardTitle>
-                      <p className="text-xs text-muted-foreground">{project.koreanName}</p>
+                  </CardHeader>
+
+                  <CardContent>
+                    <CardDescription className="text-sm mb-4 line-clamp-2">
+                      {project.description}
+                    </CardDescription>
+
+                    {/* Highlight Badge */}
+                    <motion.div
+                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-primary-gradient mb-4"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {project.highlight}
+                    </motion.div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1">
+                      {project.tags.map((tag, tagIndex) => (
+                        <Badge key={tagIndex} variant="secondary" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
                     </div>
-                  </div>
-                </div>
-              </CardHeader>
 
-              <CardContent>
-                <CardDescription className="text-sm mb-4 line-clamp-2">
-                  {project.description}
-                </CardDescription>
-
-                {/* Highlight Badge */}
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-primary-gradient mb-4">
-                  {project.highlight}
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1">
-                  {project.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-
-                {/* View Button */}
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="w-full mt-4 bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  보기
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                    {/* View Button */}
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="w-full mt-4 bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      보기
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

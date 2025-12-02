@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import { BUTTON_TEXT } from "@/lib/text-config";
+import { motion } from "framer-motion";
 
 export function Hero() {
   return (
@@ -29,46 +30,94 @@ export function Hero() {
 
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F172A]/80 text-[#E5F9F5] text-sm font-medium mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F172A]/80 text-[#E5F9F5] text-sm font-medium mb-8"
+        >
           <Sparkles className="w-4 h-4" />
           <span>AX(AI Transformation) 전문 팀</span>
-        </div>
+        </motion.div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-white">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-white"
+        >
           <span className="text-[#35C3A7]">AI</span>는 선택이 아닌{" "}
           <span className="text-[#35C3A7]">기반</span>입니다
-        </h1>
+        </motion.h1>
 
         {/* Sub Headline */}
-        <p className="text-xl md:text-2xl text-[#E5E7EB] max-w-3xl mx-auto mb-4">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-xl md:text-2xl text-[#E5E7EB] max-w-3xl mx-auto mb-4"
+        >
           모든 비즈니스에 AI가 흘러야 합니다.
-        </p>
+        </motion.p>
 
         {/* Tagline */}
-        <p className="text-2xl md:text-3xl font-semibold text-white mb-12">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-2xl md:text-3xl font-semibold text-white mb-12"
+        >
           AI로 흐르는 비즈니스 혁신
-        </p>
+        </motion.p>
 
         {/* CTA Button */}
-        <div className="flex items-center justify-center mb-16">
-          <Button
-            size="xl"
-            variant="outline"
-            className="bg-transparent border-2 border-white/50 text-white font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="flex items-center justify-center mb-16"
+        >
+          <motion.div
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{
+              scale: 0.95,
+              transition: { duration: 0.1 }
+            }}
           >
-            문의하기
-          </Button>
-        </div>
+            <Button
+              size="xl"
+              variant="outline"
+              className="bg-transparent border-2 border-white/50 text-white font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+            >
+              문의하기
+            </Button>
+          </motion.div>
+        </motion.div>
 
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 8, 0] }}
+        transition={{
+          opacity: { duration: 0.6, delay: 1.2 },
+          y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+        }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
         <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-white/50 rounded-full animate-pulse" />
+          <motion.div
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1 h-2 bg-white/50 rounded-full"
+          />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

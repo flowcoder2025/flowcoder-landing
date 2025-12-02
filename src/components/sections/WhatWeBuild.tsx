@@ -3,6 +3,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Palette, Rocket, Settings, ArrowRight, LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 const categories: {
   icon: LucideIcon;
@@ -35,7 +37,7 @@ export function WhatWeBuild() {
     <section id="solutions" className="py-20 md:py-32 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-4">
             WHAT
           </p>
@@ -43,47 +45,67 @@ export function WhatWeBuild() {
             우리는 <span className="text-gradient">9개의 AI 솔루션</span>을<br />
             직접 구축했습니다.
           </h2>
-        </div>
+        </ScrollReveal>
 
         {/* Category Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <StaggerContainer className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {categories.map((category, index) => (
-            <Card
-              key={index}
-              className="group relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl"
-            >
-              {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <StaggerItem key={index}>
+              <motion.div
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+              >
+                <Card className="group relative overflow-hidden border-2 hover:border-primary/50 transition-colors duration-300 hover:shadow-xl h-full">
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <CardHeader className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-primary-gradient flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <category.icon className="w-8 h-8 text-white" strokeWidth={1.5} />
-                </div>
-                <CardTitle className="text-2xl flex items-center gap-2">
-                  {category.title}
-                </CardTitle>
-                <CardDescription className="text-base">
-                  {category.description}
-                </CardDescription>
-              </CardHeader>
+                  <CardHeader className="relative z-10">
+                    <motion.div
+                      className="w-16 h-16 rounded-2xl bg-primary-gradient flex items-center justify-center mb-4"
+                      whileHover={{
+                        scale: 1.1,
+                        rotate: [0, -5, 5, 0],
+                        transition: { duration: 0.4 }
+                      }}
+                    >
+                      <category.icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+                    </motion.div>
+                    <CardTitle className="text-2xl flex items-center gap-2">
+                      {category.title}
+                    </CardTitle>
+                    <CardDescription className="text-base">
+                      {category.description}
+                    </CardDescription>
+                  </CardHeader>
 
-              <CardContent className="relative z-10">
-                <ul className="space-y-2 mb-6">
-                  {category.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center gap-2 text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-primary">
-                  자세히 보기
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-              </CardContent>
-            </Card>
+                  <CardContent className="relative z-10">
+                    <ul className="space-y-2 mb-6">
+                      {category.features.map((feature, featureIndex) => (
+                        <motion.li
+                          key={featureIndex}
+                          className="flex items-center gap-2 text-muted-foreground"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: featureIndex * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          {feature}
+                        </motion.li>
+                      ))}
+                    </ul>
+                    <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-primary">
+                      자세히 보기
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

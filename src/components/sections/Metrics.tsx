@@ -13,35 +13,45 @@ interface MetricProps {
 
 function MetricCard({ value, suffix = "", label, sublabel, isVisible, delay = 0 }: MetricProps) {
   const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
   const numericValue = parseInt(value.replace(/[^0-9]/g, ""));
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (!isVisible || hasAnimated) return;
+    // Clear any existing timers
+    if (timerRef.current) clearTimeout(timerRef.current);
+    if (intervalRef.current) clearInterval(intervalRef.current);
 
-    // Add delay for sequential animation effect
-    const delayTimer = setTimeout(() => {
-      setHasAnimated(true);
-      const duration = 2000;
-      const steps = 60;
-      const increment = numericValue / steps;
-      let current = 0;
+    if (isVisible) {
+      // Reset count and start animation when visible
+      setCount(0);
 
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= numericValue) {
-          setCount(numericValue);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(current));
-        }
-      }, duration / steps);
+      timerRef.current = setTimeout(() => {
+        const duration = 2000;
+        const steps = 60;
+        const increment = numericValue / steps;
+        let current = 0;
 
-      return () => clearInterval(timer);
-    }, delay);
+        intervalRef.current = setInterval(() => {
+          current += increment;
+          if (current >= numericValue) {
+            setCount(numericValue);
+            if (intervalRef.current) clearInterval(intervalRef.current);
+          } else {
+            setCount(Math.floor(current));
+          }
+        }, duration / steps);
+      }, delay);
+    } else {
+      // Reset to 0 when not visible
+      setCount(0);
+    }
 
-    return () => clearTimeout(delayTimer);
-  }, [isVisible, hasAnimated, numericValue, delay]);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isVisible, numericValue, delay]);
 
   return (
     <div className="text-center p-6 md:p-8">
@@ -64,15 +74,12 @@ export function Metrics() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Once visible, no need to observe anymore
-          observer.disconnect();
-        }
+        // Update visibility based on intersection state (bidirectional)
+        setIsVisible(entry.isIntersecting);
       },
       {
-        threshold: 0.3, // Trigger when 30% of section is visible
-        rootMargin: "0px 0px -50px 0px", // Slightly before fully in view
+        threshold: 0.3,
+        rootMargin: "-100px 0px -100px 0px",
       }
     );
 

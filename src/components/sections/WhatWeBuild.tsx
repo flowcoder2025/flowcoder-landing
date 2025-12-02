@@ -75,7 +75,7 @@ export function WhatWeBuild() {
                     <CardTitle className="text-2xl flex items-center gap-2">
                       {category.title}
                     </CardTitle>
-                    <CardDescription className="text-base min-h-[3rem]">
+                    <CardDescription className="text-base min-h-12">
                       {category.description}
                     </CardDescription>
                   </CardHeader>

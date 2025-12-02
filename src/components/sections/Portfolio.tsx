@@ -213,7 +213,7 @@ export function Portfolio() {
                     </div>
                   </CardHeader>
 
-                  <CardContent>
+                  <CardContent className="pb-16">
                     <CardDescription className="text-sm mb-4 line-clamp-2">
                       {project.description}
                     </CardDescription>
@@ -235,11 +235,11 @@ export function Portfolio() {
                       ))}
                     </div>
 
-                    {/* View Button */}
+                    {/* View Button - Fixed at bottom */}
                     <Button
                       size="sm"
                       variant="outline"
-                      className="w-full mt-4 bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+                      className="absolute bottom-4 left-6 right-6 bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
                       보기

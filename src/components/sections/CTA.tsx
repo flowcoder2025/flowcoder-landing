@@ -7,68 +7,17 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import {
-  Cog, Building2, Landmark, ArrowRight,
-  Bot, Database, TrendingUp, Repeat,
-  Sparkles, Server, Shield, Wrench,
-  Code, Cpu, FileCheck, HeadphonesIcon,
-  Send, CheckCircle2, MessageSquarePlus,
-  HelpCircle, Handshake, Newspaper, Mail
-} from "lucide-react";
+import { Send, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { ScrollReveal } from "@/components/ui/motion";
 
 type InquiryCategory = "automation" | "enterprise" | "government" | "other" | null;
 
-const inquiryCards = [
-  {
-    id: "automation" as const,
-    icon: Cog,
-    title: "자동화 컨설팅",
-    description: "반복 업무에서 해방되세요.",
-    features: [
-      { icon: Bot, title: "n8n 기반 AI 챗봇", desc: "맞춤형 대화형 AI 시스템" },
-      { icon: Database, title: "RAG 시스템 구축", desc: "기업 맞춤 지식 검색 AI" },
-      { icon: TrendingUp, title: "마케팅 자동화", desc: "리드 생성부터 육성까지" },
-      { icon: Repeat, title: "원소스멀티유즈", desc: "콘텐츠 다채널 자동 배포" },
-    ],
-  },
-  {
-    id: "enterprise" as const,
-    icon: Building2,
-    title: "기업 문의",
-    description: "비즈니스에 AI를 더하세요.",
-    features: [
-      { icon: Sparkles, title: "AI 솔루션 개발", desc: "맞춤형 AI 서비스 구축" },
-      { icon: Code, title: "시스템 통합", desc: "기존 시스템과 AI 연동" },
-      { icon: Cpu, title: "기술 컨설팅", desc: "최적의 AI 전략 수립" },
-      { icon: HeadphonesIcon, title: "기술 지원", desc: "24/7 전문 기술 지원" },
-    ],
-  },
-  {
-    id: "government" as const,
-    icon: Landmark,
-    title: "공공기관",
-    description: "공공 서비스를 혁신하세요.",
-    features: [
-      { icon: Server, title: "정부/공공 사업", desc: "국책 사업 수행 경험" },
-      { icon: FileCheck, title: "시스템 구축", desc: "안정적인 공공 시스템" },
-      { icon: Shield, title: "보안 인증", desc: "공공기관 보안 기준 준수" },
-      { icon: Wrench, title: "유지보수", desc: "체계적인 운영 지원" },
-    ],
-  },
-  {
-    id: "other" as const,
-    icon: MessageSquarePlus,
-    title: "기타",
-    description: "그 외 문의사항을 남겨주세요.",
-    features: [
-      { icon: HelpCircle, title: "일반 문의", desc: "서비스 관련 질문" },
-      { icon: Handshake, title: "제휴/파트너십", desc: "비즈니스 협력 문의" },
-      { icon: Newspaper, title: "언론/미디어", desc: "보도자료 및 인터뷰" },
-      { icon: Mail, title: "기타 요청", desc: "그 외 모든 문의" },
-    ],
-  },
+const categoryOptions = [
+  { id: "automation" as const, title: "자동화 컨설팅" },
+  { id: "enterprise" as const, title: "기업 문의" },
+  { id: "government" as const, title: "공공기관" },
+  { id: "other" as const, title: "기타" },
 ];
 
 export function CTA() {
@@ -82,12 +31,6 @@ export function CTA() {
   });
   const [agreed, setAgreed] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleCategoryClick = (category: InquiryCategory) => {
-    setSelectedCategory(category);
-    // Scroll to form
-    document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,7 +56,7 @@ export function CTA() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <ScrollReveal className="text-center mb-16">
+        <ScrollReveal className="text-center mb-12">
           <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-4">
             CONTACT US
           </p>
@@ -122,65 +65,9 @@ export function CTA() {
             <span className="text-gradient">AI를 흐르게</span> 할 차례입니다
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            문의 유형을 선택하고 아래 양식을 작성해 주세요. 빠른 시일 내에 연락드리겠습니다.
+            아래 양식을 작성해 주세요. 빠른 시일 내에 연락드리겠습니다.
           </p>
         </ScrollReveal>
-
-        {/* Inquiry Cards */}
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
-          {inquiryCards.map((card) => (
-            <StaggerItem key={card.id}>
-              <motion.div
-                whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
-                onClick={() => handleCategoryClick(card.id)}
-              >
-                <Card
-                  className={`relative overflow-hidden border-2 transition-all duration-300 cursor-pointer h-full ${
-                    selectedCategory === card.id
-                      ? "border-primary shadow-lg shadow-primary/20"
-                      : "hover:border-primary/50 hover:shadow-xl"
-                  }`}
-                >
-                  {/* Selection indicator */}
-                  {selectedCategory === card.id && (
-                    <div className="absolute top-4 right-4">
-                      <CheckCircle2 className="w-6 h-6 text-primary" />
-                    </div>
-                  )}
-
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-flow" />
-
-                  <CardHeader>
-                    <motion.div
-                      className="w-16 h-16 rounded-2xl bg-primary-gradient flex items-center justify-center mb-4"
-                      whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
-                    >
-                      <card.icon className="w-8 h-8 text-white" />
-                    </motion.div>
-                    <CardTitle className="text-2xl">{card.title}</CardTitle>
-                    <CardDescription className="text-base min-h-6">
-                      {card.description}
-                    </CardDescription>
-                  </CardHeader>
-
-                  <CardContent>
-                    <ul className="space-y-3">
-                      {card.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <feature.icon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                          <div>
-                            <p className="font-medium text-sm">{feature.title}</p>
-                            <p className="text-xs text-muted-foreground">{feature.desc}</p>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
 
         {/* Contact Form */}
         <ScrollReveal>
@@ -189,8 +76,8 @@ export function CTA() {
               <CardTitle className="text-2xl">문의하기</CardTitle>
               <CardDescription>
                 {selectedCategory
-                  ? `${inquiryCards.find(c => c.id === selectedCategory)?.title} 관련 문의`
-                  : "위에서 문의 유형을 선택해 주세요"
+                  ? `${categoryOptions.find(c => c.id === selectedCategory)?.title} 관련 문의`
+                  : "문의 유형을 선택해 주세요"
                 }
               </CardDescription>
             </CardHeader>
@@ -212,18 +99,18 @@ export function CTA() {
                   <div>
                     <Label className="text-sm font-medium mb-3 block">문의 유형</Label>
                     <div className="flex flex-wrap gap-2">
-                      {inquiryCards.map((card) => (
+                      {categoryOptions.map((option) => (
                         <button
-                          key={card.id}
+                          key={option.id}
                           type="button"
-                          onClick={() => setSelectedCategory(card.id)}
+                          onClick={() => setSelectedCategory(option.id)}
                           className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                            selectedCategory === card.id
+                            selectedCategory === option.id
                               ? "bg-primary text-white"
                               : "bg-muted hover:bg-muted/80 text-foreground"
                           }`}
                         >
-                          #{card.title}
+                          #{option.title}
                         </button>
                       ))}
                     </div>

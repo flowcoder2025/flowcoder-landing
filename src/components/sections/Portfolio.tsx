@@ -124,6 +124,28 @@ const filters: { key: Category; label: string }[] = [
   { key: "devtools", label: "개발자도구" },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.2 } },
+};
+
 export function Portfolio() {
   const [activeFilter, setActiveFilter] = useState<Category>("all");
 
@@ -173,22 +195,27 @@ export function Portfolio() {
         <motion.div
           layout
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-100px" }}
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.name}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                exit="exit"
+                viewport={{ once: false, margin: "-50px" }}
                 whileHover={{
                   y: -8,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
               >
-                <Card className="group relative overflow-hidden border hover:border-primary/50 transition-colors duration-300 hover:shadow-xl h-full">
+                <Card className="group relative overflow-hidden border hover:border-primary/50 transition-colors duration-300 hover:shadow-xl h-full flex flex-col">
                   {/* Gradient Top Bar */}
                   <div className="h-1 bg-gradient-flow" />
 
@@ -213,37 +240,41 @@ export function Portfolio() {
                     </div>
                   </CardHeader>
 
-                  <CardContent className="pb-16">
-                    <CardDescription className="text-sm mb-4 line-clamp-2">
+                  <CardContent className="flex-1 flex flex-col">
+                    {/* Description - Fixed 2 lines */}
+                    <CardDescription className="text-sm line-clamp-2 min-h-[2.5rem]">
                       {project.description}
                     </CardDescription>
 
-                    {/* Highlight Badge */}
-                    <motion.div
-                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-primary-gradient mb-4"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {project.highlight}
-                    </motion.div>
+                    {/* Bottom Group - Fixed at card bottom */}
+                    <div className="mt-auto pt-3 space-y-2">
+                      {/* Highlight Badge */}
+                      <motion.div
+                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-primary-gradient"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        {project.highlight}
+                      </motion.div>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge key={tagIndex} variant="secondary" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-1">
+                        {project.tags.map((tag, tagIndex) => (
+                          <Badge key={tagIndex} variant="secondary" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      {/* View Button */}
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        보기
+                      </Button>
                     </div>
-
-                    {/* View Button - Fixed at bottom */}
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="absolute bottom-4 left-6 right-6 bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      보기
-                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>

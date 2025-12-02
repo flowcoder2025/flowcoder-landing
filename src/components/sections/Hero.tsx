@@ -92,6 +92,7 @@ export function Hero() {
               size="xl"
               variant="outline"
               className="bg-transparent border-2 border-white/50 text-white font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               문의하기
             </Button>

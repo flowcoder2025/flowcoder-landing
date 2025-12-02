@@ -69,7 +69,7 @@ export function Header() {
                 {link.name}
               </a>
             ))}
-            <Button size="sm" variant="teal" onClick={(e) => handleNavClick(e as any, "#services")}>
+            <Button size="sm" variant="teal" onClick={(e) => handleNavClick(e as any, "#contact")}>
               문의하기
             </Button>
           </nav>
@@ -102,7 +102,7 @@ export function Header() {
                   {link.name}
                 </a>
               ))}
-              <Button size="sm" variant="teal" className="w-full" onClick={(e) => handleNavClick(e as any, "#services")}>
+              <Button size="sm" variant="teal" className="w-full" onClick={(e) => handleNavClick(e as any, "#contact")}>
                 문의하기
               </Button>
             </div>

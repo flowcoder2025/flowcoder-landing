@@ -12,12 +12,13 @@ import {
   Bot, Database, TrendingUp, Repeat,
   Sparkles, Server, Shield, Wrench,
   Code, Cpu, FileCheck, HeadphonesIcon,
-  Send, CheckCircle2
+  Send, CheckCircle2, MessageSquarePlus,
+  HelpCircle, Handshake, Newspaper, Mail
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
-type InquiryCategory = "automation" | "enterprise" | "government" | null;
+type InquiryCategory = "automation" | "enterprise" | "government" | "other" | null;
 
 const inquiryCards = [
   {
@@ -54,6 +55,18 @@ const inquiryCards = [
       { icon: FileCheck, title: "시스템 구축", desc: "안정적인 공공 시스템" },
       { icon: Shield, title: "보안 인증", desc: "공공기관 보안 기준 준수" },
       { icon: Wrench, title: "유지보수", desc: "체계적인 운영 지원" },
+    ],
+  },
+  {
+    id: "other" as const,
+    icon: MessageSquarePlus,
+    title: "기타",
+    description: "그 외 문의사항을 남겨주세요.",
+    features: [
+      { icon: HelpCircle, title: "일반 문의", desc: "서비스 관련 질문" },
+      { icon: Handshake, title: "제휴/파트너십", desc: "비즈니스 협력 문의" },
+      { icon: Newspaper, title: "언론/미디어", desc: "보도자료 및 인터뷰" },
+      { icon: Mail, title: "기타 요청", desc: "그 외 모든 문의" },
     ],
   },
 ];
@@ -114,7 +127,7 @@ export function CTA() {
         </ScrollReveal>
 
         {/* Inquiry Cards */}
-        <StaggerContainer className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
           {inquiryCards.map((card) => (
             <StaggerItem key={card.id}>
               <motion.div

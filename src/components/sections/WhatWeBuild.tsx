@@ -41,7 +41,7 @@ export function WhatWeBuild() {
             WHAT
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            우리는 <span className="text-gradient">9개의 AI 솔루션</span>을<br />
+            우리는 <span className="text-gradient">AI 솔루션</span>을<br />
             직접 구축했습니다.
           </h2>
         </ScrollReveal>

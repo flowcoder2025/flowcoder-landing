@@ -52,7 +52,7 @@ const projects: Project[] = [
     description: "복잡한 포토샵 없이, 전문가급 제품 사진과 홍보물을 30초 완성.",
     category: ["creative"],
     tags: ["Gemini", "Supabase", "E-commerce"],
-    highlight: "$0.04/이미지",
+    highlight: "상세페이지 30초 완성",
     icon: ShoppingBag,
     thumbnail: "/Iframe/studio.png",
     url: "https://studio.flow-coder.com/",

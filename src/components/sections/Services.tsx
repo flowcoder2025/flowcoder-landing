@@ -29,7 +29,7 @@ const services: ServiceCard[] = [
   {
     icon: Cog,
     title: "자동화 컨설팅",
-    description: "반복 업무에서 해방되세요.",
+    description: "반복 업무에서 해방.",
     items: [
       { icon: Bot, title: "n8n 기반 AI 챗봇", description: "맞춤형 대화형 AI 시스템" },
       { icon: Database, title: "RAG 시스템 구축", description: "기업 맞춤 지식 검색 AI" },
@@ -41,7 +41,7 @@ const services: ServiceCard[] = [
   {
     icon: GraduationCap,
     title: "바이브코딩",
-    description: "AI 시대의 개발자로 성장하세요.",
+    description: "AI 시대의 개발자로 성장.",
     items: [
       { icon: BookOpen, title: "유료 강의 · 세미나", description: "AI 코딩 실전 교육" },
       { icon: Users, title: "워크샵 · 멘토링", description: "1:1 맞춤 성장 지원" },
@@ -53,7 +53,7 @@ const services: ServiceCard[] = [
   {
     icon: Building2,
     title: "기업 문의",
-    description: "비즈니스에 AI를 더하세요.",
+    description: "비즈니스에 AI 적용.",
     items: [
       { icon: Sparkles, title: "AI 솔루션 개발", description: "맞춤형 AI 서비스 구축" },
       { icon: Code, title: "시스템 통합", description: "기존 시스템과 AI 연동" },
@@ -65,7 +65,7 @@ const services: ServiceCard[] = [
   {
     icon: Landmark,
     title: "공공기관",
-    description: "공공 서비스를 혁신하세요.",
+    description: "공공 서비스 혁신.",
     items: [
       { icon: Server, title: "정부/공공 사업", description: "국책 사업 수행 경험" },
       { icon: FileCheck, title: "시스템 구축", description: "안정적인 공공 시스템" },
@@ -77,7 +77,7 @@ const services: ServiceCard[] = [
   {
     icon: MessageSquarePlus,
     title: "기타",
-    description: "그 외 문의사항을 남겨주세요.",
+    description: "그 외 문의사항.",
     items: [
       { icon: HelpCircle, title: "일반 문의", description: "서비스 관련 질문" },
       { icon: Handshake, title: "제휴/파트너십", description: "비즈니스 협력 문의" },

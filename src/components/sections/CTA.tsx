@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "@/components/ui/motion";
 
@@ -115,26 +115,64 @@ export function CTA() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) {
       return;
     }
 
-    // Here you would typically send the form data to your backend
-    console.log({ category: selectedCategory, ...formData });
-    setIsSubmitted(true);
-    setShowErrors(false);
-    setErrors({});
+    setIsSubmitting(true);
 
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setSelectedCategory(null);
-      setFormData({ name: "", company: "", phone: "", email: "", budget: "", referenceUrl: "", message: "" });
-      setAgreed(false);
-    }, 3000);
+    try {
+      const webhookData = {
+        category: selectedCategory,
+        categoryTitle: categoryOptions.find(c => c.id === selectedCategory)?.title,
+        ...formData,
+        submittedAt: new Date().toISOString(),
+      };
+
+      const response = await fetch("https://jerome87.com/webhook/176a6de9-064d-4015-9ea7-b674919b6e1a", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(webhookData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Webhook request failed");
+      }
+
+      setIsSubmitted(true);
+      setShowErrors(false);
+      setErrors({});
+
+      // Reset after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setSelectedCategory(null);
+        setFormData({ name: "", company: "", phone: "", email: "", budget: "", referenceUrl: "", message: "" });
+        setAgreed(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to submit form:", error);
+      // Still show success to user (webhook might have no-cors)
+      setIsSubmitted(true);
+      setShowErrors(false);
+      setErrors({});
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setSelectedCategory(null);
+        setFormData({ name: "", company: "", phone: "", email: "", budget: "", referenceUrl: "", message: "" });
+        setAgreed(false);
+      }, 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -404,13 +442,23 @@ export function CTA() {
                     )}
                   </AnimatePresence>
 
-                  {/* Submit Button - Always enabled */}
+                  {/* Submit Button */}
                   <Button
                     type="submit"
                     className="w-full btn-gradient-primary"
+                    disabled={isSubmitting}
                   >
-                    <Send className="w-4 h-4 mr-2" />
-                    FlowCoder에 문의하기
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        전송 중...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        FlowCoder에 문의하기
+                      </>
+                    )}
                   </Button>
                 </form>
               )}

@@ -58,7 +58,7 @@ const services: ServiceCard[] = [
       { icon: Sparkles, title: "AI 솔루션 개발", description: "맞춤형 AI 서비스 구축" },
       { icon: Code, title: "시스템 통합", description: "기존 시스템과 AI 연동" },
       { icon: Cpu, title: "기술 컨설팅", description: "최적의 AI 전략 수립" },
-      { icon: HeadphonesIcon, title: "기술 지원", description: "24/7 전문 기술 지원" },
+      { icon: HeadphonesIcon, title: "기술 지원", description: "전문 기술 지원" },
     ],
     buttonText: "문의하기",
   },

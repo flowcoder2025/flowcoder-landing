@@ -49,7 +49,7 @@ const projects: Project[] = [
   {
     name: "FlowStudio",
     koreanName: "플로우스튜디오",
-    description: "이커머스 AI 상품 이미지 생성 플랫폼. $0.04로 무한한 상품 이미지 생성.",
+    description: "복잡한 포토샵 없이, 전문가급 제품 사진과 홍보물을 30초 완성.",
     category: ["creative"],
     tags: ["Gemini", "Supabase", "E-commerce"],
     highlight: "$0.04/이미지",
@@ -60,7 +60,7 @@ const projects: Project[] = [
   {
     name: "Gini AI",
     koreanName: "지니 AI",
-    description: "PDF→AI 아바타 영상 자동 변환. ElevenLabs, D-ID, Veo 통합 파이프라인.",
+    description: "문서를 AI가 분석하고, 전문 아바타가 발표하는 고품질 영상을 자동으로 제작합니다. 복잡한 편집 없이 3분 완성.",
     category: ["creative"],
     tags: ["ElevenLabs", "D-ID", "Video AI"],
     highlight: "15분 내 3분 영상 제작",
@@ -102,7 +102,7 @@ const projects: Project[] = [
   {
     name: "Weave",
     koreanName: "위브",
-    description: "프리랜서 비즈니스 운영 플랫폼. 주 10시간 업무 자동화.",
+    description: "프리랜서와 1인 기업이 클라이언트, 프로젝트 관리, 세무 업무를 한 곳에서 해결할 수 있는 통합 솔루션.",
     category: ["platform"],
     tags: ["Next.js", "Supabase", "Automation"],
     highlight: "주 10시간+ 절약",

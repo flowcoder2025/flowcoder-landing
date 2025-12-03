@@ -14,7 +14,7 @@ function useInViewWithHysteresis(
     once?: boolean;
   } = {}
 ) {
-  const { enterThreshold = 0.2, exitThreshold = 0.05, once = false } = options;
+  const { enterThreshold = 0.05, exitThreshold = 0.01, once = false } = options;
   const [isInView, setIsInView] = useState(false);
   const isInViewRef = useRef(false);
   const hasTriggered = useRef(false);
@@ -155,8 +155,8 @@ export function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInViewWithHysteresis(ref, {
-    enterThreshold: 0.15,
-    exitThreshold: 0.02,
+    enterThreshold: 0.03,
+    exitThreshold: 0.01,
     once
   });
 
@@ -189,8 +189,8 @@ export function StaggerContainer({
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInViewWithHysteresis(ref, {
-    enterThreshold: 0.1,
-    exitThreshold: 0.02,
+    enterThreshold: 0.03,
+    exitThreshold: 0.01,
     once: false
   });
 

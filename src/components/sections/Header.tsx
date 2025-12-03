@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+  { name: "홈", href: "#top" },
   { name: "솔루션", href: "#solutions" },
   { name: "포트폴리오", href: "#portfolio" },
   { name: "기술스택", href: "#techstack" },
@@ -27,11 +28,15 @@ export function Header() {
 
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
 
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (href === "#top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const targetId = href.replace("#", "");
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
 
     setIsMobileMenuOpen(false);

@@ -188,7 +188,7 @@ export function Portfolio() {
           className="flex flex-wrap justify-center gap-2 mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-50px", amount: 0.3 }}
+          viewport={{ once: false, margin: "-80px", amount: 0.2 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {filters.map((filter) => (
@@ -214,7 +214,7 @@ export function Portfolio() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-50px", amount: 0.3 }}
+          viewport={{ once: false, margin: "-80px", amount: 0.15 }}
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
@@ -225,7 +225,7 @@ export function Portfolio() {
                 initial="hidden"
                 whileInView="visible"
                 exit="exit"
-                viewport={{ once: false, margin: "-50px", amount: 0.3 }}
+                viewport={{ once: false, margin: "-80px", amount: 0.2 }}
                 whileHover={{
                   y: -8,
                   transition: { duration: 0.3, ease: "easeOut" }

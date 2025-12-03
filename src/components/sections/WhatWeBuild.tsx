@@ -88,7 +88,7 @@ export function WhatWeBuild() {
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: featureIndex * 0.1 }}
-                          viewport={{ once: false, margin: "-50px", amount: 0.3 }}
+                          viewport={{ once: false, margin: "-80px", amount: 0.2 }}
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                           {feature}

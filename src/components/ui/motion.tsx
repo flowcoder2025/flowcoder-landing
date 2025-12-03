@@ -1,7 +1,56 @@
 "use client";
 
 import { motion, useInView, Variants } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, useState, useEffect, useCallback } from "react";
+
+// ===== Custom Hook with Hysteresis for Flicker Prevention =====
+// Uses different thresholds for entering vs exiting viewport
+
+function useInViewWithHysteresis(
+  ref: React.RefObject<Element | null>,
+  options: {
+    enterThreshold?: number;  // % of element visible to trigger "in view"
+    exitThreshold?: number;   // % of element visible to trigger "out of view"
+    once?: boolean;
+  } = {}
+) {
+  const { enterThreshold = 0.2, exitThreshold = 0.05, once = false } = options;
+  const [isInView, setIsInView] = useState(false);
+  const hasTriggered = useRef(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const ratio = entry.intersectionRatio;
+
+          if (once && hasTriggered.current) return;
+
+          if (!isInView && ratio >= enterThreshold) {
+            // Entering viewport - need to pass enterThreshold
+            setIsInView(true);
+            if (once) hasTriggered.current = true;
+          } else if (isInView && ratio < exitThreshold) {
+            // Exiting viewport - need to go below exitThreshold
+            if (!once) setIsInView(false);
+          }
+        });
+      },
+      {
+        threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.5],
+        rootMargin: "-50px 0px"
+      }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [ref, enterThreshold, exitThreshold, once, isInView]);
+
+  return isInView;
+}
 
 // ===== Animation Variants =====
 
@@ -87,8 +136,12 @@ export function ScrollReveal({
   delay = 0,
   once = false
 }: ScrollRevealProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: "-50px", amount: 0.3 });
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInViewWithHysteresis(ref, {
+    enterThreshold: 0.15,
+    exitThreshold: 0.02,
+    once
+  });
 
   return (
     <motion.div
@@ -117,8 +170,12 @@ export function StaggerContainer({
   className = "",
   delay = 0
 }: StaggerContainerProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-50px", amount: 0.3 });
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInViewWithHysteresis(ref, {
+    enterThreshold: 0.1,
+    exitThreshold: 0.02,
+    once: false
+  });
 
   return (
     <motion.div

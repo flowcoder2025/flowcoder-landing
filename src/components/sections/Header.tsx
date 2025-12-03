@@ -93,25 +93,27 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation - Compact */}
+        {/* Mobile Navigation - Dropdown Style */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-3 border-t bg-background shadow-lg">
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-foreground hover:text-primary hover:bg-muted/50 transition-colors cursor-pointer py-2 px-1 rounded"
-                  onClick={(e) => handleNavClick(e, link.href)}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <Button size="sm" variant="teal" className="w-full mt-2" onClick={(e) => handleNavClick(e as any, "#contact")}>
-                문의하기
-              </Button>
-            </div>
-          </nav>
+          <div className="md:hidden absolute top-14 right-4 z-50">
+            <nav className="bg-background rounded-lg shadow-xl border py-2 px-3 min-w-[120px]">
+              <div className="flex flex-col gap-0.5">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-sm font-medium text-foreground hover:text-primary hover:bg-muted/50 transition-colors cursor-pointer py-1.5 px-2 rounded whitespace-nowrap"
+                    onClick={(e) => handleNavClick(e, link.href)}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+                <Button size="sm" variant="teal" className="mt-1" onClick={(e) => handleNavClick(e as any, "#contact")}>
+                  문의하기
+                </Button>
+              </div>
+            </nav>
+          </div>
         )}
       </div>
     </header>

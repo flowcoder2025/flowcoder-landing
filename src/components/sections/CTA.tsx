@@ -1,14 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { Send, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "@/components/ui/motion";
 
 type InquiryCategory = "automation" | "enterprise" | "government" | "other" | null;
@@ -20,6 +27,22 @@ const categoryOptions = [
   { id: "other" as const, title: "기타" },
 ];
 
+const budgetOptions = [
+  { value: "under-500", label: "500만원 미만" },
+  { value: "500-1000", label: "500만원 ~ 1,000만원" },
+  { value: "1000-3000", label: "1,000만원 ~ 3,000만원" },
+  { value: "3000-5000", label: "3,000만원 ~ 5,000만원" },
+  { value: "over-5000", label: "5,000만원 이상" },
+  { value: "negotiable", label: "협의 필요" },
+];
+
+interface FormErrors {
+  category?: string;
+  name?: string;
+  phone?: string;
+  agreed?: string;
+}
+
 export function CTA() {
   const [selectedCategory, setSelectedCategory] = useState<InquiryCategory>(null);
   const [formData, setFormData] = useState({
@@ -27,24 +50,89 @@ export function CTA() {
     company: "",
     phone: "",
     email: "",
+    budget: "",
+    referenceUrl: "",
     message: "",
   });
   const [agreed, setAgreed] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [showErrors, setShowErrors] = useState(false);
+
+  // Refs for focus navigation
+  const categoryRef = useRef<HTMLDivElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
+  const privacyRef = useRef<HTMLButtonElement>(null);
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!selectedCategory) {
+      newErrors.category = "문의 유형을 선택해 주세요";
+    }
+    if (!formData.name.trim()) {
+      newErrors.name = "담당자명을 입력해 주세요";
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = "연락처를 입력해 주세요";
+    }
+    if (!agreed) {
+      newErrors.agreed = "개인정보 수집에 동의해 주세요";
+    }
+
+    setErrors(newErrors);
+    setShowErrors(true);
+
+    // Focus on first error field
+    if (Object.keys(newErrors).length > 0) {
+      if (newErrors.category && categoryRef.current) {
+        categoryRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else if (newErrors.name && nameRef.current) {
+        nameRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        nameRef.current.focus();
+      } else if (newErrors.phone && phoneRef.current) {
+        phoneRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        phoneRef.current.focus();
+      } else if (newErrors.agreed && privacyRef.current) {
+        privacyRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+        privacyRef.current.focus();
+      }
+      return false;
+    }
+
+    return true;
+  };
+
+  // Clear specific error when user starts typing/selecting
+  const clearError = (field: keyof FormErrors) => {
+    if (errors[field]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedCategory || !agreed) return;
+
+    if (!validateForm()) {
+      return;
+    }
 
     // Here you would typically send the form data to your backend
     console.log({ category: selectedCategory, ...formData });
     setIsSubmitted(true);
+    setShowErrors(false);
+    setErrors({});
 
     // Reset after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
       setSelectedCategory(null);
-      setFormData({ name: "", company: "", phone: "", email: "", message: "" });
+      setFormData({ name: "", company: "", phone: "", email: "", budget: "", referenceUrl: "", message: "" });
       setAgreed(false);
     }, 3000);
   };
@@ -96,14 +184,21 @@ export function CTA() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Category Chips */}
-                  <div>
-                    <Label className="text-sm font-medium mb-3 block">문의 유형</Label>
-                    <div className="flex flex-wrap gap-2">
+                  <div ref={categoryRef}>
+                    <Label className="text-sm font-medium mb-3 block">
+                      문의 유형 <span className="text-destructive">*</span>
+                    </Label>
+                    <div className={`flex flex-wrap gap-2 p-2 -m-2 rounded-lg transition-colors ${
+                      showErrors && errors.category ? "bg-destructive/5" : ""
+                    }`}>
                       {categoryOptions.map((option) => (
                         <button
                           key={option.id}
                           type="button"
-                          onClick={() => setSelectedCategory(option.id)}
+                          onClick={() => {
+                            setSelectedCategory(option.id);
+                            clearError("category");
+                          }}
                           className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                             selectedCategory === option.id
                               ? "bg-primary text-white"
@@ -114,19 +209,51 @@ export function CTA() {
                         </button>
                       ))}
                     </div>
+                    <AnimatePresence>
+                      {showErrors && errors.category && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-sm text-destructive mt-2 flex items-center gap-1"
+                        >
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.category}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   {/* Form Fields */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">담당자명 *</Label>
+                      <Label htmlFor="name">
+                        담당자명 <span className="text-destructive">*</span>
+                      </Label>
                       <Input
+                        ref={nameRef}
                         id="name"
                         placeholder="홍길동"
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        required
+                        onChange={(e) => {
+                          setFormData({ ...formData, name: e.target.value });
+                          clearError("name");
+                        }}
+                        className={showErrors && errors.name ? "border-destructive focus-visible:ring-destructive" : ""}
                       />
+                      <AnimatePresence>
+                        {showErrors && errors.name && (
+                          <motion.p
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="text-sm text-destructive flex items-center gap-1"
+                          >
+                            <AlertCircle className="w-4 h-4" />
+                            {errors.name}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="company">회사명</Label>
@@ -141,15 +268,34 @@ export function CTA() {
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="phone">연락처 *</Label>
+                      <Label htmlFor="phone">
+                        연락처 <span className="text-destructive">*</span>
+                      </Label>
                       <Input
+                        ref={phoneRef}
                         id="phone"
                         type="tel"
                         placeholder="010-1234-5678"
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        required
+                        onChange={(e) => {
+                          setFormData({ ...formData, phone: e.target.value });
+                          clearError("phone");
+                        }}
+                        className={showErrors && errors.phone ? "border-destructive focus-visible:ring-destructive" : ""}
                       />
+                      <AnimatePresence>
+                        {showErrors && errors.phone && (
+                          <motion.p
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="text-sm text-destructive flex items-center gap-1"
+                          >
+                            <AlertCircle className="w-4 h-4" />
+                            {errors.phone}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">이메일</Label>
@@ -159,6 +305,38 @@ export function CTA() {
                         placeholder="contact@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Budget & Reference URL */}
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="budget">구축예산</Label>
+                      <Select
+                        value={formData.budget}
+                        onValueChange={(value) => setFormData({ ...formData, budget: value })}
+                      >
+                        <SelectTrigger id="budget">
+                          <SelectValue placeholder="예산을 선택해 주세요" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {budgetOptions.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="referenceUrl">참고사이트</Label>
+                      <Input
+                        id="referenceUrl"
+                        type="url"
+                        placeholder="https://example.com"
+                        value={formData.referenceUrl}
+                        onChange={(e) => setFormData({ ...formData, referenceUrl: e.target.value })}
                       />
                     </div>
                   </div>
@@ -175,22 +353,61 @@ export function CTA() {
                   </div>
 
                   {/* Privacy Agreement */}
-                  <div className="flex items-start gap-3">
-                    <Checkbox
-                      id="privacy"
-                      checked={agreed}
-                      onCheckedChange={(checked) => setAgreed(checked as boolean)}
-                    />
-                    <Label htmlFor="privacy" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-                      개인정보 수집 및 이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용됩니다.
-                    </Label>
+                  <div className="space-y-2">
+                    <div className={`flex items-start gap-3 p-3 -m-3 rounded-lg transition-colors ${
+                      showErrors && errors.agreed ? "bg-destructive/5" : ""
+                    }`}>
+                      <Checkbox
+                        ref={privacyRef}
+                        id="privacy"
+                        checked={agreed}
+                        onCheckedChange={(checked) => {
+                          setAgreed(checked as boolean);
+                          if (checked) clearError("agreed");
+                        }}
+                        className={showErrors && errors.agreed ? "border-destructive" : ""}
+                      />
+                      <Label htmlFor="privacy" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                        개인정보 수집 및 이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용됩니다.
+                        <span className="text-destructive"> *</span>
+                      </Label>
+                    </div>
+                    <AnimatePresence>
+                      {showErrors && errors.agreed && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="text-sm text-destructive flex items-center gap-1"
+                        >
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.agreed}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Error Summary */}
+                  <AnimatePresence>
+                    {showErrors && Object.keys(errors).length > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="p-3 rounded-lg bg-destructive/10 border border-destructive/20"
+                      >
+                        <p className="text-sm text-destructive font-medium flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          필수 항목을 모두 입력해 주세요
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Submit Button - Always enabled */}
                   <Button
                     type="submit"
                     className="w-full btn-gradient-primary"
-                    disabled={!selectedCategory || !agreed || !formData.name || !formData.phone}
                   >
                     <Send className="w-4 h-4 mr-2" />
                     FlowCoder에 문의하기

@@ -66,6 +66,7 @@ const projects: Project[] = [
     highlight: "15분 내 3분 영상 제작",
     icon: Video,
     thumbnail: "/Iframe/geni.png",
+    url: "https://next-gini-ai.vercel.app/",
   },
   {
     name: "PPTMaker",
@@ -87,6 +88,7 @@ const projects: Project[] = [
     highlight: "10K+ 동시 사용자",
     icon: Landmark,
     thumbnail: "/Iframe/konarae.png",
+    url: "https://konarae.vercel.app/",
   },
   {
     name: "OneTrip",

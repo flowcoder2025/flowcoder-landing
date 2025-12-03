@@ -30,6 +30,8 @@ interface Project {
   tags: string[];
   highlight: string;
   icon: LucideIcon;
+  thumbnail?: string;
+  url?: string;
 }
 
 const projects: Project[] = [
@@ -41,6 +43,8 @@ const projects: Project[] = [
     tags: ["Gemini", "Next.js", "Image AI"],
     highlight: "스튜디오 품질 즉시 완성",
     icon: Heart,
+    thumbnail: "/Iframe/retouch.png",
+    url: "https://retouch-pearl.vercel.app/",
   },
   {
     name: "FlowStudio",
@@ -50,6 +54,8 @@ const projects: Project[] = [
     tags: ["Gemini", "Supabase", "E-commerce"],
     highlight: "$0.04/이미지",
     icon: ShoppingBag,
+    thumbnail: "/Iframe/studio.png",
+    url: "https://studio.flow-coder.com/",
   },
   {
     name: "Gini AI",
@@ -59,6 +65,7 @@ const projects: Project[] = [
     tags: ["ElevenLabs", "D-ID", "Video AI"],
     highlight: "15분 내 3분 영상 제작",
     icon: Video,
+    thumbnail: "/Iframe/geni.png",
   },
   {
     name: "PPTMaker",
@@ -68,6 +75,8 @@ const projects: Project[] = [
     tags: ["Gemini", "PptxGenJS", "SaaS"],
     highlight: "98% 비용 절감",
     icon: BarChart3,
+    thumbnail: "/Iframe/pptmaker.png",
+    url: "https://pptmaker.flow-coder.com/",
   },
   {
     name: "코나래",
@@ -77,6 +86,7 @@ const projects: Project[] = [
     tags: ["Next.js", "Supabase", "Microservices"],
     highlight: "10K+ 동시 사용자",
     icon: Landmark,
+    thumbnail: "/Iframe/konarae.png",
   },
   {
     name: "OneTrip",
@@ -95,6 +105,8 @@ const projects: Project[] = [
     tags: ["Next.js", "Supabase", "Automation"],
     highlight: "주 10시간+ 절약",
     icon: Briefcase,
+    thumbnail: "/Iframe/weave.png",
+    url: "https://www.weave-flow.com/",
   },
   {
     name: "Flow_Coder",
@@ -104,6 +116,8 @@ const projects: Project[] = [
     tags: ["Next.js", "Prisma", "Community"],
     highlight: "바이브코딩 허브",
     icon: Waves,
+    thumbnail: "/Iframe/flow_coder.png",
+    url: "https://www.flow-coder.com/",
   },
   {
     name: "FlowCoder Skills",
@@ -219,36 +233,52 @@ export function Portfolio() {
                   {/* Gradient Top Bar */}
                   <div className="h-1 bg-gradient-flow" />
 
+                  {/* 1. Title Section */}
                   <CardHeader className="pb-2">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-3">
-                        <motion.div
-                          className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"
-                          whileHover={{
-                            scale: 1.1,
-                            backgroundColor: "rgba(45, 212, 191, 0.2)",
-                            transition: { duration: 0.2 }
-                          }}
-                        >
-                          <project.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                        </motion.div>
-                        <div>
-                          <CardTitle className="text-lg">{project.name}</CardTitle>
-                          <p className="text-xs text-muted-foreground">{project.koreanName}</p>
-                        </div>
+                    <div className="flex items-center gap-3">
+                      <motion.div
+                        className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"
+                        whileHover={{
+                          scale: 1.1,
+                          backgroundColor: "rgba(45, 212, 191, 0.2)",
+                          transition: { duration: 0.2 }
+                        }}
+                      >
+                        <project.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                      </motion.div>
+                      <div>
+                        <CardTitle className="text-lg">{project.name}</CardTitle>
+                        <p className="text-xs text-muted-foreground">{project.koreanName}</p>
                       </div>
                     </div>
                   </CardHeader>
 
-                  <CardContent className="flex-1 flex flex-col">
-                    {/* Description - Fixed 2 lines */}
+                  {/* 2. Thumbnail - Pure Screenshot (zoomed to center content) */}
+                  <div className="mx-4 mb-3 rounded-lg overflow-hidden border border-border/50 bg-muted/30">
+                    {project.thumbnail ? (
+                      <motion.img
+                        src={project.thumbnail}
+                        alt={`${project.name} preview`}
+                        className="w-full h-48 object-cover object-center scale-125"
+                        whileHover={{ scale: 1.35 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    ) : (
+                      <div className="w-full h-48 flex items-center justify-center">
+                        <project.icon className="w-16 h-16 text-muted-foreground/30" strokeWidth={1} />
+                      </div>
+                    )}
+                  </div>
+
+                  <CardContent className="flex-1 flex flex-col pt-0">
+                    {/* 3. Description */}
                     <CardDescription className="text-sm line-clamp-2 min-h-[2.5rem]">
                       {project.description}
                     </CardDescription>
 
-                    {/* Bottom Group - Fixed at card bottom */}
+                    {/* Bottom Group */}
                     <div className="mt-auto pt-3 space-y-2">
-                      {/* Highlight Badge */}
+                      {/* 4. Highlight Badge */}
                       <motion.div
                         className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-primary-gradient"
                         whileHover={{ scale: 1.05 }}
@@ -256,7 +286,7 @@ export function Portfolio() {
                         {project.highlight}
                       </motion.div>
 
-                      {/* Tags */}
+                      {/* 5. Tags */}
                       <div className="flex flex-wrap gap-1">
                         {project.tags.map((tag, tagIndex) => (
                           <Badge key={tagIndex} variant="secondary" className="text-xs">
@@ -265,15 +295,28 @@ export function Portfolio() {
                         ))}
                       </div>
 
-                      {/* View Button */}
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="w-full bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        보기
-                      </Button>
+                      {/* 6. View Button */}
+                      {project.url ? (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="w-full bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+                          onClick={() => window.open(project.url, "_blank", "noopener,noreferrer")}
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          보기
+                        </Button>
+                      ) : (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="w-full bg-transparent border-2 border-muted-foreground/20 text-muted-foreground/50 font-bold cursor-not-allowed"
+                          disabled
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          준비중
+                        </Button>
+                      )}
                     </div>
                   </CardContent>
                 </Card>

@@ -16,11 +16,24 @@ function useInViewWithHysteresis(
 ) {
   const { enterThreshold = 0.2, exitThreshold = 0.05, once = false } = options;
   const [isInView, setIsInView] = useState(false);
+  const isInViewRef = useRef(false);
   const hasTriggered = useRef(false);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
+
+    // Check initial visibility immediately
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+    const visibleRatio = Math.max(0, visibleHeight / rect.height);
+
+    if (visibleRatio >= enterThreshold) {
+      setIsInView(true);
+      isInViewRef.current = true;
+      if (once) hasTriggered.current = true;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -29,25 +42,29 @@ function useInViewWithHysteresis(
 
           if (once && hasTriggered.current) return;
 
-          if (!isInView && ratio >= enterThreshold) {
+          if (!isInViewRef.current && ratio >= enterThreshold) {
             // Entering viewport - need to pass enterThreshold
             setIsInView(true);
+            isInViewRef.current = true;
             if (once) hasTriggered.current = true;
-          } else if (isInView && ratio < exitThreshold) {
+          } else if (isInViewRef.current && ratio < exitThreshold) {
             // Exiting viewport - need to go below exitThreshold
-            if (!once) setIsInView(false);
+            if (!once) {
+              setIsInView(false);
+              isInViewRef.current = false;
+            }
           }
         });
       },
       {
         threshold: [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.5],
-        rootMargin: "-50px 0px"
+        rootMargin: "0px"
       }
     );
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [ref, enterThreshold, exitThreshold, once, isInView]);
+  }, [ref, enterThreshold, exitThreshold, once]);
 
   return isInView;
 }

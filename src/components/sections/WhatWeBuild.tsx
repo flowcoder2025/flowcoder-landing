@@ -1,8 +1,7 @@
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Palette, Rocket, Settings, ArrowRight, LucideIcon } from "lucide-react";
+import { Palette, Rocket, Settings, LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
@@ -96,10 +95,6 @@ export function WhatWeBuild() {
                         </motion.li>
                       ))}
                     </ul>
-                    <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-primary">
-                      자세히 보기
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>

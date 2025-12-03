@@ -132,7 +132,7 @@ export function Services() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: false, margin: "-50px", amount: 0.3 }}
         >
           {services.map((service, index) => (
             <motion.div

@@ -93,21 +93,21 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Compact */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t bg-background/95 backdrop-blur-lg">
-            <div className="flex flex-col gap-4">
+          <nav className="md:hidden py-3 border-t bg-background shadow-lg">
+            <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-bold text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                  className="text-sm font-medium text-foreground hover:text-primary hover:bg-muted/50 transition-colors cursor-pointer py-2 px-1 rounded"
                   onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.name}
                 </a>
               ))}
-              <Button size="sm" variant="teal" className="w-full" onClick={(e) => handleNavClick(e as any, "#contact")}>
+              <Button size="sm" variant="teal" className="w-full mt-2" onClick={(e) => handleNavClick(e as any, "#contact")}>
                 문의하기
               </Button>
             </div>

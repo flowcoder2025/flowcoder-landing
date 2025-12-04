@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
-import { BUTTON_TEXT } from "@/lib/text-config";
 import { motion } from "framer-motion";
 
 export function Hero() {

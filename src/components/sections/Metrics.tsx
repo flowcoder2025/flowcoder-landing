@@ -24,6 +24,7 @@ function MetricCard({ value, suffix = "", label, sublabel, isVisible, delay = 0 
 
     if (isVisible) {
       // Reset count and start animation when visible
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCount(0);
 
       timerRef.current = setTimeout(() => {

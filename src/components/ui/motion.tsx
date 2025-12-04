@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useInView, Variants } from "framer-motion";
-import { useRef, ReactNode, useState, useEffect, useCallback } from "react";
+import { motion, Variants } from "framer-motion";
+import { useRef, ReactNode, useState, useEffect } from "react";
 
 // ===== Custom Hook with Hysteresis for Flicker Prevention =====
 // Uses different thresholds for entering vs exiting viewport
@@ -30,6 +30,7 @@ function useInViewWithHysteresis(
     const visibleRatio = Math.max(0, visibleHeight / rect.height);
 
     if (visibleRatio >= enterThreshold) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsInView(true);
       isInViewRef.current = true;
       if (once) hasTriggered.current = true;

@@ -26,7 +26,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
     e.preventDefault();
 
     if (href === "#top") {
@@ -74,7 +74,7 @@ export function Header() {
                 {link.name}
               </a>
             ))}
-            <Button size="sm" variant="teal" onClick={(e) => handleNavClick(e as any, "#contact")}>
+            <Button size="sm" variant="teal" onClick={(e) => handleNavClick(e, "#contact")}>
               문의하기
             </Button>
           </nav>
@@ -108,7 +108,7 @@ export function Header() {
                     {link.name}
                   </a>
                 ))}
-                <Button size="sm" variant="teal" className="mt-1" onClick={(e) => handleNavClick(e as any, "#contact")}>
+                <Button size="sm" variant="teal" className="mt-1" onClick={(e) => handleNavClick(e, "#contact")}>
                   문의하기
                 </Button>
               </div>

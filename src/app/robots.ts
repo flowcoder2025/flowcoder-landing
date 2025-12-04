@@ -5,7 +5,7 @@ import { MetadataRoute } from "next";
  * Google, 네이버, 카카오, Bing 등 주요 검색 엔진 대응
  */
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://flowcoder.io";
+  const baseUrl = "https://about.flow-coder.com";
 
   return {
     rules: [

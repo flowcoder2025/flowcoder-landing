@@ -5,7 +5,7 @@ import { MetadataRoute } from "next";
  * Google Search Console, 네이버 웹마스터, 카카오에 제출용
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://flowcoder.io";
+  const baseUrl = "https://about.flow-coder.com";
   const currentDate = new Date().toISOString();
 
   return [

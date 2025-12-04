@@ -9,13 +9,13 @@
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://flowcoder.io/#organization",
+  "@id": "https://about.flow-coder.com/#organization",
   name: "FlowCoder",
   alternateName: "플로우코더",
-  url: "https://flowcoder.io",
+  url: "https://about.flow-coder.com",
   logo: {
     "@type": "ImageObject",
-    url: "https://flowcoder.io/favicon.ico",
+    url: "https://about.flow-coder.com/favicon.ico",
     width: 512,
     height: 512,
   },
@@ -56,20 +56,20 @@ export const organizationSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://flowcoder.io/#website",
-  url: "https://flowcoder.io",
+  "@id": "https://about.flow-coder.com/#website",
+  url: "https://about.flow-coder.com",
   name: "FlowCoder",
   alternateName: "플로우코더",
   description: "AI로 흐르는 비즈니스 혁신",
   publisher: {
-    "@id": "https://flowcoder.io/#organization",
+    "@id": "https://about.flow-coder.com/#organization",
   },
   inLanguage: "ko-KR",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://flowcoder.io/?q={search_term_string}",
+      urlTemplate: "https://about.flow-coder.com/?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -79,7 +79,7 @@ export const websiteSchema = {
 export const servicesSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "@id": "https://flowcoder.io/#services",
+  "@id": "https://about.flow-coder.com/#services",
   name: "FlowCoder 서비스",
   description: "FlowCoder가 제공하는 AI 솔루션 및 컨설팅 서비스",
   numberOfItems: 3,
@@ -89,13 +89,13 @@ export const servicesSchema = {
       position: 1,
       item: {
         "@type": "Service",
-        "@id": "https://flowcoder.io/#ai-solution",
+        "@id": "https://about.flow-coder.com/#ai-solution",
         name: "AI 솔루션 개발",
         alternateName: "AI Solution Development",
         description:
           "맞춤형 AI 솔루션 개발. RAG 시스템, 챗봇, 데이터 분석 자동화 등",
         provider: {
-          "@id": "https://flowcoder.io/#organization",
+          "@id": "https://about.flow-coder.com/#organization",
         },
         serviceType: "AI Development",
         areaServed: {
@@ -109,13 +109,13 @@ export const servicesSchema = {
       position: 2,
       item: {
         "@type": "Service",
-        "@id": "https://flowcoder.io/#automation",
+        "@id": "https://about.flow-coder.com/#automation",
         name: "자동화 컨설팅",
         alternateName: "Automation Consulting",
         description:
           "n8n 기반 업무 자동화 컨설팅. 워크플로우 설계부터 구축까지",
         provider: {
-          "@id": "https://flowcoder.io/#organization",
+          "@id": "https://about.flow-coder.com/#organization",
         },
         serviceType: "Automation Consulting",
         areaServed: {
@@ -129,13 +129,13 @@ export const servicesSchema = {
       position: 3,
       item: {
         "@type": "Service",
-        "@id": "https://flowcoder.io/#vibecode",
+        "@id": "https://about.flow-coder.com/#vibecode",
         name: "바이브코딩 교육",
         alternateName: "VibeCoding Education",
         description:
           "AI 시대의 새로운 개발 방법론. 비개발자도 AI와 함께 코딩하는 법",
         provider: {
-          "@id": "https://flowcoder.io/#organization",
+          "@id": "https://about.flow-coder.com/#organization",
         },
         serviceType: "Education",
         areaServed: {
@@ -151,10 +151,10 @@ export const servicesSchema = {
 export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "@id": "https://flowcoder.io/#professional-service",
+  "@id": "https://about.flow-coder.com/#professional-service",
   name: "FlowCoder",
   alternateName: "플로우코더",
-  url: "https://flowcoder.io",
+  url: "https://about.flow-coder.com",
   description:
     "AX(AI Transformation) 전문 팀. 기업 및 공공기관을 위한 AI 솔루션 개발, 자동화 컨설팅, 바이브코딩 교육 서비스",
   priceRange: "₩₩₩",
@@ -195,20 +195,20 @@ export const professionalServiceSchema = {
 export const webPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "@id": "https://flowcoder.io/#webpage",
-  url: "https://flowcoder.io",
+  "@id": "https://about.flow-coder.com/#webpage",
+  url: "https://about.flow-coder.com",
   name: "FlowCoder | AI로 흐르는 비즈니스 혁신",
   description:
     "AX(AI Transformation) 전문 팀 FlowCoder. AI 솔루션 개발, 자동화 컨설팅, 바이브코딩 교육까지.",
   isPartOf: {
-    "@id": "https://flowcoder.io/#website",
+    "@id": "https://about.flow-coder.com/#website",
   },
   about: {
-    "@id": "https://flowcoder.io/#organization",
+    "@id": "https://about.flow-coder.com/#organization",
   },
   primaryImageOfPage: {
     "@type": "ImageObject",
-    url: "https://flowcoder.io/og-image.png",
+    url: "https://about.flow-coder.com/og-image.png",
   },
   inLanguage: "ko-KR",
   datePublished: "2024-01-01",
@@ -224,7 +224,7 @@ export const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "홈",
-      item: "https://flowcoder.io",
+      item: "https://about.flow-coder.com",
     },
   ],
 };

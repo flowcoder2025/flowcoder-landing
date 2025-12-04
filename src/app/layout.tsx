@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const baseUrl = "https://flowcoder.io";
+const baseUrl = "https://about.flow-coder.com";
 
 export const viewport: Viewport = {
   width: "device-width",

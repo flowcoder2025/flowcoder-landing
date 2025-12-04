@@ -208,7 +208,7 @@ export const webPageSchema = {
   },
   primaryImageOfPage: {
     "@type": "ImageObject",
-    url: "https://about.flow-coder.com/og-image.png",
+    url: "https://about.flow-coder.com/og-image.jpg",
   },
   inLanguage: "ko-KR",
   datePublished: "2024-01-01",

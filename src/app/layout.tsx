@@ -120,11 +120,11 @@ export const metadata: Metadata = {
       "AX(AI Transformation) 전문 팀. AI 솔루션 개발, 자동화 컨설팅, 바이브코딩 교육. 기업과 공공기관을 위한 맞춤형 AI 서비스.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "FlowCoder - AI로 흐르는 비즈니스 혁신",
-        type: "image/png",
+        type: "image/jpeg",
       },
     ],
   },
@@ -135,7 +135,7 @@ export const metadata: Metadata = {
     title: "FlowCoder | AI로 흐르는 비즈니스 혁신",
     description:
       "AX(AI Transformation) 전문 팀. AI 솔루션, 자동화 컨설팅, 바이브코딩 교육. Build. Automate. Grow.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
     creator: "@flowcoder_io",
     site: "@flowcoder_io",
   },

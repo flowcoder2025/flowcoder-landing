@@ -286,7 +286,7 @@ export function Portfolio() {
 
                   <CardContent className="flex-1 flex flex-col pt-0">
                     {/* 3. Description */}
-                    <CardDescription className="text-sm line-clamp-2 min-h-[2.5rem]">
+                    <CardDescription className="text-sm line-clamp-2 min-h-10">
                       {project.description}
                     </CardDescription>
 

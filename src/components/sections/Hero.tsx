@@ -36,7 +36,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F172A]/80 text-[#E5F9F5] text-sm font-medium mb-8"
         >
           <Sparkles className="w-4 h-4" />
-          <span>AX(AI Transformation) 전문 팀</span>
+          <span>AX 전문 · AI 솔루션 빌더</span>
         </motion.div>
 
         {/* Main Headline */}
@@ -46,8 +46,8 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-white"
         >
-          <span className="text-[#35C3A7]">AI</span>는 선택이 아닌{" "}
-          <span className="text-[#35C3A7]">기반</span>입니다
+          <span className="text-[#35C3A7]">AI</span> 없는 비즈니스는 더 이상{" "}
+          <span className="text-[#35C3A7]">경쟁할 수 없습니다</span>
         </motion.h1>
 
         {/* Sub Headline */}

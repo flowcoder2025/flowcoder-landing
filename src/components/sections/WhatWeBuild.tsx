@@ -41,8 +41,8 @@ export function WhatWeBuild() {
             WHAT
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            우리는 <span className="text-gradient">AI 솔루션</span>을<br />
-            직접 구축했습니다.
+            크리에이티브부터 자동화까지,<br />
+            필요한 <span className="text-gradient">AI를 찾아보세요</span>
           </h2>
         </ScrollReveal>
 

@@ -122,7 +122,8 @@ export function Services() {
             SERVICES
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            솔루션 그 이상을 <span className="text-gradient">제공합니다</span>
+            반복 업무는 <span className="text-gradient">AI에게</span>,<br />
+            당신은 더 중요한 일에 <span className="text-gradient">집중하세요</span>
           </h2>
         </ScrollReveal>
 

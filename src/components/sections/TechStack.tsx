@@ -42,7 +42,8 @@ export function TechStack() {
             HOW
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            최신 기술로 <span className="text-gradient">실제 문제</span>를 해결합니다
+            안정적이고 빠른 AI 구축,<br />
+            <span className="text-gradient">검증된 Next.js 스택</span>으로 가능합니다
           </h2>
         </ScrollReveal>
 

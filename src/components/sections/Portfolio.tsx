@@ -191,7 +191,7 @@ export function Portfolio() {
             PORTFOLIO
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            프로젝트 <span className="text-gradient">쇼케이스</span>
+            실제로 검증된 <span className="text-gradient">프로젝트를 살펴보세요</span>
           </h2>
         </ScrollReveal>
 

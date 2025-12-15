@@ -105,7 +105,7 @@ export function Footer() {
           {/* Copyright */}
           <div className="text-sm text-muted-foreground text-center md:text-left">
             <p>&copy; {new Date().getFullYear()} FlowCoder. All rights reserved.</p>
-            <p className="mt-1">AX(AI Transformation) 전문 팀</p>
+            <p className="mt-1">AX 전문 · AI 솔루션 빌더</p>
           </div>
 
           {/* Social Links */}

@@ -15,6 +15,7 @@ import {
   Briefcase,
   Waves,
   Zap,
+  Globe,
   LucideIcon
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -56,6 +57,17 @@ const projects: Project[] = [
     icon: ShoppingBag,
     thumbnail: "/Iframe/studio.png",
     url: "https://studio.flow-coder.com/",
+  },
+  {
+    name: "FlowSpace",
+    koreanName: "플로우스페이스",
+    description: "브라우저에서 즉시 입장하는 2D 메타버스 플랫폼. Phaser 3 + LiveKit 자체 개발.",
+    category: ["platform"],
+    tags: ["Phaser 3", "LiveKit", "Metaverse"],
+    highlight: "설치 없이 즉시 입장",
+    icon: Globe,
+    thumbnail: "/Iframe/space.png",
+    url: "https://flowspace-gamma.vercel.app/",
   },
   {
     name: "Gini AI",

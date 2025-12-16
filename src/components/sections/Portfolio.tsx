@@ -100,7 +100,7 @@ const projects: Project[] = [
     highlight: "10K+ 동시 사용자",
     icon: Landmark,
     thumbnail: "/Iframe/konarae.png",
-    url: "https://konarae.vercel.app/",
+    url: "https://www.konarae.com",
   },
   {
     name: "OneTrip",

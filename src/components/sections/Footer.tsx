@@ -11,7 +11,7 @@ const footerLinks = {
       { name: "FlowStudio", href: "#" },
       { name: "Gini AI", href: "#" },
       { name: "PPTMaker", href: "#" },
-      { name: "코나래", href: "#" },
+      { name: "코나래", href: "https://www.konarae.com" },
     ],
   },
   services: {

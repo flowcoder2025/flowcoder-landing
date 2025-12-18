@@ -36,40 +36,21 @@ export const metadata: Metadata = {
   description:
     "AX(AI Transformation) 전문 팀 FlowCoder. AI 솔루션 개발, 자동화 컨설팅, 바이브코딩 교육까지. 기업과 공공기관을 위한 맞춤형 AI 서비스. Build. Automate. Grow.",
 
-  // 확장된 키워드 (한국어 + 영어)
+  // 핵심 키워드 (SEO 최적화)
   keywords: [
-    // 한국어 키워드
     "FlowCoder",
     "플로우코더",
     "AI 솔루션",
     "AI 솔루션 개발",
     "자동화 컨설팅",
     "바이브코딩",
-    "바이브코딩 교육",
     "n8n 자동화",
-    "n8n 컨설팅",
     "RAG 시스템",
-    "AI 개발",
     "AI 트랜스포메이션",
-    "AX",
     "업무 자동화",
-    "워크플로우 자동화",
-    "AI 챗봇 개발",
-    "맞춤형 AI",
     "기업 AI 솔루션",
-    "공공기관 AI",
     "B2B AI",
     "B2G AI",
-    // 영어 키워드
-    "AI Solution Development",
-    "Automation Consulting",
-    "VibeCoding",
-    "n8n Automation",
-    "RAG System",
-    "AI Transformation",
-    "Workflow Automation",
-    "Next.js",
-    "React",
   ],
 
   authors: [{ name: "FlowCoder Team", url: baseUrl }],
@@ -140,16 +121,14 @@ export const metadata: Metadata = {
     site: "@flowcoder_io",
   },
 
-  // 검색 엔진 검증 (실제 값으로 교체 필요)
+  // 검색 엔진 검증 코드
+  // 🔍 설정 방법:
+  // 1. Google: https://search.google.com/search-console → 속성 추가 → HTML 태그 방식 선택
+  // 2. 네이버: https://searchadvisor.naver.com → 사이트 등록 → HTML 태그 방식 선택
   verification: {
-    google: "YOUR_GOOGLE_SITE_VERIFICATION_CODE", // Google Search Console
-    // yandex: "YOUR_YANDEX_VERIFICATION_CODE",
-    // yahoo: "YOUR_YAHOO_VERIFICATION_CODE",
+    google: "YOUR_GOOGLE_SITE_VERIFICATION_CODE",
     other: {
-      // 네이버 서치어드바이저
-      "naver-site-verification": "YOUR_NAVER_SITE_VERIFICATION_CODE",
-      // 카카오 검증 (필요시)
-      // "kakao-verification": "YOUR_KAKAO_VERIFICATION_CODE",
+      "naver-site-verification": "5bbb907d7a834f0423f0ab38007c001f8b47fda0",
     },
   },
 
@@ -173,9 +152,6 @@ export const metadata: Metadata = {
 
   // 기타 메타데이터
   other: {
-    // 네이버 검색 최적화
-    "naver-site-verification": "YOUR_NAVER_VERIFICATION_CODE",
-
     // 모바일 앱 배너 (향후 앱 출시 시)
     // "apple-itunes-app": "app-id=YOUR_APP_ID",
     // "google-play-app": "app-id=io.flowcoder.app",

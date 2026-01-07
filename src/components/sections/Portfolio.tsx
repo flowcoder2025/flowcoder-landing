@@ -92,8 +92,8 @@ const projects: Project[] = [
     url: "https://pptmaker.flow-coder.com/",
   },
   {
-    name: "코나래",
-    koreanName: "Konarae",
+    name: "FlowMate",
+    koreanName: "플로우메이트",
     description: "정부 지원사업 통합 플랫폼. AI 맞춤 추천, 10,000명 동시 접속 지원.",
     category: ["platform"],
     tags: ["Next.js", "Supabase", "Microservices"],

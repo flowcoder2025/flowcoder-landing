@@ -47,7 +47,22 @@ const socialLinks = [
   { name: "GitHub", href: "#", icon: Github },
   { name: "YouTube", href: "#", icon: Youtube },
   { name: "Discord", href: "#", icon: MessageCircle },
-  { name: "Email", href: "mailto:contact@flowcoder.io", icon: Mail },
+  { name: "Email", href: "mailto:admin@flow-coder.com", icon: Mail },
+];
+
+// FlowCoder 브랜드 킷 정보
+const BRAND = {
+  companyName: "플로우코더(FlowCoder)",
+  businessNumber: "374-16-02889",
+  representatives: "조용현, 박현일",
+  address: "경기도 남양주시 홍유릉로248번길 26, 지하1층(금곡동)",
+  email: "admin@flow-coder.com",
+};
+
+const legalLinks = [
+  { name: "개인정보처리방침", href: "/privacy" },
+  { name: "이용약관", href: "/terms" },
+  { name: "환불약관", href: "/refund" },
 ];
 
 export function Footer() {
@@ -100,12 +115,47 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t mb-8" />
 
+        {/* Business Info */}
+        <div className="mb-6 space-y-2">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+            <span>{BRAND.companyName}</span>
+            <span className="text-border">|</span>
+            <span>사업자등록번호: {BRAND.businessNumber}</span>
+            <span className="text-border">|</span>
+            <span>대표: {BRAND.representatives}</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+            <span>{BRAND.address}</span>
+            <span className="text-border">|</span>
+            <Link
+              href={`mailto:${BRAND.email}`}
+              className="hover:text-foreground transition-colors"
+            >
+              {BRAND.email}
+            </Link>
+          </div>
+        </div>
+
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Copyright */}
+          {/* Copyright & Legal Links */}
           <div className="text-sm text-muted-foreground text-center md:text-left">
             <p>&copy; {new Date().getFullYear()} FlowCoder. All rights reserved.</p>
-            <p className="mt-1">AX 전문 · AI 솔루션 빌더</p>
+            <div className="flex items-center gap-3 mt-2">
+              {legalLinks.map((link, index) => (
+                <span key={link.href} className="flex items-center gap-3">
+                  <Link
+                    href={link.href}
+                    className="text-xs hover:text-foreground transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                  {index < legalLinks.length - 1 && (
+                    <span className="text-border">|</span>
+                  )}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Social Links */}

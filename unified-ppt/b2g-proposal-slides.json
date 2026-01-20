@@ -1,0 +1,412 @@
+{
+  "slides": [
+    {
+      "type": "title",
+      "props": {
+        "title": "AI 시대 지역 청년 역량 강화 및\n창업 생태계 구축 사업",
+        "subtitle": "AI 메이커스페이스 + FlowSpace + AI 취창업 교육\n\nFlowCoder | Build. Automate. Grow."
+      },
+      "style": {
+        "background": "#2DD4BF",
+        "title": { "color": "#FFFFFF", "fontSize": 40, "fontFamily": "Arial", "align": "center" },
+        "subtitle": { "color": "#E5F7F4", "fontSize": 20, "align": "center" }
+      }
+    },
+    {
+      "type": "bullet",
+      "props": {
+        "title": "목차",
+        "bullets": [
+          { "text": "사업 배경 및 필요성", "level": 0 },
+          { "text": "사업 목표 및 구조", "level": 0 },
+          { "text": "핵심 사업 영역 (3대 축)", "level": 0 },
+          { "text": "  ① AI 메이커스페이스", "level": 1 },
+          { "text": "  ② FlowSpace (온라인 입주)", "level": 1 },
+          { "text": "  ③ AI 취창업 교육", "level": 1 },
+          { "text": "제안사 역량 (FlowCoder)", "level": 0 },
+          { "text": "추진 일정 및 기대효과", "level": 0 }
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 32 },
+        "bullets": {
+          "primaryColor": "#2DD4BF",
+          "secondaryColor": "#249E8F",
+          "mutedColor": "#64748B",
+          "fontSize": 18
+        }
+      }
+    },
+    {
+      "type": "section",
+      "props": {
+        "title": "01\n사업 배경 및 필요성",
+        "number": ""
+      },
+      "style": {
+        "background": "#0F172A",
+        "title": { "color": "#FFFFFF", "fontSize": 44 }
+      }
+    },
+    {
+      "type": "bullet",
+      "props": {
+        "title": "환경 분석 및 문제 정의",
+        "bullets": [
+          { "text": "AI 시대 도래 → 직무 역량 패러다임 전환", "level": 0 },
+          { "text": "생성형 AI (ChatGPT, Claude) 폭발적 성장", "level": 1 },
+          { "text": "지역 청년의 수도권 집중 현상 심화", "level": 0 },
+          { "text": "지역 내 양질의 일자리 부족", "level": 1 },
+          { "text": "기존 청년정책의 한계", "level": 0 },
+          { "text": "교육 후 연계 부족, 단발성 지원, 생태계 미비", "level": 1 },
+          { "text": "아이디어 → 구현 갭 (Execution Gap)", "level": 0 },
+          { "text": "좋은 아이디어가 있어도 구현 역량 부족", "level": 1 }
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 32 },
+        "bullets": {
+          "primaryColor": "#2DD4BF",
+          "secondaryColor": "#0F172A",
+          "mutedColor": "#64748B",
+          "fontSize": 16
+        }
+      }
+    },
+    {
+      "type": "section",
+      "props": {
+        "title": "02\n사업 목표 및 구조",
+        "number": ""
+      },
+      "style": {
+        "background": "#2DD4BF",
+        "title": { "color": "#FFFFFF", "fontSize": 44 }
+      }
+    },
+    {
+      "type": "content",
+      "props": {
+        "title": "비전 및 미션",
+        "body": [
+          "",
+          "🎯 비전",
+          "\"AI로 흐르는 지역 청년 창업 생태계\"",
+          "",
+          "",
+          "📋 미션",
+          "• 청년 AI 역량 강화를 통한 취창업 경쟁력 제고",
+          "• 거리 제약 없는 창업 환경 조성",
+          "• 시민 참여형 공공 서비스 혁신"
+        ]
+      },
+      "style": {
+        "background": "#F8FAFC",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 32 },
+        "body": { "color": "#0F172A", "fontSize": 18 }
+      }
+    },
+    {
+      "type": "content",
+      "props": {
+        "title": "사업 구조: 3대 핵심 축",
+        "body": [
+          "",
+          "┌────────────────────────────────────────────────────────┐",
+          "│                                                        │",
+          "│    AI 취창업     →    AI 메이커     →    FlowSpace    │",
+          "│       교육              스페이스           (입주)      │",
+          "│                                                        │",
+          "│    역량 강화      →   아이디어→MVP   →   사업화 공간  │",
+          "│                                                        │",
+          "│    ─────────────  Flywheel 효과  ──────────────       │",
+          "│                                                        │",
+          "│    취업 연계      →   시범 서비스    →    창업 성장    │",
+          "│                                                        │",
+          "└────────────────────────────────────────────────────────┘"
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 32 },
+        "body": { "color": "#0F172A", "fontSize": 14, "fontFamily": "Courier New" }
+      }
+    },
+    {
+      "type": "section",
+      "props": {
+        "title": "03\nAI 메이커스페이스",
+        "number": ""
+      },
+      "style": {
+        "background": "#0F172A",
+        "title": { "color": "#2DD4BF", "fontSize": 44 }
+      }
+    },
+    {
+      "type": "bullet",
+      "props": {
+        "title": "AI 메이커스페이스: 시민 아이디어 → 공공 서비스",
+        "bullets": [
+          { "text": "컨셉: 시민이 원하는 형태의 공공 웹/앱 서비스 구현", "level": 0 },
+          { "text": "운영 프로세스", "level": 0 },
+          { "text": "시민 아이디어 접수 → FlowCanvas 진단 (AI 구조화)", "level": 1 },
+          { "text": "패스트트랙 선정 → AutoFlow MVP 생성 (48시간)", "level": 1 },
+          { "text": "시범 운영 (3개월) → 정식 서비스화", "level": 1 },
+          { "text": "핵심 프로그램", "level": 0 },
+          { "text": "시민 아이디어 워크샵 (포스트잇 방식 + AI 구조화)", "level": 1 },
+          { "text": "패스트트랙 MVP 프로그램 (48시간 내 생성)", "level": 1 },
+          { "text": "AI 크리에이터 과정 (수익형 서비스 직접 구현 교육)", "level": 1 }
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 28 },
+        "bullets": {
+          "primaryColor": "#2DD4BF",
+          "secondaryColor": "#0F172A",
+          "mutedColor": "#64748B",
+          "fontSize": 15
+        }
+      }
+    },
+    {
+      "type": "section",
+      "props": {
+        "title": "04\nFlowSpace",
+        "number": ""
+      },
+      "style": {
+        "background": "#2DD4BF",
+        "title": { "color": "#FFFFFF", "fontSize": 44 }
+      }
+    },
+    {
+      "type": "bullet",
+      "props": {
+        "title": "FlowSpace: 거리 제약 없는 온라인 입주 서비스",
+        "bullets": [
+          { "text": "컨셉: 거리의 제약을 허문 AI 시대 창업 공간", "level": 0 },
+          { "text": "서비스 구성", "level": 0 },
+          { "text": "온라인 입주: 사업장 주소지 제공 (사업자등록 가능)", "level": 1 },
+          { "text": "오프라인: 코워킹 스페이스 (데스크, 회의실, 라운지)", "level": 1 },
+          { "text": "온라인: 메타버스 가상 사무실 (Gather, Spatial)", "level": 1 },
+          { "text": "커뮤니티: 입주기업 네트워킹 플랫폼", "level": 1 },
+          { "text": "기대효과", "level": 0 },
+          { "text": "관외 청년 창업가 유치 (관내 사업자 등록)", "level": 1 },
+          { "text": "재택근무 기반 일자리 창출 / 지역 세수 증가", "level": 1 }
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 28 },
+        "bullets": {
+          "primaryColor": "#2DD4BF",
+          "secondaryColor": "#0F172A",
+          "mutedColor": "#64748B",
+          "fontSize": 15
+        }
+      }
+    },
+    {
+      "type": "section",
+      "props": {
+        "title": "05\nAI 취창업 교육",
+        "number": ""
+      },
+      "style": {
+        "background": "#0F172A",
+        "title": { "color": "#2DD4BF", "fontSize": 44 }
+      }
+    },
+    {
+      "type": "bullet",
+      "props": {
+        "title": "AI 취창업 교육: 실전형 AI 역량 강화",
+        "bullets": [
+          { "text": "컨셉: AI가 스펙이 된 시대, 실전형 AI 역량 교육", "level": 0 },
+          { "text": "교육 트랙", "level": 0 },
+          { "text": "기초 (40h): AI 도구 활용 → 취업 연계", "level": 1 },
+          { "text": "바이브코딩 (80h): MVP 직접 구현 → 창업 준비", "level": 1 },
+          { "text": "자동화 전문가 (120h): n8n/RAG 구축 → 전문 역량", "level": 1 },
+          { "text": "1:1 멘토링: 맞춤형 창업 지원", "level": 1 },
+          { "text": "교육 특징", "level": 0 },
+          { "text": "이론 < 실습 (70% 이상 실습 비중)", "level": 1 },
+          { "text": "수료 시 포트폴리오 완성", "level": 1 },
+          { "text": "수료 후 커뮤니티 연계 (디스코드)", "level": 1 }
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 28 },
+        "bullets": {
+          "primaryColor": "#2DD4BF",
+          "secondaryColor": "#0F172A",
+          "mutedColor": "#64748B",
+          "fontSize": 15
+        }
+      }
+    },
+    {
+      "type": "section",
+      "props": {
+        "title": "06\n제안사 역량",
+        "number": ""
+      },
+      "style": {
+        "background": "#2DD4BF",
+        "title": { "color": "#FFFFFF", "fontSize": 44 }
+      }
+    },
+    {
+      "type": "bullet",
+      "props": {
+        "title": "FlowCoder 포트폴리오: 11개 AI 솔루션",
+        "bullets": [
+          { "text": "AX 컨설팅 (2개) ⭐ 본 사업 핵심 기술", "level": 0 },
+          { "text": "FlowCanvas (첫 자동화 성공 시스템, 8단계 여정)", "level": 1 },
+          { "text": "AutoFlow (Quick Win → 48시간 MVP 자동 생성)", "level": 1 },
+          { "text": "크리에이티브 (4개)", "level": 0 },
+          { "text": "FlowRetouch (AI 웨딩 사진 보정, 스튜디오 품질)", "level": 1 },
+          { "text": "FlowStudio (이커머스 상품 이미지, $0.04/장)", "level": 1 },
+          { "text": "Gini AI (PDF→AI 아바타 영상, 15분 내 제작)", "level": 1 },
+          { "text": "PPTMaker (AI PPT 자동 생성, 98% 비용 절감)", "level": 1 },
+          { "text": "플랫폼 (4개)", "level": 0 },
+          { "text": "코나래 (정부 지원사업 통합, 10K+ 동시 사용자)", "level": 1 },
+          { "text": "OneTrip (AI 여행 일정 자동화)", "level": 1 },
+          { "text": "Weave (프리랜서 운영 자동화, 주 10시간+ 절약)", "level": 1 },
+          { "text": "Flow_Coder (바이브코딩 개발자 커뮤니티)", "level": 1 },
+          { "text": "자동화/개발자도구", "level": 0 },
+          { "text": "FlowCoder Skills (95% 개발시간 단축)", "level": 1 }
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 28 },
+        "bullets": {
+          "primaryColor": "#2DD4BF",
+          "secondaryColor": "#0F172A",
+          "mutedColor": "#64748B",
+          "fontSize": 14
+        }
+      }
+    },
+    {
+      "type": "content",
+      "props": {
+        "title": "검증된 성과",
+        "body": [
+          "",
+          "",
+          "┌──────────────────┬──────────────────┬──────────────────┐",
+          "│                  │                  │                  │",
+          "│       98%        │       95%        │      10K+        │",
+          "│    비용 절감     │    시간 단축     │   스케일 검증    │",
+          "│                  │                  │                  │",
+          "│    PPTMaker      │  FlowCoder       │     코나래       │",
+          "│                  │    Skills        │                  │",
+          "│                  │                  │                  │",
+          "└──────────────────┴──────────────────┴──────────────────┘",
+          "",
+          "",
+          "핵심 기술: Claude, OpenAI, LangGraph | n8n, RAG | Next.js, Supabase"
+        ]
+      },
+      "style": {
+        "background": "#F8FAFC",
+        "accentBar": { "color": "#2DD4BF" },
+        "title": { "color": "#0F172A", "fontSize": 32 },
+        "body": { "color": "#0F172A", "fontSize": 16, "fontFamily": "Courier New", "align": "center" }
+      }
+    },
+    {
+      "type": "section",
+      "props": {
+        "title": "07\n추진 일정 및 기대효과",
+        "number": ""
+      },
+      "style": {
+        "background": "#0F172A",
+        "title": { "color": "#FFFFFF", "fontSize": 44 }
+      }
+    },
+    {
+      "type": "timeline",
+      "props": {
+        "title": "추진 일정",
+        "items": [
+          { "title": "Phase 1 (1~3개월)", "description": "인프라 구축\n공간/시스템/커리큘럼" },
+          { "title": "Phase 2 (4~9개월)", "description": "파일럿 운영\n교육 50명, MVP 5건" },
+          { "title": "Phase 3 (10~24개월)", "description": "본격 운영\n확대 및 성과 측정" }
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "title": { "color": "#0F172A", "fontSize": 32 },
+        "node": { "fillColor": "#2DD4BF", "borderColor": "#249E8F", "borderWidth": 2 },
+        "itemTitle": { "color": "#0F172A", "fontSize": 16 },
+        "itemDescription": { "color": "#64748B", "fontSize": 12 }
+      }
+    },
+    {
+      "type": "table",
+      "props": {
+        "title": "핵심 성과 지표 (KPI)",
+        "headers": ["지표", "1년차", "2년차"],
+        "rows": [
+          ["교육 수료자", "200명", "500명"],
+          ["FlowSpace 입주기업", "30개", "100개"],
+          ["MVP 제작", "12개", "30개"],
+          ["취업/창업 연계", "50명", "150명"],
+          ["일자리 창출", "20개", "50개"]
+        ]
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "title": { "color": "#0F172A", "fontSize": 32 },
+        "header": { "backgroundColor": "#2DD4BF", "textColor": "#FFFFFF", "fontSize": 14 },
+        "body": { "backgroundColor": "#F8FAFC", "textColor": "#0F172A", "fontSize": 14 },
+        "border": { "color": "#E2E8F0", "width": 1 }
+      }
+    },
+    {
+      "type": "comparison",
+      "props": {
+        "title": "차별화 포인트",
+        "leftLabel": "기존 정책",
+        "rightLabel": "FlowCoder 접근",
+        "leftContent": "교육 → 끝\n\n아이디어 수집 → 끝\n\n공간 제공 → 끝\n\n단발성 지원",
+        "rightContent": "교육 → 실습 → 포트폴리오\n→ 취창업 연계\n\n아이디어 → 48시간 MVP\n→ 시범 운영 → 정식 서비스\n\n공간 + 커뮤니티 + 멘토링\n+ 성장 지원\n\nFlywheel 효과:\n첫 성공 → 확신 → 추가 도전"
+      },
+      "style": {
+        "background": "#FFFFFF",
+        "title": { "color": "#0F172A", "fontSize": 32 },
+        "leftContent": { "backgroundColor": "#FEE2E2", "textColor": "#991B1B", "fontSize": 14 },
+        "rightContent": { "backgroundColor": "#D1FAE5", "textColor": "#065F46", "fontSize": 14 },
+        "dividerColor": "#2DD4BF"
+      }
+    },
+    {
+      "type": "thankYou",
+      "props": {
+        "message": "감사합니다",
+        "contact": "FlowCoder | contact@flowcoder.io\nhttps://about.flow-coder.com\n\nBuild. Automate. Grow."
+      },
+      "style": {
+        "background": "#0F172A",
+        "message": { "color": "#2DD4BF", "fontSize": 48 },
+        "contact": { "color": "#94A3B8", "fontSize": 18 }
+      }
+    }
+  ]
+}

@@ -75,7 +75,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-flex items-center gap-3 mb-4">
               <img
-                src="/favicon.ico"
+                src="/logo.png"
                 alt="FlowCoder Logo"
                 className="w-10 h-10 rounded-lg"
               />

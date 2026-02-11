@@ -55,7 +55,7 @@ export function Header() {
           {/* Logo & Brand */}
           <Link href="/" className="flex items-center gap-2">
             <img
-              src="/favicon.ico"
+              src="/logo.png"
               alt="FlowCoder Logo"
               className="w-8 h-8"
             />

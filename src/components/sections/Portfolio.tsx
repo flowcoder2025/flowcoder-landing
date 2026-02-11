@@ -16,6 +16,8 @@ import {
   Waves,
   Zap,
   Globe,
+  Handshake,
+  Radar,
   LucideIcon
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -121,6 +123,28 @@ const projects: Project[] = [
     icon: Briefcase,
     thumbnail: "/Iframe/weave.png",
     url: "https://www.weave-flow.com/",
+  },
+  {
+    name: "FlowConsult",
+    koreanName: "플로우컨설트",
+    description: "벤처인증부터 사업계획서, 정부 지원사업, 특허 출원까지. 기업 성장의 모든 단계를 지원하는 전문 컨설팅 플랫폼.",
+    category: ["platform"],
+    tags: ["Next.js", "Consulting", "B2B"],
+    highlight: "기업 성장 원스톱 컨설팅",
+    icon: Handshake,
+    thumbnail: "/Iframe/consult.png",
+    url: "https://consult.flow-coder.com/",
+  },
+  {
+    name: "FlowCanvas",
+    koreanName: "플로우캔버스",
+    description: "AI 기반 업무 자동화 준비도 진단. 자동화 가능 업무를 분석하고 ROI까지 자동 산출하는 전략 리포트 플랫폼.",
+    category: ["automation"],
+    tags: ["Claude AI", "Automation", "Diagnosis"],
+    highlight: "15분 내 자동화 진단 완료",
+    icon: Radar,
+    thumbnail: "/Iframe/canvas.png",
+    url: "https://canvas.flow-coder.com/",
   },
   {
     name: "Flow_Coder",

@@ -15,7 +15,7 @@ export const organizationSchema = {
   url: "https://about.flow-coder.com",
   logo: {
     "@type": "ImageObject",
-    url: "https://about.flow-coder.com/favicon.ico",
+    url: "https://about.flow-coder.com/logo.png",
     width: 512,
     height: 512,
   },

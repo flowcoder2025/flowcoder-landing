@@ -114,16 +114,16 @@ export function Services() {
   };
 
   return (
-    <section id="services" className="section-padding bg-muted/30 scroll-mt-20">
+    <section id="services" className="section-padding bg-[#050505] scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-16">
-          <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-4">
+          <p className="text-xs font-medium text-[var(--neon)] tracking-[0.3em] uppercase mb-4">
             SERVICES
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            반복 업무는 <span className="text-gradient">AI에게</span>,<br />
-            당신은 더 중요한 일에 <span className="text-gradient">집중하세요</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
+            반복 업무는 AI에게,<br />
+            당신은 더 중요한 일에 집중하세요
           </h2>
         </ScrollReveal>
 
@@ -144,16 +144,11 @@ export function Services() {
                 transition: { duration: 0.3, ease: "easeOut" }
               }}
             >
-              <Card className="relative overflow-hidden border-2 hover:border-primary/50 transition-colors duration-300 hover:shadow-xl group flex flex-col h-full">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-flow" />
-
+              <Card className="group/card relative overflow-hidden border border-white/10 hover:bg-white hover:text-black transition-colors duration-300 flex flex-col h-full">
                 <CardHeader>
-                  <motion.div
-                    className="w-16 h-16 rounded-2xl bg-primary-gradient flex items-center justify-center mb-4"
-                    whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
-                  >
-                    <service.icon className="w-8 h-8 text-white" />
-                  </motion.div>
+                  <div className="w-16 h-16 rounded-2xl bg-white/10 group-hover/card:bg-black/10 flex items-center justify-center mb-4 transition-colors">
+                    <service.icon className="w-8 h-8 text-white group-hover/card:text-black transition-colors" />
+                  </div>
                   <CardTitle className="text-2xl">{service.title}</CardTitle>
                   <CardDescription className="text-base">
                     {service.description}
@@ -164,16 +159,20 @@ export function Services() {
                   <ul className="space-y-4 flex-1">
                     {service.items.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start gap-3">
-                        <item.icon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                        <item.icon className="w-5 h-5 text-white group-hover/card:text-black mt-0.5 shrink-0 transition-colors" />
                         <div>
                           <p className="font-medium">{item.title}</p>
-                          <p className="text-sm text-muted-foreground">{item.description}</p>
+                          <p className="text-sm text-white/60 group-hover/card:text-black/60 transition-colors">{item.description}</p>
                         </div>
                       </li>
                     ))}
                   </ul>
 
-                  <Button className="w-full btn-gradient-primary" onClick={scrollToContact}>
+                  <Button
+                    variant="outline"
+                    className="w-full group-hover/card:border-black/20 group-hover/card:text-black group-hover/card:hover:bg-black group-hover/card:hover:text-white"
+                    onClick={scrollToContact}
+                  >
                     {service.buttonText}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>

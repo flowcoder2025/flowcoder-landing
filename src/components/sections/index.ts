@@ -1,5 +1,6 @@
 export { Header } from "./Header";
 export { Hero } from "./Hero";
+export { Marquee } from "./Marquee";
 export { Metrics } from "./Metrics";
 export { WhatWeBuild } from "./WhatWeBuild";
 export { Portfolio } from "./Portfolio";

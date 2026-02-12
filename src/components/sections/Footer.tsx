@@ -50,7 +50,6 @@ const socialLinks = [
   { name: "Email", href: "mailto:admin@flow-coder.com", icon: Mail },
 ];
 
-// FlowCoder 브랜드 킷 정보
 const BRAND = {
   companyName: "플로우코더(FlowCoder)",
   businessNumber: "374-16-02889",
@@ -67,7 +66,7 @@ const legalLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-muted/50 border-t">
+    <footer className="bg-[#050505] border-t border-white/10">
       <div className="container mx-auto px-4 py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
@@ -77,14 +76,14 @@ export function Footer() {
               <img
                 src="/logo.png"
                 alt="FlowCoder Logo"
-                className="w-10 h-10 rounded-lg"
+                className="w-10 h-10 rounded-lg relative z-[10000]"
               />
-              <span className="text-2xl font-bold text-gradient">FlowCoder</span>
+              <span className="text-2xl font-bold text-white">FlowCoder</span>
             </Link>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-sm text-white/50 mb-4">
               AI로 흐르는 비즈니스 혁신
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-white/30">
               Build. Automate. Grow.
             </p>
           </div>
@@ -92,13 +91,13 @@ export function Footer() {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([key, section]) => (
             <div key={key}>
-              <h3 className="font-semibold mb-4">{section.title}</h3>
+              <h3 className="font-semibold text-white mb-4">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+                      className="text-sm text-white/50 hover:text-[var(--neon)] transition-colors inline-flex items-center gap-1"
                     >
                       {link.name}
                       {link.href.startsWith("http") && (
@@ -113,23 +112,23 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t mb-8" />
+        <div className="border-t border-white/10 mb-8" />
 
         {/* Business Info */}
         <div className="mb-6 space-y-2">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-white/30">
             <span>{BRAND.companyName}</span>
-            <span className="text-border">|</span>
+            <span className="text-white/10">|</span>
             <span>사업자등록번호: {BRAND.businessNumber}</span>
-            <span className="text-border">|</span>
+            <span className="text-white/10">|</span>
             <span>대표: {BRAND.representatives}</span>
           </div>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-white/30">
             <span>{BRAND.address}</span>
-            <span className="text-border">|</span>
+            <span className="text-white/10">|</span>
             <Link
               href={`mailto:${BRAND.email}`}
-              className="hover:text-foreground transition-colors"
+              className="hover:text-white transition-colors"
             >
               {BRAND.email}
             </Link>
@@ -139,19 +138,19 @@ export function Footer() {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright & Legal Links */}
-          <div className="text-sm text-muted-foreground text-center md:text-left">
+          <div className="text-sm text-white/30 text-center md:text-left">
             <p>&copy; {new Date().getFullYear()} FlowCoder. All rights reserved.</p>
             <div className="flex items-center gap-3 mt-2">
               {legalLinks.map((link, index) => (
                 <span key={link.href} className="flex items-center gap-3">
                   <Link
                     href={link.href}
-                    className="text-xs hover:text-foreground transition-colors"
+                    className="text-xs hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
                   {index < legalLinks.length - 1 && (
-                    <span className="text-border">|</span>
+                    <span className="text-white/10">|</span>
                   )}
                 </span>
               ))}
@@ -164,7 +163,7 @@ export function Footer() {
               <Link
                 key={social.name}
                 href={social.href}
-                className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:text-[var(--neon)] hover:bg-[var(--neon)]/10 transition-colors"
                 aria-label={social.name}
               >
                 <social.icon className="w-5 h-5" />

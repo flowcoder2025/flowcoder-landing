@@ -1,103 +1,68 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
-
-      {/* Video Overlay - Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A121E]/60 via-[#0A121E]/55 to-[#0A121E]/70" />
-
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#35C3A7]/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#35C3A7]/15 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
+      {/* Noise overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat",
+        }}
+      />
 
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
-        {/* Badge */}
-        <motion.div
+        {/* Subtext */}
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F172A]/80 text-[#E5F9F5] text-sm font-medium mb-8"
+          className="text-xs uppercase tracking-[0.3em] text-[var(--neon)] mb-8"
         >
-          <Sparkles className="w-4 h-4" />
-          <span>AX 전문 · AI 솔루션 빌더</span>
-        </motion.div>
+          AX 전문 · AI 솔루션 빌더
+        </motion.p>
 
         {/* Main Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-white"
+          className="text-5xl md:text-7xl lg:text-[10vw] font-bold tracking-tighter leading-[0.9] mb-8 text-white"
         >
-          <span className="text-[#35C3A7]">AI</span> 없는 비즈니스는 더 이상{" "}
-          <span className="text-[#35C3A7]">경쟁할 수 없습니다</span>
+          AI 없는 비즈니스는
+          <br />
+          더 이상 경쟁할 수 없습니다
         </motion.h1>
 
-        {/* Sub Headline */}
+        {/* Stroke Text Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-xl md:text-2xl text-[#E5E7EB] max-w-3xl mx-auto mb-4"
+          className="text-3xl md:text-5xl font-bold tracking-tighter text-transparent mb-12"
+          style={{ WebkitTextStroke: "1px var(--neon-dim)" }}
         >
-          모든 비즈니스에 AI가 흘러야 합니다.
-        </motion.p>
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-2xl md:text-3xl font-semibold text-white mb-12"
-        >
-          AI로 흐르는 비즈니스 혁신
+          Build. Automate. Grow.
         </motion.p>
 
         {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
-          className="flex items-center justify-center mb-16"
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <motion.div
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.2 }
-            }}
-            whileTap={{
-              scale: 0.95,
-              transition: { duration: 0.1 }
-            }}
+          <Button
+            size="xl"
+            variant="outline"
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           >
-            <Button
-              size="xl"
-              variant="outline"
-              className="bg-transparent border-2 border-white/50 text-white font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              문의하기
-            </Button>
-          </motion.div>
+            문의하기
+          </Button>
         </motion.div>
-
       </div>
 
       {/* Scroll indicator */}
@@ -105,16 +70,16 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 8, 0] }}
         transition={{
-          opacity: { duration: 0.6, delay: 1.2 },
+          opacity: { duration: 0.6, delay: 1.0 },
           y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
         }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+        <div className="w-6 h-10 rounded-full border border-white/20 flex items-start justify-center p-2">
           <motion.div
             animate={{ y: [0, 4, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1 h-2 bg-white/50 rounded-full"
+            className="w-1 h-2 bg-[var(--neon)] rounded-full"
           />
         </div>
       </motion.div>

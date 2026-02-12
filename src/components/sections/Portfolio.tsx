@@ -207,15 +207,15 @@ export function Portfolio() {
       : projects.filter((p) => p.category.includes(activeFilter));
 
   return (
-    <section id="portfolio" className="py-20 md:py-32 bg-muted/30 scroll-mt-20">
+    <section id="portfolio" className="py-20 md:py-32 bg-[#050505] scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-12">
-          <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-4">
+          <p className="text-xs font-medium text-[var(--neon)] tracking-[0.3em] uppercase mb-4">
             PORTFOLIO
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            실제로 검증된 <span className="text-gradient">프로젝트를 살펴보세요</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
+            실제로 검증된 프로젝트를 살펴보세요
           </h2>
         </ScrollReveal>
 
@@ -230,12 +230,12 @@ export function Portfolio() {
           {filters.map((filter) => (
             <Button
               key={filter.key}
-              variant={activeFilter === filter.key ? "default" : "outline"}
+              variant="ghost"
               onClick={() => setActiveFilter(filter.key)}
               className={
                 activeFilter === filter.key
-                  ? "bg-gradient-flow text-white"
-                  : "hover:bg-transparent hover:text-primary hover:border-primary"
+                  ? "bg-[var(--neon)] text-black hover:bg-[var(--neon)]/90 hover:text-black"
+                  : "border border-white/20 text-white/60 hover:text-white"
               }
             >
               {filter.label}
@@ -267,43 +267,33 @@ export function Portfolio() {
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
               >
-                <Card className="group relative overflow-hidden border hover:border-primary/50 transition-colors duration-300 hover:shadow-xl h-full flex flex-col">
-                  {/* Gradient Top Bar */}
-                  <div className="h-1 bg-gradient-flow" />
-
+                <Card className="group relative overflow-hidden border border-white/10 hover:border-white/20 transition-colors duration-300 h-full flex flex-col">
                   {/* 1. Title Section */}
                   <CardHeader className="pb-2">
                     <div className="flex items-center gap-3">
-                      <motion.div
-                        className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"
-                        whileHover={{
-                          scale: 1.1,
-                          backgroundColor: "rgba(45, 212, 191, 0.2)",
-                          transition: { duration: 0.2 }
-                        }}
-                      >
-                        <project.icon className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                      </motion.div>
+                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                        <project.icon className="w-5 h-5 text-white" strokeWidth={1.5} />
+                      </div>
                       <div>
                         <CardTitle className="text-lg">{project.name}</CardTitle>
-                        <p className="text-xs text-muted-foreground">{project.koreanName}</p>
+                        <p className="text-xs text-white/40">{project.koreanName}</p>
                       </div>
                     </div>
                   </CardHeader>
 
-                  {/* 2. Thumbnail - Pure Screenshot (zoomed to center content) */}
-                  <div className="mx-4 mb-3 rounded-lg overflow-hidden border border-border/50 bg-muted/30">
+                  {/* 2. Thumbnail - Grayscale with hover color */}
+                  <div className="mx-4 mb-3 rounded-lg overflow-hidden border border-white/5 bg-white/5">
                     {project.thumbnail ? (
                       <motion.img
                         src={project.thumbnail}
                         alt={`${project.name} preview`}
-                        className="w-full h-48 object-cover object-center scale-125"
+                        className="w-full h-48 object-cover object-center scale-125 grayscale group-hover:grayscale-0 transition-all duration-500"
                         whileHover={{ scale: 1.35 }}
                         transition={{ duration: 0.4 }}
                       />
                     ) : (
                       <div className="w-full h-48 flex items-center justify-center">
-                        <project.icon className="w-16 h-16 text-muted-foreground/30" strokeWidth={1} />
+                        <project.icon className="w-16 h-16 text-white/10" strokeWidth={1} />
                       </div>
                     )}
                   </div>
@@ -317,12 +307,9 @@ export function Portfolio() {
                     {/* Bottom Group */}
                     <div className="mt-auto pt-3 space-y-2">
                       {/* 4. Highlight Badge */}
-                      <motion.div
-                        className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-primary-gradient"
-                        whileHover={{ scale: 1.05 }}
-                      >
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--neon)] text-black">
                         {project.highlight}
-                      </motion.div>
+                      </span>
 
                       {/* 5. Tags */}
                       <div className="flex flex-wrap gap-1">
@@ -338,7 +325,7 @@ export function Portfolio() {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="w-full bg-transparent border-2 border-muted-foreground/50 text-muted-foreground font-bold hover:border-[#35C3A7] hover:text-[#35C3A7] hover:bg-transparent transition-colors"
+                          className="w-full"
                           onClick={() => window.open(project.url, "_blank", "noopener,noreferrer")}
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />
@@ -347,8 +334,8 @@ export function Portfolio() {
                       ) : (
                         <Button
                           size="sm"
-                          variant="outline"
-                          className="w-full bg-transparent border-2 border-muted-foreground/20 text-muted-foreground/50 font-bold cursor-not-allowed"
+                          variant="ghost"
+                          className="w-full text-white/30 cursor-not-allowed"
                           disabled
                         >
                           <ExternalLink className="w-4 h-4 mr-2" />

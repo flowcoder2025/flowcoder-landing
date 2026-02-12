@@ -18,12 +18,10 @@ function MetricCard({ value, suffix = "", label, sublabel, isVisible, delay = 0 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Clear any existing timers
     if (timerRef.current) clearTimeout(timerRef.current);
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     if (isVisible) {
-      // Reset count and start animation when visible
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setCount(0);
 
@@ -44,7 +42,6 @@ function MetricCard({ value, suffix = "", label, sublabel, isVisible, delay = 0 
         }, duration / steps);
       }, delay);
     } else {
-      // Reset to 0 when not visible
       setCount(0);
     }
 
@@ -56,14 +53,14 @@ function MetricCard({ value, suffix = "", label, sublabel, isVisible, delay = 0 
 
   return (
     <div className="text-center p-6 md:p-8">
-      <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient mb-2">
+      <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--neon)] mb-2">
         {count}
         {suffix}
       </div>
-      <div className="text-lg md:text-xl font-semibold text-foreground mb-1">
+      <div className="text-lg md:text-xl font-semibold text-white mb-1">
         {label}
       </div>
-      <div className="text-sm text-muted-foreground">{sublabel}</div>
+      <div className="text-sm text-white/40">{sublabel}</div>
     </div>
   );
 }
@@ -75,7 +72,6 @@ export function Metrics() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Update visibility based on intersection state (bidirectional)
         setIsVisible(entry.isIntersecting);
       },
       {
@@ -123,9 +119,9 @@ export function Metrics() {
   ];
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24 bg-muted/30">
+    <section ref={sectionRef} className="py-16 md:py-24 bg-[#050505] border-y border-white/10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
           {metrics.map((metric, index) => (
             <MetricCard key={index} {...metric} isVisible={isVisible} />
           ))}

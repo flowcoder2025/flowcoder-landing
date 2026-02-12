@@ -325,7 +325,7 @@ interface PulseGlowProps {
 export function PulseGlow({
   children,
   className = "",
-  color = "rgba(45, 212, 191, 0.4)"
+  color = "rgba(255, 255, 255, 0.2)"
 }: PulseGlowProps) {
   return (
     <motion.div

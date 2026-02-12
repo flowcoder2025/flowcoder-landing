@@ -22,10 +22,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
+  themeColor: "#050505",
 };
 
 export const metadata: Metadata = {
@@ -204,6 +201,13 @@ export default function RootLayout({
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
+        />
+
+        {/* Pretendard Variable Font */}
+        <link
+          rel="stylesheet"
+          as="style"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
         />
       </head>
       <body

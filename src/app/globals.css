@@ -1,105 +1,59 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* SUPANOVA Monochrome (AX.NOVA) — Dark Only Design System */
 
-/* FlowCoder Brand Color System - Weave-Flow Style
-   배경: 흰색/밝은 회색
-   포인트 컬러: 청록색 (Teal #2DD4BF)
-   텍스트: 다크 그레이
-*/
 :root {
-  /* 라이트 모드 - 흰색 배경 */
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(222 47% 11%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(222 47% 11%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(222 47% 11%);
-  /* Primary: 청록색 Teal #2DD4BF */
-  --primary: hsl(168 64% 50%);
-  --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(210 40% 96%);
-  --secondary-foreground: hsl(222 47% 11%);
-  --muted: hsl(210 40% 96%);
-  --muted-foreground: hsl(215 16% 47%);
-  /* Accent: 청록색 lighter */
-  --accent: hsl(168 64% 95%);
-  --accent-foreground: hsl(168 64% 40%);
+  --background: hsl(0 0% 2%);
+  --foreground: hsl(0 0% 96%);
+  --card: hsl(0 0% 6%);
+  --card-foreground: hsl(0 0% 96%);
+  --popover: hsl(0 0% 6%);
+  --popover-foreground: hsl(0 0% 90%);
+  --primary: hsl(0 0% 100%);
+  --primary-foreground: hsl(0 0% 0%);
+  --secondary: hsl(0 0% 10%);
+  --secondary-foreground: hsl(0 0% 96%);
+  --muted: hsl(0 0% 10%);
+  --muted-foreground: hsl(0 0% 55%);
+  --accent: hsl(0 0% 15%);
+  --accent-foreground: hsl(0 0% 96%);
   --destructive: hsl(0 84% 60%);
   --destructive-foreground: hsl(0 0% 100%);
-  --border: hsl(214 32% 91%);
-  --input: hsl(214 32% 91%);
-  --ring: hsl(168 64% 50%);
-  --chart-1: hsl(168 64% 50%);
-  --chart-2: hsl(168 64% 60%);
-  --chart-3: hsl(168 64% 40%);
-  --chart-4: hsl(168 64% 70%);
-  --chart-5: hsl(168 64% 30%);
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(222 47% 11%);
-  --sidebar-primary: hsl(168 64% 50%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(168 64% 95%);
-  --sidebar-accent-foreground: hsl(168 64% 40%);
-  --sidebar-border: hsl(214 32% 91%);
-  --sidebar-ring: hsl(168 64% 50%);
-  --font-sans: Outfit, sans-serif;
+  --border: hsl(0 0% 100% / 0.1);
+  --input: hsl(0 0% 100% / 0.1);
+  --ring: hsl(0 0% 100% / 0.3);
+  --chart-1: hsl(0 0% 100%);
+  --chart-2: hsl(0 0% 80%);
+  --chart-3: hsl(0 0% 60%);
+  --chart-4: hsl(0 0% 40%);
+  --chart-5: hsl(0 0% 20%);
+  --sidebar: hsl(0 0% 4%);
+  --sidebar-foreground: hsl(0 0% 55%);
+  --sidebar-primary: hsl(0 0% 100%);
+  --sidebar-primary-foreground: hsl(0 0% 0%);
+  --sidebar-accent: hsl(0 0% 15%);
+  --sidebar-accent-foreground: hsl(0 0% 96%);
+  --sidebar-border: hsl(0 0% 100% / 0.1);
+  --sidebar-ring: hsl(0 0% 100% / 0.3);
+  --font-sans: "Pretendard Variable", Pretendard, Outfit, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: monospace;
   --radius: 0.5rem;
-  --shadow-x: 0px;
-  --shadow-y: 1px;
-  --shadow-blur: 3px;
-  --shadow-spread: 0px;
-  --shadow-opacity: 0.3;
-  --shadow-color: #000000;
-  --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.2);
-  --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.2);
-  --shadow-sm: 0px 1px 3px 0px hsl(0 0% 0% / 0.3), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
-  --shadow: 0px 1px 3px 0px hsl(0 0% 0% / 0.3), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
-  --shadow-md: 0px 1px 3px 0px hsl(0 0% 0% / 0.3), 0px 2px 4px -1px hsl(0 0% 0% / 0.3);
-  --shadow-lg: 0px 1px 3px 0px hsl(0 0% 0% / 0.3), 0px 4px 6px -1px hsl(0 0% 0% / 0.3);
-  --shadow-xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.3), 0px 8px 10px -1px hsl(0 0% 0% / 0.3);
-  --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.5);
+  --surface-1: hsl(0 0% 4%);
+  --surface-2: hsl(0 0% 6%);
+  --surface-3: hsl(0 0% 10%);
+  --divider: hsl(0 0% 100% / 0.1);
+  --shadow-2xs: 0 0 0 1px hsl(0 0% 100% / 0.03);
+  --shadow-xs: 0 0 0 1px hsl(0 0% 100% / 0.03);
+  --shadow-sm: 0 0 0 1px hsl(0 0% 100% / 0.05);
+  --shadow: 0 0 0 1px hsl(0 0% 100% / 0.05);
+  --shadow-md: 0 0 0 1px hsl(0 0% 100% / 0.05);
+  --shadow-lg: 0 0 0 1px hsl(0 0% 100% / 0.08);
+  --shadow-xl: 0 0 0 1px hsl(0 0% 100% / 0.1);
+  --shadow-2xl: 0 0 0 1px hsl(0 0% 100% / 0.12);
   --tracking-normal: 0.025em;
   --spacing: 0.25rem;
-}
-
-/* 다크 모드 - 청록색 테마 유지 */
-.dark {
-  --background: hsl(222 47% 8%);
-  --foreground: hsl(210 40% 98%);
-  --card: hsl(222 47% 12%);
-  --card-foreground: hsl(210 40% 98%);
-  --popover: hsl(222 47% 12%);
-  --popover-foreground: hsl(210 40% 90%);
-  --primary: hsl(168 64% 50%);
-  --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(222 47% 16%);
-  --secondary-foreground: hsl(210 40% 98%);
-  --muted: hsl(222 47% 18%);
-  --muted-foreground: hsl(215 20% 60%);
-  --accent: hsl(168 64% 20%);
-  --accent-foreground: hsl(168 64% 70%);
-  --destructive: hsl(0 84% 60%);
-  --destructive-foreground: hsl(210 40% 98%);
-  --border: hsl(222 47% 22%);
-  --input: hsl(222 47% 15%);
-  --ring: hsl(168 64% 50%);
-  --chart-1: hsl(168 64% 50%);
-  --chart-2: hsl(168 64% 60%);
-  --chart-3: hsl(168 64% 40%);
-  --chart-4: hsl(168 64% 70%);
-  --chart-5: hsl(168 64% 30%);
-  --sidebar: hsl(222 47% 6%);
-  --sidebar-foreground: hsl(215 20% 60%);
-  --sidebar-primary: hsl(168 64% 50%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(168 64% 20%);
-  --sidebar-accent-foreground: hsl(168 64% 70%);
-  --sidebar-border: hsl(222 47% 18%);
-  --sidebar-ring: hsl(168 64% 50%);
 }
 
 @theme inline {
@@ -136,7 +90,12 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: var(--font-outfit), Outfit, sans-serif;
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-divider: var(--divider);
+
+  --font-sans: "Pretendard Variable", Pretendard, var(--font-outfit), Outfit, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 
@@ -161,24 +120,8 @@
   --tracking-wider: calc(var(--tracking-normal) + 0.05em);
   --tracking-widest: calc(var(--tracking-normal) + 0.1em);
 
-  /* FlowCoder Brand Color System - Teal Theme */
-  /* Primary: 청록색 Teal */
-  --color-primary-lighter: hsl(168 64% 70%);
-  --color-primary-light: hsl(168 64% 60%);
-  --color-primary-base: hsl(168 64% 50%);
-  --color-primary-dark: hsl(168 64% 40%);
-  --color-primary-darker: hsl(168 64% 30%);
-
-  /* Accent: Teal variations */
-  --color-accent-lighter: hsl(168 64% 95%);
-  --color-accent-light: hsl(168 64% 85%);
-  --color-accent-base: hsl(168 64% 50%);
-  --color-accent-dark: hsl(168 64% 40%);
-  --color-accent-darker: hsl(168 64% 30%);
-
-  /* 시맨틱 색상 */
-  --color-success: hsl(142 76% 36%);
-  --color-warning: hsl(38 92% 50%);
+  --color-success: hsl(0 0% 96%);
+  --color-warning: hsl(0 0% 70%);
   --color-error: hsl(0 84% 60%);
 }
 
@@ -190,64 +133,25 @@
     @apply bg-background text-foreground antialiased;
     letter-spacing: var(--tracking-normal);
   }
+  ::selection {
+    @apply bg-white text-black;
+  }
 }
 
-/* ===== Custom Utilities ===== */
+/* ===== SUPANOVA Utilities ===== */
 @layer utilities {
-  /* FlowCoder Brand Gradients - Teal Theme */
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(to right, hsl(168 64% 50%), hsl(168 64% 40%));
+  /* Stroke Text */
+  .sn-stroke-text {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
   }
 
-  .text-gradient-accent {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(to right, hsl(168 64% 50%), hsl(168 64% 60%));
+  /* Grayscale Hover */
+  .sn-grayscale-hover {
+    @apply grayscale transition-all duration-500;
   }
-
-  .bg-gradient-flow {
-    background-image: linear-gradient(to right, hsl(168 64% 50%), hsl(168 64% 40%));
-  }
-
-  .bg-gradient-hero {
-    background-image: linear-gradient(to bottom right, hsl(168 64% 50% / 0.05), transparent, hsl(168 64% 60% / 0.05));
-  }
-
-  .bg-gradient-cta {
-    background-image: linear-gradient(to bottom right, hsl(168 64% 50% / 0.03), transparent, hsl(168 64% 60% / 0.03));
-  }
-
-  /* Primary Button Gradient - Teal */
-  .btn-gradient-primary {
-    background-image: linear-gradient(to right, hsl(168 64% 50%), hsl(168 64% 45%));
-    @apply text-white font-semibold;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5;
-  }
-
-  /* 레거시 지원 - 모두 primary로 매핑 */
-  .btn-gradient-blue,
-  .btn-gradient-green,
-  .btn-gradient-orange {
-    background-image: linear-gradient(to right, hsl(168 64% 50%), hsl(168 64% 45%));
-    @apply text-white font-semibold;
-    @apply transition-all duration-300 ease-out;
-    @apply hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5;
-  }
-
-  /* Primary color variations for cards */
-  .bg-primary-gradient {
-    background-image: linear-gradient(to bottom right, hsl(168 64% 50%), hsl(168 64% 45%));
-  }
-
-  /* Accent gradient for cards */
-  .bg-accent-gradient {
-    background-image: linear-gradient(to bottom right, hsl(168 64% 55%), hsl(168 64% 45%));
-  }
-
-  /* Card Hover Effects */
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  .group:hover .sn-grayscale-hover {
+    @apply grayscale-0;
   }
 
   /* Section Spacing */
@@ -259,16 +163,24 @@
   .icon-circle {
     @apply rounded-full flex items-center justify-center;
   }
-
   .icon-circle-sm {
     @apply w-10 h-10;
   }
-
   .icon-circle-md {
     @apply w-14 h-14;
   }
-
   .icon-circle-lg {
     @apply w-20 h-20;
   }
+}
+
+/* ===== SUPANOVA Keyframes ===== */
+@keyframes sn-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes sn-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }

@@ -9,30 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Primary: 청록색 배경 + 흰색 텍스트 + 호버 효과
         default:
-          "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 active:translate-y-0",
-        // Destructive: 빨간색 배경
+          "bg-white text-black hover:bg-white/90 active:bg-white/80",
         destructive:
-          "bg-destructive text-white hover:bg-destructive/90 hover:shadow-lg hover:shadow-destructive/25 hover:-translate-y-0.5 active:translate-y-0",
-        // Outline: 테두리만 있는 버튼 (weave-flow의 "자세히 알아보기" 스타일)
+          "bg-destructive text-white hover:bg-destructive/90",
         outline:
-          "border-2 border-border bg-background text-foreground hover:bg-muted hover:border-primary/50",
-        // Secondary: 회색 배경
+          "border border-white/20 bg-transparent text-white hover:bg-white hover:text-black",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0",
-        // Ghost: 투명 배경, 호버시 배경 나타남
+          "bg-white/10 text-white hover:bg-white/20",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground",
-        // Link: 텍스트 링크 스타일
+          "hover:bg-white/10 hover:text-white",
         link:
-          "text-primary underline-offset-4 hover:underline",
-        // Teal Gradient: 청록색 그라데이션 (weave-flow 메인 CTA 스타일)
-        teal:
-          "bg-gradient-to-r from-primary to-primary/90 text-white font-semibold hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0",
-        // White: 흰색 배경 (다크 섹션용)
-        white:
-          "bg-white text-foreground border border-border hover:bg-gray-50 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0",
+          "text-white underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-5 py-2",
@@ -54,7 +42,7 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "default",
       size: "default",
-      rounded: "full", // weave-flow 스타일: 완전히 둥근 모서리
+      rounded: "lg",
     },
   }
 )

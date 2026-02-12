@@ -144,10 +144,10 @@ export function Services() {
                 transition: { duration: 0.3, ease: "easeOut" }
               }}
             >
-              <Card className="group/card relative overflow-hidden border border-white/10 hover:bg-[var(--neon-alt)] hover:text-white transition-colors duration-300 flex flex-col h-full">
+              <Card className="group/card relative overflow-hidden border border-white/10 hover:bg-white hover:text-black transition-colors duration-300 flex flex-col h-full">
                 <CardHeader>
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 group-hover/card:bg-white/10 flex items-center justify-center mb-4 transition-colors">
-                    <service.icon className="w-8 h-8 text-white group-hover/card:text-[var(--neon)] transition-colors" />
+                  <div className="w-16 h-16 rounded-2xl bg-white/10 group-hover/card:bg-black/10 flex items-center justify-center mb-4 transition-colors">
+                    <service.icon className="w-8 h-8 text-white group-hover/card:text-black transition-colors" />
                   </div>
                   <CardTitle className="text-2xl">{service.title}</CardTitle>
                   <CardDescription className="text-base">
@@ -159,10 +159,10 @@ export function Services() {
                   <ul className="space-y-4 flex-1">
                     {service.items.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start gap-3">
-                        <item.icon className="w-5 h-5 text-white group-hover/card:text-[var(--neon)] mt-0.5 shrink-0 transition-colors" />
+                        <item.icon className="w-5 h-5 text-white group-hover/card:text-black mt-0.5 shrink-0 transition-colors" />
                         <div>
                           <p className="font-medium">{item.title}</p>
-                          <p className="text-sm text-white/60 group-hover/card:text-white/70 transition-colors">{item.description}</p>
+                          <p className="text-sm text-white/60 group-hover/card:text-black/60 transition-colors">{item.description}</p>
                         </div>
                       </li>
                     ))}
@@ -170,7 +170,7 @@ export function Services() {
 
                   <Button
                     variant="outline"
-                    className="w-full group-hover/card:border-white/20 group-hover/card:text-white group-hover/card:hover:bg-[var(--neon)] group-hover/card:hover:text-black"
+                    className="w-full group-hover/card:border-black/20 group-hover/card:text-black group-hover/card:hover:bg-black group-hover/card:hover:text-white"
                     onClick={scrollToContact}
                   >
                     {service.buttonText}

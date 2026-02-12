@@ -33,16 +33,16 @@ const categories: {
 
 export function WhatWeBuild() {
   return (
-    <section id="solutions" className="py-20 md:py-32 scroll-mt-20">
+    <section id="solutions" className="py-20 md:py-32 bg-[#050505] scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-16">
-          <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-4">
+          <p className="text-xs font-medium text-white/50 tracking-[0.3em] uppercase mb-4">
             WHAT
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
             크리에이티브부터 자동화까지,<br />
-            필요한 <span className="text-gradient">AI를 찾아보세요</span>
+            필요한 AI를 찾아보세요
           </h2>
         </ScrollReveal>
 
@@ -56,20 +56,17 @@ export function WhatWeBuild() {
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
               >
-                <Card className="group relative overflow-hidden border-2 hover:border-primary/50 transition-colors duration-300 hover:shadow-xl h-full">
-                  {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
+                <Card className="group/card relative overflow-hidden border border-white/10 hover:bg-white hover:text-black transition-colors duration-300 h-full">
                   <CardHeader className="relative z-10">
                     <motion.div
-                      className="w-16 h-16 rounded-2xl bg-primary-gradient flex items-center justify-center mb-4"
+                      className="w-16 h-16 rounded-2xl bg-white/10 group-hover/card:bg-black/10 flex items-center justify-center mb-4 transition-colors"
                       whileHover={{
                         scale: 1.1,
                         rotate: [0, -5, 5, 0],
                         transition: { duration: 0.4 }
                       }}
                     >
-                      <category.icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+                      <category.icon className="w-8 h-8 text-white group-hover/card:text-black transition-colors" strokeWidth={1.5} />
                     </motion.div>
                     <CardTitle className="text-2xl flex items-center gap-2">
                       {category.title}
@@ -84,13 +81,13 @@ export function WhatWeBuild() {
                       {category.features.map((feature, featureIndex) => (
                         <motion.li
                           key={featureIndex}
-                          className="flex items-center gap-2 text-muted-foreground"
+                          className="flex items-center gap-2 text-white/60 group-hover/card:text-black/60 transition-colors"
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: featureIndex * 0.1 }}
                           viewport={{ once: false, margin: "0px", amount: 0.02 }}
                         >
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-white group-hover/card:bg-black transition-colors" />
                           {feature}
                         </motion.li>
                       ))}

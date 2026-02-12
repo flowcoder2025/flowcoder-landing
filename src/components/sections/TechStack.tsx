@@ -34,38 +34,35 @@ const techCategories: TechCategory[] = [
 
 export function TechStack() {
   return (
-    <section id="techstack" className="py-20 md:py-32 scroll-mt-20">
+    <section id="techstack" className="py-20 md:py-32 bg-[#050505] scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-16">
-          <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-4">
+          <p className="text-xs font-medium text-white/50 tracking-[0.3em] uppercase mb-4">
             HOW
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
             안정적이고 빠른 AI 구축,<br />
-            <span className="text-gradient">검증된 Next.js 스택</span>으로 가능합니다
+            검증된 Next.js 스택으로 가능합니다
           </h2>
         </ScrollReveal>
 
         {/* Tech Stack Table */}
         <ScrollReveal className="max-w-4xl mx-auto">
-          <StaggerContainer className="bg-card rounded-2xl border shadow-lg overflow-hidden">
+          <StaggerContainer className="bg-transparent border border-white/10 overflow-hidden">
             {techCategories.map((category, index) => (
               <StaggerItem key={index}>
                 <motion.div
                   className={`flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 ${
-                    index !== techCategories.length - 1 ? "border-b" : ""
-                  } hover:bg-muted/50 transition-colors`}
+                    index !== techCategories.length - 1 ? "border-b border-white/10" : ""
+                  } hover:bg-white/5 transition-colors`}
                   whileHover={{ x: 4, transition: { duration: 0.2 } }}
                 >
                   {/* Category Name */}
                   <div className="w-full sm:w-40 shrink-0">
-                    <motion.div
-                      className="inline-flex items-center px-4 py-2 rounded-lg bg-primary-gradient text-white font-semibold text-sm"
-                      whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-                    >
+                    <span className="inline-flex items-center px-4 py-2 bg-white text-black font-semibold text-sm">
                       {category.name}
-                    </motion.div>
+                    </span>
                   </div>
 
                   {/* Technologies */}
@@ -79,7 +76,7 @@ export function TechStack() {
                       >
                         <Badge
                           variant="secondary"
-                          className="px-3 py-1.5 text-sm font-medium hover:bg-primary/10 transition-colors cursor-default"
+                          className="px-3 py-1.5 text-sm font-medium hover:bg-white/10 transition-colors cursor-default"
                         >
                           {tech}
                         </Badge>
@@ -94,7 +91,7 @@ export function TechStack() {
 
         {/* Additional Info */}
         <ScrollReveal className="text-center mt-12">
-          <p className="text-muted-foreground">
+          <p className="text-white/40">
             프로덕션 레벨의 검증된 기술 스택으로 안정적인 서비스를 구축합니다.
           </p>
         </ScrollReveal>

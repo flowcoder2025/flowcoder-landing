@@ -59,7 +59,6 @@ export function CTA() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [showErrors, setShowErrors] = useState(false);
 
-  // Refs for focus navigation
   const categoryRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
@@ -84,7 +83,6 @@ export function CTA() {
     setErrors(newErrors);
     setShowErrors(true);
 
-    // Focus on first error field
     if (Object.keys(newErrors).length > 0) {
       if (newErrors.category && categoryRef.current) {
         categoryRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -104,7 +102,6 @@ export function CTA() {
     return true;
   };
 
-  // Clear specific error when user starts typing/selecting
   const clearError = (field: keyof FormErrors) => {
     if (errors[field]) {
       setErrors((prev) => {
@@ -150,7 +147,6 @@ export function CTA() {
       setShowErrors(false);
       setErrors({});
 
-      // Reset after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
         setSelectedCategory(null);
@@ -159,7 +155,6 @@ export function CTA() {
       }, 3000);
     } catch (error) {
       console.error("Failed to submit form:", error);
-      // Still show success to user (webhook might have no-cors)
       setIsSubmitted(true);
       setShowErrors(false);
       setErrors({});
@@ -176,28 +171,25 @@ export function CTA() {
   };
 
   return (
-    <section id="contact" className="section-padding relative overflow-hidden scroll-mt-20">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-cta" />
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="contact" className="section-padding bg-[#050505] scroll-mt-20">
+      <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-12">
-          <p className="text-sm font-semibold text-primary tracking-widest uppercase mb-4">
+          <p className="text-xs font-medium text-white/50 tracking-[0.3em] uppercase mb-4">
             CONTACT US
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
             이제 당신의 비즈니스에<br />
-            <span className="text-gradient">AI를 흐르게</span> 할 차례입니다
+            AI를 흐르게 할 차례입니다
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-white/40 max-w-2xl mx-auto">
             아래 양식을 작성해 주세요. 빠른 시일 내에 연락드리겠습니다.
           </p>
         </ScrollReveal>
 
         {/* Contact Form */}
         <ScrollReveal>
-          <Card id="contact-form" className="max-w-2xl mx-auto border-2">
+          <Card id="contact-form" className="max-w-2xl mx-auto border border-white/10 hover:bg-[#0f0f0f] hover:text-card-foreground">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl">문의하기</CardTitle>
               <CardDescription>
@@ -215,9 +207,9 @@ export function CTA() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
                 >
-                  <CheckCircle2 className="w-16 h-16 text-primary mx-auto mb-4" />
+                  <CheckCircle2 className="w-16 h-16 text-white mx-auto mb-4" />
                   <h3 className="text-xl font-bold mb-2">문의가 접수되었습니다</h3>
-                  <p className="text-muted-foreground">빠른 시일 내에 연락드리겠습니다.</p>
+                  <p className="text-white/40">빠른 시일 내에 연락드리겠습니다.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -239,8 +231,8 @@ export function CTA() {
                           }}
                           className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                             selectedCategory === option.id
-                              ? "bg-primary text-white"
-                              : "bg-muted hover:bg-muted/80 text-foreground"
+                              ? "bg-white text-black"
+                              : "bg-white/5 hover:bg-white/10 text-white/70"
                           }`}
                         >
                           #{option.title}
@@ -405,7 +397,7 @@ export function CTA() {
                         }}
                         className={showErrors && errors.agreed ? "border-destructive" : ""}
                       />
-                      <Label htmlFor="privacy" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                      <Label htmlFor="privacy" className="text-sm text-white/40 leading-relaxed cursor-pointer">
                         개인정보 수집 및 이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용됩니다.
                         <span className="text-destructive"> *</span>
                       </Label>
@@ -445,7 +437,7 @@ export function CTA() {
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    className="w-full btn-gradient-primary"
+                    className="w-full bg-white text-black hover:bg-white/90"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

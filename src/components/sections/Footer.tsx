@@ -76,7 +76,7 @@ export function Footer() {
               <img
                 src="/logo.png"
                 alt="FlowCoder Logo"
-                className="w-10 h-10 rounded-lg invert"
+                className="w-10 h-10 rounded-lg relative z-[10000]"
               />
               <span className="text-2xl font-bold text-white">FlowCoder</span>
             </Link>

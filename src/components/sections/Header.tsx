@@ -52,13 +52,13 @@ export function Header() {
         }`}
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16 mix-blend-difference">
+          <div className="flex items-center justify-between h-16">
             {/* Logo & Brand */}
             <Link href="/" className="flex items-center gap-2">
               <img
                 src="/logo.png"
                 alt="FlowCoder Logo"
-                className="w-8 h-8 invert"
+                className="w-8 h-8 relative z-[10000]"
               />
               <span className="text-xl font-bold text-white tracking-tight">FlowCoder</span>
             </Link>

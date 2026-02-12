@@ -97,7 +97,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/50 hover:text-white transition-colors inline-flex items-center gap-1"
+                      className="text-sm text-white/50 hover:text-[var(--neon)] transition-colors inline-flex items-center gap-1"
                     >
                       {link.name}
                       {link.href.startsWith("http") && (
@@ -163,7 +163,7 @@ export function Footer() {
               <Link
                 key={social.name}
                 href={social.href}
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:text-[var(--neon)] hover:bg-[var(--neon)]/10 transition-colors"
                 aria-label={social.name}
               >
                 <social.icon className="w-5 h-5" />

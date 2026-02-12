@@ -37,7 +37,7 @@ export function WhatWeBuild() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-16">
-          <p className="text-xs font-medium text-white/50 tracking-[0.3em] uppercase mb-4">
+          <p className="text-xs font-medium text-[var(--neon)] tracking-[0.3em] uppercase mb-4">
             WHAT
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
@@ -87,7 +87,7 @@ export function WhatWeBuild() {
                           transition={{ delay: featureIndex * 0.1 }}
                           viewport={{ once: false, margin: "0px", amount: 0.02 }}
                         >
-                          <div className="w-1.5 h-1.5 rounded-full bg-white group-hover/card:bg-black transition-colors" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-[var(--neon)] group-hover/card:bg-[var(--neon)] transition-colors" />
                           {feature}
                         </motion.li>
                       ))}

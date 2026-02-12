@@ -38,7 +38,7 @@ export function TechStack() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-16">
-          <p className="text-xs font-medium text-white/50 tracking-[0.3em] uppercase mb-4">
+          <p className="text-xs font-medium text-[var(--neon)] tracking-[0.3em] uppercase mb-4">
             HOW
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
@@ -60,7 +60,7 @@ export function TechStack() {
                 >
                   {/* Category Name */}
                   <div className="w-full sm:w-40 shrink-0">
-                    <span className="inline-flex items-center px-4 py-2 bg-white text-black font-semibold text-sm">
+                    <span className="inline-flex items-center px-4 py-2 bg-[var(--neon)] text-black font-semibold text-sm">
                       {category.name}
                     </span>
                   </div>

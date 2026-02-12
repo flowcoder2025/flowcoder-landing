@@ -36,6 +36,9 @@
   --sidebar-accent-foreground: hsl(0 0% 96%);
   --sidebar-border: hsl(0 0% 100% / 0.1);
   --sidebar-ring: hsl(0 0% 100% / 0.3);
+  --neon: #39FF14;
+  --neon-dim: rgba(57, 255, 20, 0.4);
+  --neon-glow: 0 0 10px rgba(57, 255, 20, 0.3), 0 0 40px rgba(57, 255, 20, 0.1);
   --font-sans: "Pretendard Variable", Pretendard, Outfit, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: monospace;
@@ -120,6 +123,7 @@
   --tracking-wider: calc(var(--tracking-normal) + 0.05em);
   --tracking-widest: calc(var(--tracking-normal) + 0.1em);
 
+  --color-neon: var(--neon);
   --color-success: hsl(0 0% 96%);
   --color-warning: hsl(0 0% 70%);
   --color-error: hsl(0 84% 60%);

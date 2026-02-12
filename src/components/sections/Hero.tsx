@@ -21,7 +21,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xs uppercase tracking-[0.3em] text-white/50 mb-8"
+          className="text-xs uppercase tracking-[0.3em] text-[var(--neon)] mb-8"
         >
           AX 전문 · AI 솔루션 빌더
         </motion.p>
@@ -44,7 +44,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-3xl md:text-5xl font-bold tracking-tighter text-transparent mb-12"
-          style={{ WebkitTextStroke: "1px rgba(255,255,255,0.4)" }}
+          style={{ WebkitTextStroke: "1px var(--neon-dim)" }}
         >
           Build. Automate. Grow.
         </motion.p>
@@ -79,7 +79,7 @@ export function Hero() {
           <motion.div
             animate={{ y: [0, 4, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1 h-2 bg-white/30 rounded-full"
+            className="w-1 h-2 bg-[var(--neon)] rounded-full"
           />
         </div>
       </motion.div>

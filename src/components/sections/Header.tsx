@@ -70,15 +70,15 @@ export function Header() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-xs font-medium text-white uppercase tracking-wider hover:line-through transition-all cursor-pointer"
+                  className="text-xs font-medium text-white uppercase tracking-wider hover:text-[var(--neon)] hover:line-through transition-all cursor-pointer"
                 >
                   {link.name}
                 </a>
               ))}
               <Button
                 size="sm"
-                variant="outline"
                 onClick={(e) => handleNavClick(e, "#contact")}
+                className="bg-[var(--neon)] text-black hover:bg-[var(--neon)]/90 border-none font-semibold"
               >
                 문의하기
               </Button>

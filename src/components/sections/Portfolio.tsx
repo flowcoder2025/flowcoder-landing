@@ -211,7 +211,7 @@ export function Portfolio() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-12">
-          <p className="text-xs font-medium text-white/50 tracking-[0.3em] uppercase mb-4">
+          <p className="text-xs font-medium text-[var(--neon)] tracking-[0.3em] uppercase mb-4">
             PORTFOLIO
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
@@ -234,7 +234,7 @@ export function Portfolio() {
               onClick={() => setActiveFilter(filter.key)}
               className={
                 activeFilter === filter.key
-                  ? "bg-white text-black hover:bg-white/90 hover:text-black"
+                  ? "bg-[var(--neon)] text-black hover:bg-[var(--neon)]/90 hover:text-black"
                   : "border border-white/20 text-white/60 hover:text-white"
               }
             >
@@ -307,7 +307,7 @@ export function Portfolio() {
                     {/* Bottom Group */}
                     <div className="mt-auto pt-3 space-y-2">
                       {/* 4. Highlight Badge */}
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white text-black">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--neon)] text-black">
                         {project.highlight}
                       </span>
 

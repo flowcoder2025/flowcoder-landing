@@ -31,13 +31,13 @@ export function Marquee() {
                   }`}
                   style={
                     (setIndex * 3 + i) % 2 !== 0
-                      ? { WebkitTextStroke: "2px rgba(255,255,255,0.3)" }
+                      ? { WebkitTextStroke: "2px var(--neon-dim)" }
                       : undefined
                   }
                 >
                   {item}
                 </span>
-                <span className="text-white/20 text-4xl md:text-6xl mx-4">·</span>
+                <span className="text-[var(--neon)] text-4xl md:text-6xl mx-4">·</span>
               </span>
             ))}
           </div>

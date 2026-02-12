@@ -53,7 +53,7 @@ function MetricCard({ value, suffix = "", label, sublabel, isVisible, delay = 0 
 
   return (
     <div className="text-center p-6 md:p-8">
-      <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
+      <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--neon)] mb-2">
         {count}
         {suffix}
       </div>

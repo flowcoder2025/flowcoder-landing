@@ -175,7 +175,7 @@ export function CTA() {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <ScrollReveal className="text-center mb-12">
-          <p className="text-xs font-medium text-white/50 tracking-[0.3em] uppercase mb-4">
+          <p className="text-xs font-medium text-[var(--neon)] tracking-[0.3em] uppercase mb-4">
             CONTACT US
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
@@ -437,7 +437,7 @@ export function CTA() {
                   {/* Submit Button */}
                   <Button
                     type="submit"
-                    className="w-full bg-white text-black hover:bg-white/90"
+                    className="w-full bg-[var(--neon)] text-black hover:bg-[var(--neon)]/90 font-semibold"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

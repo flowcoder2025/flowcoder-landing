@@ -56,17 +56,17 @@ export function WhatWeBuild() {
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
               >
-                <Card className="group/card relative overflow-hidden border border-white/10 hover:bg-white hover:text-black transition-colors duration-300 h-full">
+                <Card className="group/card relative overflow-hidden border border-white/10 hover:bg-[var(--neon-alt)] hover:text-white transition-colors duration-300 h-full">
                   <CardHeader className="relative z-10">
                     <motion.div
-                      className="w-16 h-16 rounded-2xl bg-white/10 group-hover/card:bg-black/10 flex items-center justify-center mb-4 transition-colors"
+                      className="w-16 h-16 rounded-2xl bg-white/10 group-hover/card:bg-white/10 flex items-center justify-center mb-4 transition-colors"
                       whileHover={{
                         scale: 1.1,
                         rotate: [0, -5, 5, 0],
                         transition: { duration: 0.4 }
                       }}
                     >
-                      <category.icon className="w-8 h-8 text-white group-hover/card:text-black transition-colors" strokeWidth={1.5} />
+                      <category.icon className="w-8 h-8 text-white group-hover/card:text-[var(--neon)] transition-colors" strokeWidth={1.5} />
                     </motion.div>
                     <CardTitle className="text-2xl flex items-center gap-2">
                       {category.title}
@@ -81,7 +81,7 @@ export function WhatWeBuild() {
                       {category.features.map((feature, featureIndex) => (
                         <motion.li
                           key={featureIndex}
-                          className="flex items-center gap-2 text-white/60 group-hover/card:text-black/60 transition-colors"
+                          className="flex items-center gap-2 text-white/60 group-hover/card:text-white/80 transition-colors"
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ delay: featureIndex * 0.1 }}

@@ -286,7 +286,7 @@ export function Portfolio() {
                     {project.thumbnail ? (
                       <motion.img
                         src={project.thumbnail}
-                        alt={`${project.name} preview`}
+                        alt={`${project.name} - ${project.description} 서비스 화면`}
                         className="w-full h-48 object-cover object-center scale-125 grayscale group-hover:grayscale-0 transition-all duration-500"
                         whileHover={{ scale: 1.35 }}
                         transition={{ duration: 0.4 }}

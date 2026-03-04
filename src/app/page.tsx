@@ -8,6 +8,7 @@ import {
   TechStack,
   Services,
   CTA,
+  FAQ,
   Footer,
 } from "@/components/sections";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -41,7 +42,10 @@ export default function Home() {
       {/* [6] SERVICES — 서비스 */}
       <Services />
 
-      {/* [7] NOW — B2B/B2G CTA */}
+      {/* [7] FAQ — 자주 묻는 질문 */}
+      <FAQ />
+
+      {/* [8] NOW — B2B/B2G CTA */}
       <CTA />
 
       {/* [8] FOOTER */}

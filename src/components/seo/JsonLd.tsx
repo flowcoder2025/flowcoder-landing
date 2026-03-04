@@ -46,9 +46,24 @@ export const organizationSchema = {
     "React 개발",
   ],
   sameAs: [
-    // 소셜 미디어 링크 추가 시 활성화
-    // "https://www.linkedin.com/company/flowcoder",
-    // "https://github.com/flowcoder-io",
+    "https://github.com/flowcoder2025",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: "admin@flow-coder.com",
+    availableLanguage: ["Korean"],
+  },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "홍유릉로248번길 26, 지하1층(금곡동)",
+    addressLocality: "남양주시",
+    addressRegion: "경기도",
+    addressCountry: "KR",
+  },
+  founder: [
+    { "@type": "Person", name: "조용현" },
+    { "@type": "Person", name: "박현일" },
   ],
 };
 
@@ -65,14 +80,6 @@ export const websiteSchema = {
     "@id": "https://about.flow-coder.com/#organization",
   },
   inLanguage: "ko-KR",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: "https://about.flow-coder.com/?q={search_term_string}",
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 // Service 스키마 - 서비스 목록
@@ -256,6 +263,62 @@ export const faqSchema = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "네, FlowCoder는 기업 및 공공기관을 위한 맞춤형 AI 솔루션을 개발합니다. B2B 및 B2G 프로젝트 경험이 풍부합니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "FlowCoder의 서비스 비용은 어떻게 되나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "프로젝트 규모와 요구사항에 따라 맞춤 견적을 제공합니다. 무료 상담을 통해 정확한 비용을 안내받으실 수 있습니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "n8n 자동화 컨설팅은 무엇인가요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "n8n은 오픈소스 워크플로우 자동화 도구입니다. FlowCoder는 n8n을 활용한 업무 프로세스 자동화 설계, 구축, 운영을 지원합니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "AI 솔루션 구축 기간은 얼마나 걸리나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "일반적으로 MVP 기준 4-8주, 풀 스케일 프로젝트 기준 8-16주가 소요됩니다. 프로젝트 복잡도에 따라 달라질 수 있습니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "공공기관도 서비스를 이용할 수 있나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "네, FlowCoder는 B2G(정부/공공기관) 프로젝트 경험이 풍부합니다. 공공 조달 절차에 맞춘 계약 방식도 지원합니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "바이브코딩 교육은 누구를 대상으로 하나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "비개발자 직군(기획자, 마케터, 경영진)부터 주니어 개발자까지, AI를 활용한 코딩 생산성 향상을 원하는 모든 분을 대상으로 합니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "원격 협업이 가능한가요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "네, 100% 원격 협업이 가능합니다. 화상 회의, 프로젝트 관리 도구를 통해 전국 어디서나 서비스를 받으실 수 있습니다.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "포트폴리오를 확인할 수 있나요?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "about.flow-coder.com에서 9개 이상의 AI 솔루션 프로젝트 포트폴리오를 확인하실 수 있습니다.",
       },
     },
   ],

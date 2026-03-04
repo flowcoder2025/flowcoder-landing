@@ -122,11 +122,10 @@ export const metadata: Metadata = {
   },
 
   // 검색 엔진 검증 코드
-  // 🔍 설정 방법:
-  // 1. Google: https://search.google.com/search-console → 속성 추가 → HTML 태그 방식 선택
-  // 2. 네이버: https://searchadvisor.naver.com → 사이트 등록 → HTML 태그 방식 선택
+  // Google: https://search.google.com/search-console → 속성 추가 → HTML 태그 방식
+  // 네이버: https://searchadvisor.naver.com → 사이트 등록 → HTML 태그 방식
+  // TODO: GSC에서 실제 google verification 코드를 발급받아 아래에 추가하세요
   verification: {
-    google: "YOUR_GOOGLE_SITE_VERIFICATION_CODE",
     other: {
       "naver-site-verification": "5bbb907d7a834f0423f0ab38007c001f8b47fda0",
     },

@@ -7,4 +7,5 @@ export { Portfolio } from "./Portfolio";
 export { TechStack } from "./TechStack";
 export { Services } from "./Services";
 export { CTA } from "./CTA";
+export { FAQ } from "./FAQ";
 export { Footer } from "./Footer";

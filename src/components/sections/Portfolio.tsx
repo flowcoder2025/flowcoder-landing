@@ -1,170 +1,146 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  ExternalLink,
-  Heart,
-  ShoppingBag,
-  Video,
-  BarChart3,
-  Landmark,
-  Plane,
-  Briefcase,
-  Waves,
-  Zap,
-  Globe,
-  Handshake,
-  Radar,
-  LucideIcon
-} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "@/components/ui/motion";
 
 type Category = "all" | "creative" | "platform" | "automation" | "devtools";
 
 interface Project {
-  name: string;
-  koreanName: string;
-  description: string;
+  id: string;
   category: Category[];
+  categoryLabel: string;
   tags: string[];
   highlight: string;
-  icon: LucideIcon;
-  thumbnail?: string;
-  url?: string;
+  summary: string;
+  thumbnail: string;
 }
 
+// CTA 최적화 배치 순서
+// ─ HOOK (1-3): 시각 임팩트로 관심 포착 — 가장 보편적 비즈니스 니즈부터
+// ─ INTEREST (4-6): SaaS 모델로 비즈니스 가치 증명
+// ─ DESIRE (7-10): B2B 엔터프라이즈 실적으로 신뢰 확보
+// ─ ACTION (11-12): 컨설팅·자동화 진단으로 문의 직결
+// ─ SUPPORT (13-14): 포트폴리오 다양성으로 마무리
 const projects: Project[] = [
+  // ── HOOK ──────────────────────────
   {
-    name: "FlowRetouch",
-    koreanName: "플로우리터치",
-    description: "AI 기반 웨딩 사진 보정 서비스. Gemini 3 Pro Image로 스튜디오 품질 즉시 완성.",
+    id: "product-studio",
     category: ["creative"],
-    tags: ["Gemini", "Next.js", "Image AI"],
-    highlight: "스튜디오 품질 즉시 완성",
-    icon: Heart,
-    thumbnail: "/Iframe/retouch.png",
-    url: "https://retouch-pearl.vercel.app/",
-  },
-  {
-    name: "FlowStudio",
-    koreanName: "플로우스튜디오",
-    description: "복잡한 포토샵 없이, 전문가급 제품 사진과 홍보물을 30초 완성.",
-    category: ["creative"],
+    categoryLabel: "크리에이티브",
     tags: ["Gemini", "Supabase", "E-commerce"],
-    highlight: "상세페이지 30초 완성",
-    icon: ShoppingBag,
+    highlight: "이커머스 자동화 솔루션",
+    summary: "제품 이미지·홍보물·상세페이지를 AI로 자동 생성하는 셀러용 웹 앱.",
     thumbnail: "/Iframe/studio.png",
-    url: "https://studio.flow-coder.com/",
   },
   {
-    name: "FlowSpace",
-    koreanName: "플로우스페이스",
-    description: "브라우저에서 즉시 입장하는 2D 메타버스 플랫폼. Phaser 3 + LiveKit 자체 개발.",
-    category: ["platform"],
-    tags: ["Phaser 3", "LiveKit", "Metaverse"],
-    highlight: "설치 없이 즉시 입장",
-    icon: Globe,
-    thumbnail: "/Iframe/space.png",
-    url: "https://flowspace-gamma.vercel.app/",
-  },
-  {
-    name: "Gini AI",
-    koreanName: "지니 AI",
-    description: "문서를 AI가 분석하고, 전문 아바타가 발표하는 고품질 영상을 자동으로 제작합니다. 복잡한 편집 없이 3분 완성.",
+    id: "ai-webdrama",
     category: ["creative"],
-    tags: ["ElevenLabs", "D-ID", "Video AI"],
-    highlight: "15분 내 3분 영상 제작",
-    icon: Video,
-    thumbnail: "/Iframe/geni.png",
-    url: "https://next-gini-ai.vercel.app/",
+    categoryLabel: "크리에이티브",
+    tags: ["Kling", "Veo", "Remotion"],
+    highlight: "AI 이미지·영상 제너레이터",
+    summary: "장면별 스토리보드 → AI 이미지/영상 자동 생성. 웹드라마 프로덕션 파이프라인.",
+    thumbnail: "/Iframe/webdrama.png",
   },
+  // ── INTEREST ──────────────────────
   {
-    name: "PPTMaker",
-    koreanName: "PPT메이커",
-    description: "AI 프레젠테이션 자동 생성 SaaS. 98% 비용 절감, 무제한 편집.",
+    id: "presentation-saas",
     category: ["creative"],
+    categoryLabel: "크리에이티브",
     tags: ["Gemini", "PptxGenJS", "SaaS"],
-    highlight: "98% 비용 절감",
-    icon: BarChart3,
+    highlight: "AI 프레젠테이션 생성 SaaS",
+    summary: "한 줄 입력으로 편집 가능한 PPTX를 자동 생성. PptxGenJS 기반 무제한 편집.",
     thumbnail: "/Iframe/pptmaker.png",
-    url: "https://pptmaker.flow-coder.com/",
   },
   {
-    name: "FlowMate",
-    koreanName: "플로우메이트",
-    description: "정부 지원사업 통합 플랫폼. AI 맞춤 추천, 10,000명 동시 접속 지원.",
-    category: ["platform"],
-    tags: ["Next.js", "Supabase", "Microservices"],
-    highlight: "10K+ 동시 사용자",
-    icon: Landmark,
-    thumbnail: "/Iframe/konarae.png",
-    url: "https://www.konarae.com",
+    id: "video-avatar",
+    category: ["creative"],
+    categoryLabel: "크리에이티브",
+    tags: ["ElevenLabs", "D-ID", "Video AI"],
+    highlight: "문서→아바타 영상 생성 시스템",
+    summary: "문서를 AI가 분석하고 전문 아바타가 발표하는 영상 자동 제작 파이프라인.",
+    thumbnail: "/Iframe/geni.png",
   },
   {
-    name: "OneTrip",
-    koreanName: "원트립",
-    description: "AI 여행 일정 자동화 플랫폼. 문서 업로드로 완전한 여행 계획 생성.",
-    category: ["platform"],
-    tags: ["LangGraph", "OpenAI", "Travel"],
-    highlight: "문서→여행 계획 자동화",
-    icon: Plane,
-  },
-  {
-    name: "Weave",
-    koreanName: "위브",
-    description: "프리랜서와 1인 기업이 클라이언트, 프로젝트 관리, 세무 업무를 한 곳에서 해결할 수 있는 통합 솔루션.",
-    category: ["platform"],
-    tags: ["Next.js", "Supabase", "Automation"],
-    highlight: "주 10시간+ 절약",
-    icon: Briefcase,
-    thumbnail: "/Iframe/weave.png",
-    url: "https://www.weave-flow.com/",
-  },
-  {
-    name: "FlowConsult",
-    koreanName: "플로우컨설트",
-    description: "벤처인증부터 사업계획서, 정부 지원사업, 특허 출원까지. 기업 성장의 모든 단계를 지원하는 전문 컨설팅 플랫폼.",
-    category: ["platform"],
-    tags: ["Next.js", "Consulting", "B2B"],
-    highlight: "기업 성장 원스톱 컨설팅",
-    icon: Handshake,
-    thumbnail: "/Iframe/consult.png",
-    url: "https://consult.flow-coder.com/",
-  },
-  {
-    name: "FlowCanvas",
-    koreanName: "플로우캔버스",
-    description: "AI 기반 업무 자동화 준비도 진단. 자동화 가능 업무를 분석하고 ROI까지 자동 산출하는 전략 리포트 플랫폼.",
+    id: "ax-diagnosis",
     category: ["automation"],
-    tags: ["Claude AI", "Automation", "Diagnosis"],
-    highlight: "15분 내 자동화 진단 완료",
-    icon: Radar,
+    categoryLabel: "자동화",
+    tags: ["Claude AI", "Automation", "ROI"],
+    highlight: "AI 업무 자동화 진단 리포트 시스템",
+    summary: "Claude 기반 업무 자동화 준비도 분석 + ROI 산출 전략 리포트 자동 생성.",
     thumbnail: "/Iframe/canvas.png",
-    url: "https://canvas.flow-coder.com/",
+  },
+
+  // ── DESIRE ────────────────────────
+  {
+    id: "gov-match",
+    category: ["platform"],
+    categoryLabel: "플랫폼",
+    tags: ["Next.js", "Supabase", "pgvector"],
+    highlight: "정부사업 매칭 통합 플랫폼",
+    summary: "pgvector 기반 맞춤 추천 + 사업계획서 자동화. 마이크로서비스 아키텍처.",
+    thumbnail: "/Iframe/konarae.png",
   },
   {
-    name: "Flow_Coder",
-    koreanName: "플로우코더 커뮤니티",
-    description: "바이브코딩 개발자 커뮤니티 플랫폼. Zanzibar ReBAC 권한 시스템.",
-    category: ["platform", "devtools"],
-    tags: ["Next.js", "Prisma", "Community"],
-    highlight: "바이브코딩 허브",
-    icon: Waves,
-    thumbnail: "/Iframe/flow_coder.png",
-    url: "https://www.flow-coder.com/",
+    id: "franchise-erp",
+    category: ["platform", "automation"],
+    categoryLabel: "플랫폼 · B2B",
+    tags: ["Next.js", "Prisma", "ERP"],
+    highlight: "프랜차이즈 ERP 시스템",
+    summary: "다매장 통합 관리 — 매출·재고·발주·인사를 한 화면에서 운영하는 프랜차이즈 전용 ERP.",
+    thumbnail: "/Iframe/flowvue.png",
   },
   {
-    name: "FlowCoder Skills",
-    koreanName: "플로우코더 스킬",
-    description: "Claude Code 스킬 프레임워크. 개발 시간 95% 단축.",
-    category: ["devtools", "automation"],
-    tags: ["Claude", "Skills", "Framework"],
-    highlight: "95% 개발시간 단축",
-    icon: Zap,
+    id: "hr-system",
+    category: ["platform"],
+    categoryLabel: "플랫폼 · B2B",
+    tags: ["Next.js", "Prisma", "HR"],
+    highlight: "인사관리(HR) 시스템",
+    summary: "직원·출근부·급여·평가·채용을 통합 관리하는 중소기업 전용 인사관리 플랫폼.",
+    thumbnail: "/Iframe/flowhr.png",
+  },
+  {
+    id: "qr-vehicle",
+    category: ["platform", "automation"],
+    categoryLabel: "플랫폼 · B2B",
+    tags: ["Next.js", "Solapi", "HMAC"],
+    highlight: "QR 기반 차량 관리 시스템",
+    summary: "QR 태그 스캔 기반 차량 운행·정비 이력 추적. Solapi 알림톡과 HMAC 서명 연동.",
+    thumbnail: "/Iframe/qrcar.png",
+  },
+
+  // ── ACTION (문의 유도) ────────────
+  {
+    id: "b2b-consulting",
+    category: ["platform"],
+    categoryLabel: "플랫폼",
+    tags: ["Next.js", "Consulting", "B2B"],
+    highlight: "벤처인증·사업계획서 컨설팅 플랫폼",
+    summary: "벤처인증·사업계획서·특허 출원을 단계별로 지원하는 B2B 컨설팅 시스템.",
+    thumbnail: "/Iframe/consult.png",
+  },
+  {
+    id: "freelancer-suite",
+    category: ["platform"],
+    categoryLabel: "플랫폼",
+    tags: ["Next.js", "Supabase", "Automation"],
+    highlight: "1인 기업 통합 워크스페이스",
+    summary: "클라이언트·프로젝트·세무를 한 곳에서 관리. 프리랜서 전용 운영 시스템.",
+    thumbnail: "/Iframe/weave.png",
+  },
+
+  // ── SUPPORT (포트폴리오 깊이) ────
+  {
+    id: "metaverse-2d",
+    category: ["platform"],
+    categoryLabel: "플랫폼",
+    tags: ["Phaser 3", "LiveKit", "WebRTC"],
+    highlight: "브라우저 기반 2D 메타버스",
+    summary: "Phaser 3 + LiveKit 자체 엔진. 설치 없이 URL만으로 접속하는 멀티유저 공간.",
+    thumbnail: "/Iframe/space.png",
   },
 ];
 
@@ -173,7 +149,6 @@ const filters: { key: Category; label: string }[] = [
   { key: "creative", label: "크리에이티브" },
   { key: "platform", label: "플랫폼" },
   { key: "automation", label: "자동화" },
-  { key: "devtools", label: "개발자도구" },
 ];
 
 const containerVariants = {
@@ -210,18 +185,21 @@ export function Portfolio() {
     <section id="portfolio" className="py-20 md:py-32 bg-[#050505] scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <ScrollReveal className="text-center mb-12">
+        <ScrollReveal className="text-center mb-6">
           <p className="text-xs font-medium text-[var(--neon)] tracking-[0.3em] uppercase mb-4">
             PORTFOLIO
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">
-            실제로 검증된 프로젝트를 살펴보세요
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+            실제로 검증된 프로젝트
           </h2>
+          <p className="text-sm md:text-base text-white/50 max-w-2xl mx-auto">
+            고객사 비밀유지 계약으로 서비스명은 공개하지 않습니다. 분류와 스크린샷으로 결과물을 확인하세요.
+          </p>
         </ScrollReveal>
 
         {/* Filter Tabs */}
         <motion.div
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          className="flex flex-wrap justify-center gap-2 mb-12 mt-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "0px", amount: 0.02 }}
@@ -255,7 +233,7 @@ export function Portfolio() {
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
-                key={project.name}
+                key={project.id}
                 layout
                 variants={cardVariants}
                 initial="hidden"
@@ -267,83 +245,45 @@ export function Portfolio() {
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
               >
-                <Card className="group relative overflow-hidden border border-white/10 hover:border-white/20 transition-colors duration-300 h-full flex flex-col">
-                  {/* 1. Title Section */}
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-                        <project.icon className="w-5 h-5 text-white" strokeWidth={1.5} />
-                      </div>
-                      <div>
-                        <CardTitle className="text-lg">{project.name}</CardTitle>
-                        <p className="text-xs text-white/40">{project.koreanName}</p>
-                      </div>
+                <Card className="group relative overflow-hidden border border-white/10 hover:border-white/20 transition-colors duration-300 h-full flex flex-col p-0">
+                  {/* Screenshot — Primary visual */}
+                  <div className="relative overflow-hidden bg-white/5 aspect-[16/10]">
+                    <motion.img
+                      src={project.thumbnail}
+                      alt={`${project.categoryLabel} 프로젝트 화면`}
+                      className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.4 }}
+                    />
+                    {/* Category overlay on image */}
+                    <div className="absolute top-3 left-3">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold bg-black/70 backdrop-blur text-[var(--neon)] border border-[var(--neon)]/30 uppercase tracking-wider">
+                        {project.categoryLabel}
+                      </span>
                     </div>
-                  </CardHeader>
-
-                  {/* 2. Thumbnail - Grayscale with hover color */}
-                  <div className="mx-4 mb-3 rounded-lg overflow-hidden border border-white/5 bg-white/5">
-                    {project.thumbnail ? (
-                      <motion.img
-                        src={project.thumbnail}
-                        alt={`${project.name} - ${project.description} 서비스 화면`}
-                        className="w-full h-48 object-cover object-center scale-125 grayscale group-hover:grayscale-0 transition-all duration-500"
-                        whileHover={{ scale: 1.35 }}
-                        transition={{ duration: 0.4 }}
-                      />
-                    ) : (
-                      <div className="w-full h-48 flex items-center justify-center">
-                        <project.icon className="w-16 h-16 text-white/10" strokeWidth={1} />
-                      </div>
-                    )}
                   </div>
 
-                  <CardContent className="flex-1 flex flex-col pt-0">
-                    {/* 3. Description */}
-                    <CardDescription className="text-sm line-clamp-2 min-h-10">
-                      {project.description}
-                    </CardDescription>
+                  {/* Content */}
+                  <div className="p-5 flex-1 flex flex-col gap-3">
+                    {/* Highlight */}
+                    <span className="inline-flex w-fit items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--neon)] text-black">
+                      {project.highlight}
+                    </span>
 
-                    {/* Bottom Group */}
-                    <div className="mt-auto pt-3 space-y-2">
-                      {/* 4. Highlight Badge */}
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--neon)] text-black">
-                        {project.highlight}
-                      </span>
+                    {/* Summary */}
+                    <p className="text-sm text-white/70 leading-relaxed line-clamp-3 flex-1">
+                      {project.summary}
+                    </p>
 
-                      {/* 5. Tags */}
-                      <div className="flex flex-wrap gap-1">
-                        {project.tags.map((tag, tagIndex) => (
-                          <Badge key={tagIndex} variant="secondary" className="text-xs">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      {/* 6. View Button */}
-                      {project.url ? (
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="w-full"
-                          onClick={() => window.open(project.url, "_blank", "noopener,noreferrer")}
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          보기
-                        </Button>
-                      ) : (
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="w-full text-white/30 cursor-not-allowed"
-                          disabled
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          준비중
-                        </Button>
-                      )}
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1 pt-2 border-t border-white/5">
+                      {project.tags.map((tag, tagIndex) => (
+                        <Badge key={tagIndex} variant="secondary" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
                     </div>
-                  </CardContent>
+                  </div>
                 </Card>
               </motion.div>
             ))}

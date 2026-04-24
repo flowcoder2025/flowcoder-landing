@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { name: "솔루션", href: "#solutions" },
   { name: "포트폴리오", href: "#portfolio" },
+  { name: "강의/저서", href: "#publications" },
   { name: "기술스택", href: "#techstack" },
   { name: "서비스", href: "#services" },
 ];

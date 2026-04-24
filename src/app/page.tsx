@@ -5,6 +5,7 @@ import {
   Metrics,
   WhatWeBuild,
   Portfolio,
+  Publications,
   TechStack,
   Services,
   CTA,
@@ -35,6 +36,9 @@ export default function Home() {
 
       {/* [4] PORTFOLIO — 프로젝트 쇼케이스 */}
       <Portfolio />
+
+      {/* [4.5] PUBLICATIONS — 강의 & 저서 */}
+      <Publications />
 
       {/* [5] HOW — 기술 스택 */}
       <TechStack />

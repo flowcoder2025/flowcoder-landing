@@ -6,6 +6,36 @@ import { motion } from "framer-motion";
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
+      {/* Video background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover hidden sm:block"
+        poster="/hero-poster.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/hero-bg.webm" type="video/webm" />
+        <source src="/hero-bg.mp4" type="video/mp4" />
+      </video>
+      <video
+        className="absolute inset-0 w-full h-full object-cover sm:hidden"
+        poster="/hero-poster.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/hero-bg-mobile.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/55 pointer-events-none" />
+
       {/* Noise overlay */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"

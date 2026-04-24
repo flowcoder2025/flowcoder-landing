@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 *.png.json
+
+# original media backups (not for deploy)
+hero-bg-original.mp4

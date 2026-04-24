@@ -15,13 +15,13 @@ export function Hero() {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-4 py-20 text-center">
+      <div className="relative z-10 container mx-auto px-4 py-20 text-center max-w-5xl">
         {/* Subtext */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xs uppercase tracking-[0.3em] text-[var(--neon)] mb-8"
+          className="text-xs uppercase tracking-[0.3em] text-[var(--neon)] mb-6"
         >
           AX 전문 · AI 솔루션 빌더
         </motion.p>
@@ -31,7 +31,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-5xl md:text-7xl lg:text-[10vw] font-bold tracking-tighter leading-[0.9] mb-8 text-white"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] mb-6 text-white"
         >
           AI 없는 비즈니스는
           <br />
@@ -43,7 +43,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-3xl md:text-5xl font-bold tracking-tighter text-transparent mb-12"
+          className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-transparent mb-10"
           style={{ WebkitTextStroke: "1px var(--neon-dim)" }}
         >
           Build. Automate. Grow.

@@ -131,7 +131,7 @@ export function CTA() {
         submittedAt: new Date().toISOString(),
       };
 
-      const response = await fetch("https://jerome87.com/webhook/176a6de9-064d-4015-9ea7-b674919b6e1a", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

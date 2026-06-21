@@ -16,7 +16,10 @@ const ALLOWED_HOST = "www.inflearn.com";
 const MAX_BYTES = 2_000_000;
 const FETCH_TIMEOUT_MS = 15_000;
 const MAX_RETRIES = 3;
-const USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) flowcoder-landing-stats-bot";
+// 인프런은 UA에 따라 페이지 변형을 다르게 제공한다. 실제 브라우저 UA를 써야
+// 일반 사용자/검색엔진이 보는 공개 페이지(수강생 수가 화면 표시·JSON-LD와 일치)를 받는다.
+const USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
 
 // 갱신 대상 강의(슬러그 = course-stats.json 키).
 const COURSES = [

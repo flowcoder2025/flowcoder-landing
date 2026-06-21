@@ -55,17 +55,21 @@ function round1(n) {
  * - 그 객체를 JSON.parse 하여 { studentCount, review:{count, averageStar} } 형태를 검증.
  */
 function extractCourseObject(html, slug) {
-  const slugToken = `"slug":"${slug}"`;
   const keyRe = /"studentCount"\s*:\s*\d+/g;
   const matched = [];
   let m;
   while ((m = keyRe.exec(html)) !== null) {
     const obj = enclosingObject(html, m.index);
-    if (obj === null) {
-      throw new Error("studentCount: 포함 객체 경계 산출 실패");
+    if (obj === null) continue; // 경계 산출 실패 객체는 타깃 아님 → 스킵
+    let parsed;
+    try {
+      parsed = JSON.parse(obj);
+    } catch {
+      continue; // JSON으로 파싱되지 않으면 타깃 강의 객체 아님 → 스킵
     }
-    if (obj.includes(slugToken)) {
-      matched.push(obj);
+    // 슬러그 일치는 substring이 아니라 파싱된 값으로 비교(공백 포맷·enSlug 등 부분일치 오탐 방지).
+    if (parsed && parsed.slug === slug && typeof parsed.studentCount === "number") {
+      matched.push(parsed);
     }
   }
   if (matched.length !== 1) {
@@ -74,23 +78,13 @@ function extractCourseObject(html, slug) {
     );
   }
 
-  let parsed;
-  try {
-    parsed = JSON.parse(matched[0]);
-  } catch (err) {
-    throw new Error(`강의 상세 객체: JSON 파싱 실패 (${err.message})`);
-  }
-
-  if (parsed.slug !== slug) {
-    throw new Error(`강의 상세 객체: slug 불일치 (기대 ${slug}, 실제 ${parsed.slug})`);
-  }
-  const studentCount = parsed.studentCount;
+  const parsed = matched[0];
   const review = parsed.review;
   if (!review || typeof review !== "object") {
     throw new Error("강의 상세 객체: review 필드 없음");
   }
   return {
-    studentCount,
+    studentCount: parsed.studentCount,
     ratingCount: review.count,
     averageStar: review.averageStar,
   };
@@ -116,7 +110,8 @@ function collectCourseRatings(node, out) {
  * 정확히 1개일 때만 채택하고, ratingCount/reviewCount가 둘 다 있으면 일치해야 한다.
  */
 function extractJsonLdRating(html) {
-  const blockRe = /<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g;
+  // type 속성의 따옴표 종류·대소문자·= 주변 공백 변형을 허용.
+  const blockRe = /<script[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
   const ratings = [];
   let m;
   while ((m = blockRe.exec(html)) !== null) {
@@ -139,10 +134,16 @@ function extractJsonLdRating(html) {
   ) {
     throw new Error(`JSON-LD: ratingCount(${agg.ratingCount})와 reviewCount(${agg.reviewCount}) 불일치`);
   }
-  return {
-    ratingValue: Number(agg.ratingValue),
-    ratingCount: Number(agg.ratingCount ?? agg.reviewCount),
-  };
+  const ratingValue = Number(agg.ratingValue);
+  const ratingCount = Number(agg.ratingCount ?? agg.reviewCount);
+  // 누락/비숫자(NaN) 방어: NaN이면 교차검증 비교가 조용히 통과하므로 여기서 차단.
+  if (!Number.isFinite(ratingValue)) {
+    throw new Error(`JSON-LD: ratingValue 비정상 (${agg.ratingValue})`);
+  }
+  if (!Number.isInteger(ratingCount) || ratingCount < 0) {
+    throw new Error(`JSON-LD: ratingCount 비정상 (${agg.ratingCount ?? agg.reviewCount})`);
+  }
+  return { ratingValue, ratingCount };
 }
 
 /**

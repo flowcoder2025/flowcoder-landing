@@ -71,7 +71,7 @@ jobs:
           git checkout -b "$BRANCH"
           git add src/data/course-stats.json
           git commit -m "chore: 인프런 강의 통계 자동 갱신 (${DATE})"
-          git push --force origin "$BRANCH"
+          git push --force-with-lease origin "$BRANCH"
 
           if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
             gh pr create \

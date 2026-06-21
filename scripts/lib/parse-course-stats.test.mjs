@@ -133,11 +133,42 @@ test("범위검증: averageStar > 5 면 throw", () => {
   assert.throws(() => parseCourseStats(html, SLUG), /averageStar 비정상/);
 });
 
-test("강의 객체 JSON이 깨졌으면 throw", () => {
-  // studentCount는 있지만 객체가 깨진 JSON
+test("강의 객체 JSON이 깨졌으면 채택 안 함 → throw", () => {
+  // studentCount는 있지만 객체가 깨진 JSON → 파싱 스킵 → 후보 0개
   const broken = `{"slug":"${SLUG}","studentCount":256,"review":{bad}}`;
   const html = `<html><head><script type="application/ld+json">${jsonLd()}</script></head><body><script>x=${broken}</script></body></html>`;
-  assert.throws(() => parseCourseStats(html, SLUG), /JSON 파싱 실패/);
+  assert.throws(() => parseCourseStats(html, SLUG), /정확히 1개가 아님/);
+});
+
+test("slug 주변 공백(pretty-print)이어도 파싱 기반 매칭으로 통과", () => {
+  const pretty = JSON.stringify(JSON.parse(courseObject()), null, 2);
+  const html = `<html><head><script type="application/ld+json">${jsonLd()}</script></head><body><script>x=${pretty}</script></body></html>`;
+  const r = parseCourseStats(html, SLUG);
+  assert.equal(r.studentCount, 256);
+});
+
+test("JSON-LD ratingValue 누락이면 throw(NaN 교차검증 우회 차단)", () => {
+  const ld = JSON.stringify({
+    "@type": "Course",
+    aggregateRating: { "@type": "AggregateRating", ratingCount: 25, reviewCount: 25 },
+  });
+  assert.throws(() => parseCourseStats(buildHtml({ ld }), SLUG), /ratingValue 비정상/);
+});
+
+test("JSON-LD ratingValue 비숫자면 throw", () => {
+  const ld = JSON.stringify({
+    "@type": "Course",
+    aggregateRating: { "@type": "AggregateRating", ratingValue: "-", ratingCount: 25, reviewCount: 25 },
+  });
+  assert.throws(() => parseCourseStats(buildHtml({ ld }), SLUG), /ratingValue 비정상/);
+});
+
+test("Course JSON-LD가 2개면 throw(모호)", () => {
+  const ld = JSON.stringify([
+    { "@type": "Course", aggregateRating: { "@type": "AggregateRating", ratingValue: 4.6, ratingCount: 25, reviewCount: 25 } },
+    { "@type": "Course", aggregateRating: { "@type": "AggregateRating", ratingValue: 4.2, ratingCount: 10, reviewCount: 10 } },
+  ]);
+  assert.throws(() => parseCourseStats(buildHtml({ ld }), SLUG), /AggregateRating이 정확히 1개가 아님/);
 });
 
 test("잘못된 slug 인자면 throw", () => {

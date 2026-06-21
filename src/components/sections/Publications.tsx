@@ -47,17 +47,21 @@ function resolveStats(pub: Publication): Stat[] | undefined {
   return pub.stats;
 }
 
-// 통계 기준일(updatedAt)을 한국 시간 기준 "YYYY.MM.DD"로 포맷.
-// updatedAt은 빌드 타임에 고정된 문자열이라 서버/클라이언트 렌더 결과가 동일하다.
-const statsAsOf = new Intl.DateTimeFormat("ko-KR", {
-  timeZone: "Asia/Seoul",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-})
-  .format(new Date(courseStatsData.updatedAt))
-  .replace(/\.\s*/g, ".")
-  .replace(/\.$/, "");
+// 통계 기준일(updatedAt, ISO)을 한국시간(UTC+9) "YYYY.MM.DD"로 결정적 포맷.
+// 고정 문자열 + UTC 필드 계산이라 서버/클라 렌더 결과가 동일하다(하이드레이션 안전).
+// 값이 없거나 불량이면 null → 기준일 표기를 생략한다.
+function formatAsOf(iso: unknown): string | null {
+  if (typeof iso !== "string") return null;
+  const t = Date.parse(iso);
+  if (Number.isNaN(t)) return null;
+  const kst = new Date(t + 9 * 60 * 60 * 1000);
+  const y = kst.getUTCFullYear();
+  const mo = String(kst.getUTCMonth() + 1).padStart(2, "0");
+  const d = String(kst.getUTCDate()).padStart(2, "0");
+  return `${y}.${mo}.${d}`;
+}
+
+const statsAsOf = formatAsOf(courseStatsData.updatedAt);
 
 const publications: Publication[] = [
   {
@@ -162,9 +166,11 @@ export function Publications() {
           <p className="text-sm md:text-base text-white/50 max-w-2xl mx-auto">
             인프런 강의 2건, 부크크 출간 도서 2종. 실무에서 검증된 방법론을 공개합니다.
           </p>
-          <p className="text-[11px] text-white/30 mt-3">
-            강의 수강생·평점은 인프런 공개 페이지 기준 · {statsAsOf} 갱신
-          </p>
+          {statsAsOf && (
+            <p className="text-[11px] text-white/30 mt-3">
+              강의 수강생·평점은 인프런 공개 페이지 기준 · {statsAsOf} 갱신
+            </p>
+          )}
         </ScrollReveal>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">

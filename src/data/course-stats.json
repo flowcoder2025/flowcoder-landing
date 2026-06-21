@@ -1,15 +1,15 @@
 {
   "courses": {
     "claude-code-developm": {
-      "studentCount": 255,
+      "studentCount": 256,
       "ratingValue": 4.6,
       "ratingCount": 25
     },
     "giving-ai-its-first": {
-      "studentCount": 1372,
+      "studentCount": 1389,
       "ratingValue": 4.9,
       "ratingCount": 59
     }
   },
-  "updatedAt": "2026-06-21T18:12:32.819Z"
+  "updatedAt": "2026-06-21T18:27:16.788Z"
 }

@@ -1,17 +1,16 @@
 name: update-course-stats
 
 # 인프런 공개 페이지의 강의 수강생 수·평점을 주 1회 가져와 src/data/course-stats.json 을 갱신하고,
-# 변경이 있으면 PR을 생성한다(사용자 룰: main 직접 push 금지 → PR로만 머지). 머지 시 Vercel 재배포.
+# 변경이 있으면 main에 직접 커밋한다(PR 없이 자동 반영). author=flowcoder25@gmail.com → Vercel 프로덕션 자동 배포.
 on:
   schedule:
     # 매주 월요일 03:00 KST (= 일요일 18:00 UTC)
     - cron: "0 18 * * 0"
   workflow_dispatch: {}
 
-# 최소 권한.
+# 최소 권한(main 직접 커밋만 — PR 미사용).
 permissions:
   contents: write
-  pull-requests: write
 
 # 동시 실행 방지(중복 PR/푸시 방지).
 concurrency:
@@ -53,35 +52,20 @@ jobs:
       - name: Build
         run: npm run build
 
-      # 4) JSON이 바뀐 경우에만 PR 생성/갱신(수동 머지).
-      - name: Open or update PR if changed
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 4) JSON이 바뀐 경우에만 main에 직접 커밋(PR 없이 자동 반영).
+      #    author = 인가 계정(flowcoder25@gmail.com)이라 Vercel 프로덕션 배포가 자동 트리거됨.
+      #    (bot author로 커밋하면 Preview만 생성되고 프로덕션 배포가 막힘 — 학습됨)
+      - name: Commit to main if changed
         run: |
           set -euo pipefail
           if git diff --quiet -- src/data/course-stats.json; then
-            echo "변경 없음 — PR 생략."
+            echo "변경 없음 — 커밋 생략."
             exit 0
           fi
 
-          BRANCH="chore/course-stats-auto"
           DATE="$(date -u +%Y-%m-%d)"
-          # checkout은 main만 받으므로, force-with-lease가 비교할 원격 추적 ref를 확보한다.
-          # 브랜치가 이미 원격에 있으면 lease 기준이 생기고, 없으면 무시(신규 브랜치 push로 생성).
-          git fetch origin "$BRANCH:refs/remotes/origin/$BRANCH" || true
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH"
+          git config user.name "flowcoder25"
+          git config user.email "flowcoder25@gmail.com"
           git add src/data/course-stats.json
           git commit -m "chore: 인프런 강의 통계 자동 갱신 (${DATE})"
-          git push --force-with-lease origin "$BRANCH"
-
-          if [ -z "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then
-            gh pr create \
-              --base main \
-              --head "$BRANCH" \
-              --title "chore: 인프런 강의 통계 자동 갱신 (${DATE})" \
-              --body $'인프런 공개 페이지 기준 강의 수강생 수·평점 자동 갱신.\n\n- 생성 스크립트: `scripts/update-course-stats.mjs`\n- 검증: 파서 단위테스트 + 두 구조화 소스 교차검증 + sanity guard 통과\n- 머지 시 Vercel 재배포\n\n🤖 자동 생성 PR'
-          else
-            echo "기존 열린 PR에 브랜치 갱신 완료."
-          fi
+          git push origin HEAD:main

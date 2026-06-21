@@ -44,3 +44,6 @@ next-env.d.ts
 
 # original media backups (not for deploy)
 hero-bg-original.mp4
+
+# local agent config / memory (Claude Code)
+.claude/

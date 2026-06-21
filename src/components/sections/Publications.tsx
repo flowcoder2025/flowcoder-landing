@@ -6,18 +6,58 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ScrollReveal } from "@/components/ui/motion";
 import { BookOpen, GraduationCap, ExternalLink, Star, Users } from "lucide-react";
+import courseStatsData from "@/data/course-stats.json";
+
+interface CourseStat {
+  studentCount: number;
+  ratingValue: number;
+  ratingCount: number;
+}
+
+// 인프런 공개 페이지에서 주 1회 자동 갱신되는 강의 통계 (scripts/update-course-stats.mjs).
+const courseStats = courseStatsData.courses as Record<string, CourseStat>;
 
 interface Publication {
   type: "lecture" | "book";
   tier: string;
   title: string;
   subtitle?: string;
+  // 인프런 강의 슬러그. 있으면 course-stats.json의 실측값으로 stats를 채운다.
+  slug?: string;
   meta: { label: string; value: string }[];
   tags: string[];
+  // course-stats.json에 슬러그가 없을 때 사용하는 fallback stats.
   stats?: { icon: "star" | "users"; value: string; label: string }[];
   cta: { label: string; url: string };
   priceLabel?: string;
 }
+
+type Stat = { icon: "star" | "users"; value: string; label: string };
+
+// 강의 카드의 stats를 결정한다. slug가 course-stats.json에 있으면 실측값,
+// 없으면 하드코딩 fallback(pub.stats)을 쓴다.
+function resolveStats(pub: Publication): Stat[] | undefined {
+  const live = pub.slug ? courseStats[pub.slug] : undefined;
+  if (live) {
+    return [
+      { icon: "users", value: live.studentCount.toLocaleString("ko-KR"), label: "수강생" },
+      { icon: "star", value: live.ratingValue.toFixed(1), label: "평점" },
+    ];
+  }
+  return pub.stats;
+}
+
+// 통계 기준일(updatedAt)을 한국 시간 기준 "YYYY.MM.DD"로 포맷.
+// updatedAt은 빌드 타임에 고정된 문자열이라 서버/클라이언트 렌더 결과가 동일하다.
+const statsAsOf = new Intl.DateTimeFormat("ko-KR", {
+  timeZone: "Asia/Seoul",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+})
+  .format(new Date(courseStatsData.updatedAt))
+  .replace(/\.\s*/g, ".")
+  .replace(/\.$/, "");
 
 const publications: Publication[] = [
   {
@@ -25,6 +65,7 @@ const publications: Publication[] = [
     tier: "유료 · 중급",
     title: "Claude Code 개발 자동화 시스템",
     subtitle: "SDD 마스터클래스 — 프롬프트 지옥 탈출",
+    slug: "claude-code-developm",
     meta: [
       { label: "플랫폼", value: "인프런 (Inflearn)" },
       { label: "강사명", value: "FlowCoder" },
@@ -34,8 +75,8 @@ const publications: Publication[] = [
     ],
     tags: ["Claude Code", "SDD", "AI 에이전트", "바이브코딩"],
     stats: [
-      { icon: "users", value: "90+", label: "수강생" },
-      { icon: "star", value: "4.7", label: "평점" },
+      { icon: "users", value: "250+", label: "수강생" },
+      { icon: "star", value: "4.6", label: "평점" },
     ],
     priceLabel: "39,600원",
     cta: { label: "강의 보기", url: "https://inf.run/pL2HN" },
@@ -45,6 +86,7 @@ const publications: Publication[] = [
     tier: "무료 · 입문",
     title: "AI 처음으로 일 시키기",
     subtitle: "Claude Code 에이전틱 자동화 입문",
+    slug: "giving-ai-its-first",
     meta: [
       { label: "플랫폼", value: "인프런 (Inflearn)" },
       { label: "강사명", value: "FlowCoder" },
@@ -54,8 +96,8 @@ const publications: Publication[] = [
     ],
     tags: ["비개발자", "업무 자동화", "AI 입문", "Claude"],
     stats: [
-      { icon: "users", value: "77+", label: "수강생" },
-      { icon: "star", value: "5.0", label: "평점" },
+      { icon: "users", value: "1,300+", label: "수강생" },
+      { icon: "star", value: "4.9", label: "평점" },
     ],
     priceLabel: "무료",
     cta: { label: "강의 보기", url: "https://inf.run/ocRsn" },
@@ -120,6 +162,9 @@ export function Publications() {
           <p className="text-sm md:text-base text-white/50 max-w-2xl mx-auto">
             인프런 강의 2건, 부크크 출간 도서 2종. 실무에서 검증된 방법론을 공개합니다.
           </p>
+          <p className="text-[11px] text-white/30 mt-3">
+            강의 수강생·평점은 인프런 공개 페이지 기준 · {statsAsOf} 갱신
+          </p>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
@@ -163,18 +208,22 @@ export function Publications() {
                   <p className="text-sm text-white/50 mb-4">{pub.subtitle}</p>
                 )}
 
-                {/* Stats (lectures only) */}
-                {pub.stats && (
-                  <div className="flex gap-4 mb-4">
-                    {pub.stats.map((stat, i) => (
-                      <div key={i} className="flex items-center gap-1.5">
-                        <StatIcon type={stat.icon} />
-                        <span className="text-sm font-semibold text-white">{stat.value}</span>
-                        <span className="text-xs text-white/40">{stat.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                {/* Stats (lectures only) — course-stats.json 실측값 우선, 없으면 fallback */}
+                {(() => {
+                  const stats = resolveStats(pub);
+                  if (!stats) return null;
+                  return (
+                    <div className="flex gap-4 mb-4">
+                      {stats.map((stat, i) => (
+                        <div key={i} className="flex items-center gap-1.5">
+                          <StatIcon type={stat.icon} />
+                          <span className="text-sm font-semibold text-white">{stat.value}</span>
+                          <span className="text-xs text-white/40">{stat.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })()}
 
                 {/* Meta table */}
                 <dl className="grid grid-cols-1 gap-1.5 mb-5 text-xs">

@@ -66,6 +66,9 @@ jobs:
 
           BRANCH="chore/course-stats-auto"
           DATE="$(date -u +%Y-%m-%d)"
+          # checkout은 main만 받으므로, force-with-lease가 비교할 원격 추적 ref를 확보한다.
+          # 브랜치가 이미 원격에 있으면 lease 기준이 생기고, 없으면 무시(신규 브랜치 push로 생성).
+          git fetch origin "$BRANCH:refs/remotes/origin/$BRANCH" || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
